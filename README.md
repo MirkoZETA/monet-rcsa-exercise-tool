@@ -4,29 +4,31 @@ A MONet-based tool for configuring and running simple RCSA simulations.
 
 ## Build and run with Docker
 
-Release images are published in the GitHub Container Registry. Pull the
-versioned image, create a local results directory, and run a simulation:
+### Unix (Linux, macOS, and WSL)
 
 ```bash
-docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.0
+docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1
+
 mkdir -p results
+
 docker run --rm \
+  --user "$(id -u):$(id -g)" \
   -v "$(pwd)/results:/results" \
-  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.0 \
+  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1 \
   Germany-14nodes 1 3 1 /results/run-001
 ```
 
-The mounted `results` directory keeps the generated CSV and summary files on
-the host after the container exits.
+### Windows (PowerShell)
 
-To build the image locally instead:
+```powershell
+docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1
 
-```bash
-docker build -t monet-exercise .
-mkdir -p results
-docker run --rm \
-  -v "$(pwd)/results:/results" \
-  monet-exercise Germany-14nodes 1 3 1 /results/run-001
+New-Item -ItemType Directory -Force results
+
+docker run --rm `
+  --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
+  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1 `
+  Germany-14nodes 1 3 1 /results/run-001
 ```
 
 ## Project structure
