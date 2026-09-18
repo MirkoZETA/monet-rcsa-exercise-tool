@@ -1,0 +1,566 @@
+{
+    "name": "DT14",
+    "nodes": [
+        {
+            "id": 0,
+            "weight": 0,
+            "latitude": 53.54473,
+            "longitude": 9.9853,
+            "pop": 1845229,
+            "DC": 32,
+            "IXP": 3,
+            "label": "Hamburg"
+        },
+        {
+            "id": 1,
+            "weight": 0,
+            "latitude": 52.5119,
+            "longitude": 13.39678,
+            "pop": 3426354,
+            "DC": 49,
+            "IXP": 5,
+            "label": "Berlin"
+        },
+        {
+            "id": 2,
+            "weight": 0,
+            "latitude": 52.37159,
+            "longitude": 9.72658,
+            "pop": 515140,
+            "DC": 9,
+            "IXP": 2,
+            "label": "Hannover"
+        },
+        {
+            "id": 3,
+            "weight": 0,
+            "latitude": 53.07913,
+            "longitude": 8.79834,
+            "pop": 546501,
+            "DC": 9,
+            "IXP": 2,
+            "label": "Bremen"
+        },
+        {
+            "id": 4,
+            "weight": 0,
+            "latitude": 51.33818,
+            "longitude": 12.37046,
+            "pop": 504971,
+            "DC": 6,
+            "IXP": 2,
+            "label": "Leipzig"
+        },
+        {
+            "id": 5,
+            "weight": 0,
+            "latitude": 51.51257,
+            "longitude": 7.4589,
+            "pop": 588462,
+            "DC": 9,
+            "IXP": 2,
+            "label": "Dortmund"
+        },
+        {
+            "id": 6,
+            "weight": 0,
+            "latitude": 51.45792,
+            "longitude": 7.01947,
+            "pop": 593085,
+            "DC": 3,
+            "IXP": 1,
+            "label": "Essen"
+        },
+        {
+            "id": 7,
+            "weight": 0,
+            "latitude": 51.21454,
+            "longitude": 6.77234,
+            "pop": 620523,
+            "DC": 33,
+            "IXP": 9,
+            "label": "Dusseldorf"
+        },
+        {
+            "id": 8,
+            "weight": 0,
+            "latitude": 50.93178,
+            "longitude": 6.95419,
+            "pop": 963395,
+            "DC": 17,
+            "IXP": 1,
+            "label": "Cologne"
+        },
+        {
+            "id": 9,
+            "weight": 0,
+            "latitude": 50.10917,
+            "longitude": 8.67597,
+            "pop": 650000,
+            "DC": 129,
+            "IXP": 26,
+            "label": "Frankfurt"
+        },
+        {
+            "id": 10,
+            "weight": 0,
+            "latitude": 49.44665,
+            "longitude": 11.07694,
+            "pop": 515543,
+            "DC": 21,
+            "IXP": 4,
+            "label": "Nurnberg"
+        },
+        {
+            "id": 11,
+            "weight": 0,
+            "latitude": 48.77906,
+            "longitude": 9.17103,
+            "pop": 630305,
+            "DC": 25,
+            "IXP": 1,
+            "label": "Stuttgart"
+        },
+        {
+            "id": 12,
+            "weight": 0,
+            "latitude": 48.40848,
+            "longitude": 9.97852,
+            "pop": 120451,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Ulm"
+        },
+        {
+            "id": 13,
+            "weight": 0,
+            "latitude": 48.14159,
+            "longitude": 11.57703,
+            "pop": 1260391,
+            "DC": 35,
+            "IXP": 2,
+            "label": "Munich"
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "src": 0,
+            "dst": 1,
+            "length": 306.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 1,
+            "src": 0,
+            "dst": 2,
+            "length": 160.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 2,
+            "src": 0,
+            "dst": 3,
+            "length": 114.7,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 3,
+            "src": 1,
+            "dst": 0,
+            "length": 306.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 4,
+            "src": 1,
+            "dst": 2,
+            "length": 294.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 5,
+            "src": 1,
+            "dst": 4,
+            "length": 173.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 6,
+            "src": 2,
+            "dst": 0,
+            "length": 160.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 7,
+            "src": 2,
+            "dst": 1,
+            "length": 294.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 8,
+            "src": 2,
+            "dst": 3,
+            "length": 121.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 9,
+            "src": 2,
+            "dst": 4,
+            "length": 257.2,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 10,
+            "src": 2,
+            "dst": 5,
+            "length": 220.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 11,
+            "src": 2,
+            "dst": 9,
+            "length": 313.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 12,
+            "src": 3,
+            "dst": 0,
+            "length": 114.7,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 13,
+            "src": 3,
+            "dst": 2,
+            "length": 121.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 14,
+            "src": 3,
+            "dst": 6,
+            "length": 278.5,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 15,
+            "src": 4,
+            "dst": 1,
+            "length": 173.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 16,
+            "src": 4,
+            "dst": 2,
+            "length": 257.2,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 17,
+            "src": 4,
+            "dst": 9,
+            "length": 352.6,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 18,
+            "src": 4,
+            "dst": 10,
+            "length": 274.7,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 19,
+            "src": 5,
+            "dst": 2,
+            "length": 220.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 20,
+            "src": 5,
+            "dst": 6,
+            "length": 37.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 21,
+            "src": 5,
+            "dst": 8,
+            "length": 84.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 22,
+            "src": 9,
+            "dst": 2,
+            "length": 313.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 23,
+            "src": 9,
+            "dst": 4,
+            "length": 352.6,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 24,
+            "src": 9,
+            "dst": 8,
+            "length": 182.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 25,
+            "src": 9,
+            "dst": 10,
+            "length": 224.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 26,
+            "src": 9,
+            "dst": 11,
+            "length": 207.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 27,
+            "src": 6,
+            "dst": 3,
+            "length": 278.5,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 28,
+            "src": 6,
+            "dst": 5,
+            "length": 37.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 29,
+            "src": 6,
+            "dst": 7,
+            "length": 36.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 30,
+            "src": 10,
+            "dst": 4,
+            "length": 274.7,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 31,
+            "src": 10,
+            "dst": 9,
+            "length": 224.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 32,
+            "src": 10,
+            "dst": 11,
+            "length": 188.7,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 33,
+            "src": 10,
+            "dst": 13,
+            "length": 180.8,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 34,
+            "src": 8,
+            "dst": 5,
+            "length": 84.3,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 35,
+            "src": 8,
+            "dst": 9,
+            "length": 182.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 36,
+            "src": 8,
+            "dst": 7,
+            "length": 40.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 37,
+            "src": 11,
+            "dst": 9,
+            "length": 207.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 38,
+            "src": 11,
+            "dst": 10,
+            "length": 188.7,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 39,
+            "src": 11,
+            "dst": 12,
+            "length": 87.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 40,
+            "src": 7,
+            "dst": 6,
+            "length": 36.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 41,
+            "src": 7,
+            "dst": 8,
+            "length": 40.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 42,
+            "src": 13,
+            "dst": 10,
+            "length": 180.8,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 43,
+            "src": 13,
+            "dst": 12,
+            "length": 145.6,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 44,
+            "src": 12,
+            "dst": 11,
+            "length": 87.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 45,
+            "src": 12,
+            "dst": 13,
+            "length": 145.6,
+            "fibers": {
+                "SSMF": 1
+            }
+        }
+    ],
+    "source": {
+        "url": "https://www.mdpi.com/2079-9292/10/12/1468",
+        "paper": "On the Efficient Flow Restoration in Spectrally-Spatially Flexible Optical Networks",
+        "doi": "https://doi.org/10.3390/electronics10121468"
+    }
+}

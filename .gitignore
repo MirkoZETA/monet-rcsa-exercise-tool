@@ -1,0 +1,7 @@
+# Build and results directories
+build/
+results/
+
+# Python files
+.venv/
+__pycache__/
