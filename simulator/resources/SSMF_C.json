@@ -1,0 +1,19 @@
+{
+  "SSMF": {
+    "dispersion": 16.8,
+    "dispersionSlope": 0.067,
+    "gamma": 1.27,
+    "ramanGainSlope": 0.028,
+    "lossCoefDbPerKm": 0.2,
+    "SI": {
+      "C": {
+        "freqMinHz": 191.3e12,
+        "freqMaxHz": 195.6e12,
+        "slotWidthHz": 12.5e9,
+        "sysMarginsDb": 2.0,
+        "deltaPowerDb": 0.0,
+        "txOsnrDb": 40.0
+      }
+    }
+  }
+}

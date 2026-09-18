@@ -1,0 +1,12 @@
+# Repository metadata
+.git
+
+# Local build and runtime output
+build
+results
+
+# Local Python environment and tooling
+.venv
+README*
+requirements.txt
+simulator/resources/topolib_extract.py

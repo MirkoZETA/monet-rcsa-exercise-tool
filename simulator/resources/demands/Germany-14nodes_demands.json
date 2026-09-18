@@ -1,0 +1,912 @@
+[
+    {
+        "src": "Hamburg",
+        "dst": "Berlin",
+        "required": 8139.22
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Hannover",
+        "required": 1626.42
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Bremen",
+        "required": 1671.31
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Leipzig",
+        "required": 1497.33
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Dortmund",
+        "required": 1731.38
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Essen",
+        "required": 1236.27
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Dusseldorf",
+        "required": 4602.24
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Cologne",
+        "required": 2300.88
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Frankfurt",
+        "required": 12944.83
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Nurnberg",
+        "required": 2630.46
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Stuttgart",
+        "required": 2129.43
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Ulm",
+        "required": 172.44
+    },
+    {
+        "src": "Hamburg",
+        "dst": "Munich",
+        "required": 3685.91
+    },
+    {
+        "src": "Berlin",
+        "dst": "Hamburg",
+        "required": 8139.22
+    },
+    {
+        "src": "Berlin",
+        "dst": "Hannover",
+        "required": 2827.79
+    },
+    {
+        "src": "Berlin",
+        "dst": "Bremen",
+        "required": 2905.85
+    },
+    {
+        "src": "Berlin",
+        "dst": "Leipzig",
+        "required": 2603.35
+    },
+    {
+        "src": "Berlin",
+        "dst": "Dortmund",
+        "required": 3010.29
+    },
+    {
+        "src": "Berlin",
+        "dst": "Essen",
+        "required": 2149.46
+    },
+    {
+        "src": "Berlin",
+        "dst": "Dusseldorf",
+        "required": 8001.73
+    },
+    {
+        "src": "Berlin",
+        "dst": "Cologne",
+        "required": 4000.45
+    },
+    {
+        "src": "Berlin",
+        "dst": "Frankfurt",
+        "required": 22506.66
+    },
+    {
+        "src": "Berlin",
+        "dst": "Nurnberg",
+        "required": 4573.47
+    },
+    {
+        "src": "Berlin",
+        "dst": "Stuttgart",
+        "required": 3702.36
+    },
+    {
+        "src": "Berlin",
+        "dst": "Ulm",
+        "required": 299.81
+    },
+    {
+        "src": "Berlin",
+        "dst": "Munich",
+        "required": 6408.55
+    },
+    {
+        "src": "Hannover",
+        "dst": "Hamburg",
+        "required": 1626.42
+    },
+    {
+        "src": "Hannover",
+        "dst": "Berlin",
+        "required": 2827.79
+    },
+    {
+        "src": "Hannover",
+        "dst": "Bremen",
+        "required": 580.66
+    },
+    {
+        "src": "Hannover",
+        "dst": "Leipzig",
+        "required": 520.21
+    },
+    {
+        "src": "Hannover",
+        "dst": "Dortmund",
+        "required": 601.53
+    },
+    {
+        "src": "Hannover",
+        "dst": "Essen",
+        "required": 429.51
+    },
+    {
+        "src": "Hannover",
+        "dst": "Dusseldorf",
+        "required": 1598.94
+    },
+    {
+        "src": "Hannover",
+        "dst": "Cologne",
+        "required": 799.39
+    },
+    {
+        "src": "Hannover",
+        "dst": "Frankfurt",
+        "required": 4497.38
+    },
+    {
+        "src": "Hannover",
+        "dst": "Nurnberg",
+        "required": 913.89
+    },
+    {
+        "src": "Hannover",
+        "dst": "Stuttgart",
+        "required": 739.82
+    },
+    {
+        "src": "Hannover",
+        "dst": "Ulm",
+        "required": 59.91
+    },
+    {
+        "src": "Hannover",
+        "dst": "Munich",
+        "required": 1280.59
+    },
+    {
+        "src": "Bremen",
+        "dst": "Hamburg",
+        "required": 1671.31
+    },
+    {
+        "src": "Bremen",
+        "dst": "Berlin",
+        "required": 2905.85
+    },
+    {
+        "src": "Bremen",
+        "dst": "Hannover",
+        "required": 580.66
+    },
+    {
+        "src": "Bremen",
+        "dst": "Leipzig",
+        "required": 534.57
+    },
+    {
+        "src": "Bremen",
+        "dst": "Dortmund",
+        "required": 618.13
+    },
+    {
+        "src": "Bremen",
+        "dst": "Essen",
+        "required": 441.37
+    },
+    {
+        "src": "Bremen",
+        "dst": "Dusseldorf",
+        "required": 1643.08
+    },
+    {
+        "src": "Bremen",
+        "dst": "Cologne",
+        "required": 821.45
+    },
+    {
+        "src": "Bremen",
+        "dst": "Frankfurt",
+        "required": 4621.53
+    },
+    {
+        "src": "Bremen",
+        "dst": "Nurnberg",
+        "required": 939.12
+    },
+    {
+        "src": "Bremen",
+        "dst": "Stuttgart",
+        "required": 760.25
+    },
+    {
+        "src": "Bremen",
+        "dst": "Ulm",
+        "required": 61.56
+    },
+    {
+        "src": "Bremen",
+        "dst": "Munich",
+        "required": 1315.94
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Hamburg",
+        "required": 1497.33
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Berlin",
+        "required": 2603.35
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Hannover",
+        "required": 520.21
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Bremen",
+        "required": 534.57
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Dortmund",
+        "required": 553.79
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Essen",
+        "required": 395.42
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Dusseldorf",
+        "required": 1472.03
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Cologne",
+        "required": 735.94
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Frankfurt",
+        "required": 4140.43
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Nurnberg",
+        "required": 841.36
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Stuttgart",
+        "required": 681.1
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Ulm",
+        "required": 55.16
+    },
+    {
+        "src": "Leipzig",
+        "dst": "Munich",
+        "required": 1178.95
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Hamburg",
+        "required": 1731.38
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Berlin",
+        "required": 3010.29
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Hannover",
+        "required": 601.53
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Bremen",
+        "required": 618.13
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Leipzig",
+        "required": 553.79
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Essen",
+        "required": 457.23
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Dusseldorf",
+        "required": 1702.14
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Cologne",
+        "required": 850.98
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Frankfurt",
+        "required": 4787.64
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Nurnberg",
+        "required": 972.87
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Stuttgart",
+        "required": 787.57
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Ulm",
+        "required": 63.78
+    },
+    {
+        "src": "Dortmund",
+        "dst": "Munich",
+        "required": 1363.23
+    },
+    {
+        "src": "Essen",
+        "dst": "Hamburg",
+        "required": 1236.27
+    },
+    {
+        "src": "Essen",
+        "dst": "Berlin",
+        "required": 2149.46
+    },
+    {
+        "src": "Essen",
+        "dst": "Hannover",
+        "required": 429.51
+    },
+    {
+        "src": "Essen",
+        "dst": "Bremen",
+        "required": 441.37
+    },
+    {
+        "src": "Essen",
+        "dst": "Leipzig",
+        "required": 395.42
+    },
+    {
+        "src": "Essen",
+        "dst": "Dortmund",
+        "required": 457.23
+    },
+    {
+        "src": "Essen",
+        "dst": "Dusseldorf",
+        "required": 1215.39
+    },
+    {
+        "src": "Essen",
+        "dst": "Cologne",
+        "required": 607.63
+    },
+    {
+        "src": "Essen",
+        "dst": "Frankfurt",
+        "required": 3418.55
+    },
+    {
+        "src": "Essen",
+        "dst": "Nurnberg",
+        "required": 694.67
+    },
+    {
+        "src": "Essen",
+        "dst": "Stuttgart",
+        "required": 562.35
+    },
+    {
+        "src": "Essen",
+        "dst": "Ulm",
+        "required": 45.54
+    },
+    {
+        "src": "Essen",
+        "dst": "Munich",
+        "required": 973.4
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Hamburg",
+        "required": 4602.24
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Berlin",
+        "required": 8001.73
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Hannover",
+        "required": 1598.94
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Bremen",
+        "required": 1643.08
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Leipzig",
+        "required": 1472.03
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Dortmund",
+        "required": 1702.14
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Essen",
+        "required": 1215.39
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Cologne",
+        "required": 2262.01
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Frankfurt",
+        "required": 12726.15
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Nurnberg",
+        "required": 2586.02
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Stuttgart",
+        "required": 2093.46
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Ulm",
+        "required": 169.53
+    },
+    {
+        "src": "Dusseldorf",
+        "dst": "Munich",
+        "required": 3623.64
+    },
+    {
+        "src": "Cologne",
+        "dst": "Hamburg",
+        "required": 2300.88
+    },
+    {
+        "src": "Cologne",
+        "dst": "Berlin",
+        "required": 4000.45
+    },
+    {
+        "src": "Cologne",
+        "dst": "Hannover",
+        "required": 799.39
+    },
+    {
+        "src": "Cologne",
+        "dst": "Bremen",
+        "required": 821.45
+    },
+    {
+        "src": "Cologne",
+        "dst": "Leipzig",
+        "required": 735.94
+    },
+    {
+        "src": "Cologne",
+        "dst": "Dortmund",
+        "required": 850.98
+    },
+    {
+        "src": "Cologne",
+        "dst": "Essen",
+        "required": 607.63
+    },
+    {
+        "src": "Cologne",
+        "dst": "Dusseldorf",
+        "required": 2262.01
+    },
+    {
+        "src": "Cologne",
+        "dst": "Frankfurt",
+        "required": 6362.42
+    },
+    {
+        "src": "Cologne",
+        "dst": "Nurnberg",
+        "required": 1292.88
+    },
+    {
+        "src": "Cologne",
+        "dst": "Stuttgart",
+        "required": 1046.62
+    },
+    {
+        "src": "Cologne",
+        "dst": "Ulm",
+        "required": 84.75
+    },
+    {
+        "src": "Cologne",
+        "dst": "Munich",
+        "required": 1811.63
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Hamburg",
+        "required": 12944.83
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Berlin",
+        "required": 22506.66
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Hannover",
+        "required": 4497.38
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Bremen",
+        "required": 4621.53
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Leipzig",
+        "required": 4140.43
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Dortmund",
+        "required": 4787.64
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Essen",
+        "required": 3418.55
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Dusseldorf",
+        "required": 12726.15
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Cologne",
+        "required": 6362.42
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Nurnberg",
+        "required": 7273.77
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Stuttgart",
+        "required": 5888.33
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Ulm",
+        "required": 476.83
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Munich",
+        "required": 10192.32
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Hamburg",
+        "required": 2630.46
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Berlin",
+        "required": 4573.47
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Hannover",
+        "required": 913.89
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Bremen",
+        "required": 939.12
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Leipzig",
+        "required": 841.36
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Dortmund",
+        "required": 972.87
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Essen",
+        "required": 694.67
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Dusseldorf",
+        "required": 2586.02
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Cologne",
+        "required": 1292.88
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Frankfurt",
+        "required": 7273.77
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Stuttgart",
+        "required": 1196.54
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Ulm",
+        "required": 96.89
+    },
+    {
+        "src": "Nurnberg",
+        "dst": "Munich",
+        "required": 2071.13
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Hamburg",
+        "required": 2129.43
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Berlin",
+        "required": 3702.36
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Hannover",
+        "required": 739.82
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Bremen",
+        "required": 760.25
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Leipzig",
+        "required": 681.1
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Dortmund",
+        "required": 787.57
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Essen",
+        "required": 562.35
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Dusseldorf",
+        "required": 2093.46
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Cologne",
+        "required": 1046.62
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Frankfurt",
+        "required": 5888.33
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Nurnberg",
+        "required": 1196.54
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Ulm",
+        "required": 78.44
+    },
+    {
+        "src": "Stuttgart",
+        "dst": "Munich",
+        "required": 1676.64
+    },
+    {
+        "src": "Ulm",
+        "dst": "Hamburg",
+        "required": 172.44
+    },
+    {
+        "src": "Ulm",
+        "dst": "Berlin",
+        "required": 299.81
+    },
+    {
+        "src": "Ulm",
+        "dst": "Hannover",
+        "required": 59.91
+    },
+    {
+        "src": "Ulm",
+        "dst": "Bremen",
+        "required": 61.56
+    },
+    {
+        "src": "Ulm",
+        "dst": "Leipzig",
+        "required": 55.16
+    },
+    {
+        "src": "Ulm",
+        "dst": "Dortmund",
+        "required": 63.78
+    },
+    {
+        "src": "Ulm",
+        "dst": "Essen",
+        "required": 45.54
+    },
+    {
+        "src": "Ulm",
+        "dst": "Dusseldorf",
+        "required": 169.53
+    },
+    {
+        "src": "Ulm",
+        "dst": "Cologne",
+        "required": 84.75
+    },
+    {
+        "src": "Ulm",
+        "dst": "Frankfurt",
+        "required": 476.83
+    },
+    {
+        "src": "Ulm",
+        "dst": "Nurnberg",
+        "required": 96.89
+    },
+    {
+        "src": "Ulm",
+        "dst": "Stuttgart",
+        "required": 78.44
+    },
+    {
+        "src": "Ulm",
+        "dst": "Munich",
+        "required": 135.77
+    },
+    {
+        "src": "Munich",
+        "dst": "Hamburg",
+        "required": 3685.91
+    },
+    {
+        "src": "Munich",
+        "dst": "Berlin",
+        "required": 6408.55
+    },
+    {
+        "src": "Munich",
+        "dst": "Hannover",
+        "required": 1280.59
+    },
+    {
+        "src": "Munich",
+        "dst": "Bremen",
+        "required": 1315.94
+    },
+    {
+        "src": "Munich",
+        "dst": "Leipzig",
+        "required": 1178.95
+    },
+    {
+        "src": "Munich",
+        "dst": "Dortmund",
+        "required": 1363.23
+    },
+    {
+        "src": "Munich",
+        "dst": "Essen",
+        "required": 973.4
+    },
+    {
+        "src": "Munich",
+        "dst": "Dusseldorf",
+        "required": 3623.64
+    },
+    {
+        "src": "Munich",
+        "dst": "Cologne",
+        "required": 1811.63
+    },
+    {
+        "src": "Munich",
+        "dst": "Frankfurt",
+        "required": 10192.32
+    },
+    {
+        "src": "Munich",
+        "dst": "Nurnberg",
+        "required": 2071.13
+    },
+    {
+        "src": "Munich",
+        "dst": "Stuttgart",
+        "required": 1676.64
+    },
+    {
+        "src": "Munich",
+        "dst": "Ulm",
+        "required": 135.77
+    }
+]
