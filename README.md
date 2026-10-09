@@ -20,7 +20,7 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -v "$(pwd)/results:/results" \
   ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1 \
-  Germany-14nodes 1 3 1 /results/run-001
+  Germany-14nodes 1 3 1 1 /results/run-001
 ```
 
 ### Windows (PowerShell)
@@ -33,7 +33,7 @@ New-Item -ItemType Directory -Force results
 docker run --rm `
   --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
   ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1 `
-  Germany-14nodes 1 3 1 /results/run-001
+  Germany-14nodes 1 3 1 1 /results/run-001
 ```
 
 ## Build locally
@@ -51,7 +51,7 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -v "$(pwd)/results:/results" \
   monet-rcsa-exercise-tool \
-  Germany-14nodes 1 3 1 /results/run-001
+  Germany-14nodes 1 3 1 1 /results/run-001
 ```
 
 ### Windows (PowerShell)
@@ -64,7 +64,7 @@ New-Item -ItemType Directory -Force results
 docker run --rm `
   --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
   monet-rcsa-exercise-tool `
-  Germany-14nodes 1 3 1 /results/run-001
+  Germany-14nodes 1 3 1 1 /results/run-001
 ```
 
 ## Project structure
@@ -79,6 +79,7 @@ docker run --rm `
 ├── simulator
 │   ├── main.cpp
 │   ├── algorithms.hpp
+│   ├── utils.hpp
 │   ├── simulator.hpp
 │   └── resources
 │       ├── SSMF_C.json
@@ -97,22 +98,27 @@ interface and does not currently contain an implementation.
 
 ## Command-line interface
 
-The executable expects five positional arguments in this order:
+The executable expects six positional arguments in this order:
 
 ```text
-monet-exercise NETWORK ROUTING K RCSA OUTPUT_FOLDER
+monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING RCSA OUTPUT_FOLDER
 ```
 
 - `NETWORK`: topology name, currently `Germany-14nodes`
-- `ROUTING`: `1` for shortest paths or `2` for disjoint paths
+- `ROUTE_SET`: `1` for shortest paths or `2` for disjoint paths
 - `K`: positive number of candidate paths
+- `ROUTE_ORDERING`: candidate evaluation order:
+  - `1`: shortest to longest
+  - `2`: longest to shortest
+  - `3`: least loaded to most loaded
+  - `4`: most loaded to least loaded
 - `RCSA`: `1` for First Fit
 - `OUTPUT_FOLDER`: directory in which the CSV reports are created
 
 Example:
 
 ```bash
-./build/monet-exercise Germany-14nodes 1 3 1 ./results/run-001
+./build/monet-exercise Germany-14nodes 1 3 1 1 ./results/run-001
 ```
 
 Exit code `0` means the simulation completed successfully. Invalid command-line

@@ -1,8 +1,5 @@
-#include <algorithm>
-#include <cctype>
 #include <filesystem>
 #include <iostream>
-#include <limits>
 #include <stdexcept>
 #include <string>
 
@@ -10,114 +7,16 @@
 
 namespace {
 
-enum class RoutingOption : int {
-  ShortestPaths = 1,
-  DisjointPaths = 2,
-};
-
-enum class RcsaAlgorithm : int {
-  FirstFit = 1,
-};
-
-struct CommandLineOptions {
-  std::string networkName;
-  RoutingOption routingOption;
-  int numberOfPaths;
-  RcsaAlgorithm rcsaAlgorithm;
-  std::filesystem::path outputFolder;
-};
-
 void printUsage(std::ostream &stream, const char *programName) {
   stream
       << "Usage: " << programName
-      << " <network-name> <routing-option> <number-of-paths> <rcsa-algorithm>"
-         " <output-folder>\n"
-      << "  routing-option: 1 = shortest paths, 2 = disjoint paths\n"
+      << " <network-name> <route-set> <number-of-paths> <route-ordering>"
+         " <rcsa-algorithm> <output-folder>\n"
+      << "  route-set:       1 = shortest paths, 2 = disjoint paths\n"
+      << "  route-ordering:  1 = shortest first, 2 = longest first,\n"
+      << "                   3 = least loaded first, 4 = most loaded first\n"
       << "  rcsa-algorithm:  1 = FirstFit (FF-PIA)\n"
       << "  output-folder:   directory for generated reports\n";
-}
-
-int parsePositiveInteger(const std::string &value,
-                         const std::string &argumentName) {
-  const bool containsOnlyDigits =
-      !value.empty() &&
-      std::all_of(value.begin(), value.end(), [](unsigned char character) {
-        return std::isdigit(character) != 0;
-      });
-
-  if (!containsOnlyDigits) {
-    throw std::invalid_argument(argumentName +
-                                " must contain only decimal digits");
-  }
-
-  try {
-    const long long parsedValue = std::stoll(value);
-    if (parsedValue <= 0 ||
-        parsedValue > std::numeric_limits<int>::max()) {
-      throw std::invalid_argument(argumentName +
-                                  " must be a positive integer");
-    }
-    return static_cast<int>(parsedValue);
-  } catch (const std::out_of_range &) {
-    throw std::invalid_argument(argumentName + " is outside the valid range");
-  }
-}
-
-RoutingOption parseRoutingOption(const std::string &value) {
-  switch (parsePositiveInteger(value, "routing-option")) {
-  case static_cast<int>(RoutingOption::ShortestPaths):
-    return RoutingOption::ShortestPaths;
-  case static_cast<int>(RoutingOption::DisjointPaths):
-    return RoutingOption::DisjointPaths;
-  default:
-    throw std::invalid_argument(
-        "routing-option must be 1 (shortest) or 2 (disjoint)");
-  }
-}
-
-RcsaAlgorithm parseRcsaAlgorithm(const std::string &value) {
-  switch (parsePositiveInteger(value, "rcsa-algorithm")) {
-  case static_cast<int>(RcsaAlgorithm::FirstFit):
-    return RcsaAlgorithm::FirstFit;
-  default:
-    throw std::invalid_argument("rcsa-algorithm must be 1 (FirstFit)");
-  }
-}
-
-void validateNetworkName(const std::string &networkName) {
-  const bool isValid =
-      !networkName.empty() &&
-      std::all_of(networkName.begin(), networkName.end(),
-                  [](unsigned char character) {
-                    return std::isalnum(character) != 0 || character == '-' ||
-                           character == '_';
-                  });
-
-  if (!isValid) {
-    throw std::invalid_argument(
-        "network-name may contain only letters, digits, '-' and '_'");
-  }
-}
-
-CommandLineOptions parseCommandLine(int argc, char *argv[]) {
-  if (argc != 6) {
-    throw std::invalid_argument("expected exactly five arguments");
-  }
-
-  CommandLineOptions options{
-      .networkName = argv[1],
-      .routingOption = parseRoutingOption(argv[2]),
-      .numberOfPaths = parsePositiveInteger(argv[3], "number-of-paths"),
-      .rcsaAlgorithm = parseRcsaAlgorithm(argv[4]),
-      .outputFolder = std::filesystem::path(argv[5]),
-  };
-
-  validateNetworkName(options.networkName);
-  if (options.outputFolder.empty()) {
-    throw std::invalid_argument("output-folder cannot be empty");
-  }
-
-  return options;
 }
 
 std::filesystem::path executableDirectory(const char *programName) {
@@ -176,17 +75,19 @@ int runSimulation(const CommandLineOptions &options, const char *programName) {
   simulator.setAutoFeasibilityCheck(true);
   simulator.setOutputFolder(options.outputFolder);
 
-  switch (options.routingOption) {
-  case RoutingOption::ShortestPaths:
+  switch (options.routeSet) {
+  case RouteSet::ShortestPaths:
     simulator.setPathsShortest(options.numberOfPaths);
     break;
-  case RoutingOption::DisjointPaths:
+  case RouteSet::DisjointPaths:
     simulator.setPathsDisjoint(options.numberOfPaths);
     break;
   }
 
-  switch (options.rcsaAlgorithm) {
-  case RcsaAlgorithm::FirstFit:
+  routeOrdering = options.routeOrder;
+
+  switch (options.spectrumAllocationAlgorithm) {
+  case SpectrumAllocationAlgorithm::FirstFit:
     USE_ALLOC_FUNCTION(FirstFit, simulator);
     break;
   }

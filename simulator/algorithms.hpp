@@ -1,6 +1,6 @@
 #pragma once
 
-#include "simulator.hpp"
+#include "utils.hpp"
 #include <algorithm>
 #include <cmath>
 #include <deque>
@@ -250,9 +250,9 @@ BEGIN_ALLOC_FUNCTION(FirstFit)
           };
 
           // Working placement is mandatory and uses the first feasible route.
-          const size_t routeCount = NUM_ROUTES(SRC, DST);
+          const auto routeIndices = orderRouteIndices(ROUTES(SRC, DST));
           bool workingPlaced = false;
-          for (size_t routeIdx = 0; routeIdx < routeCount; ++routeIdx) {
+          for (const size_t routeIdx : routeIndices) {
             if (tryPlaceOnRoute(routeIdx)) {
               workingPlaced = true;
               break;
