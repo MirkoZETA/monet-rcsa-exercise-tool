@@ -2,7 +2,12 @@
 
 A MONet-based tool for configuring and running simple RCSA simulations.
 
-## Build and run with Docker
+> [!IMPORTANT]
+> Docker is required to run this project.
+
+## Quick start
+
+Pull the published Docker image and run a simulation:
 
 ### Unix (Linux, macOS, and WSL)
 
@@ -28,6 +33,37 @@ New-Item -ItemType Directory -Force results
 docker run --rm `
   --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
   ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1 `
+  Germany-14nodes 1 3 1 /results/run-001
+```
+
+## Build locally
+
+Build the Docker image from the repository root:
+
+### Unix (Linux, macOS, and WSL)
+
+```bash
+docker build -t monet-rcsa-exercise-tool .
+
+mkdir -p results
+
+docker run --rm \
+  --user "$(id -u):$(id -g)" \
+  -v "$(pwd)/results:/results" \
+  monet-rcsa-exercise-tool \
+  Germany-14nodes 1 3 1 /results/run-001
+```
+
+### Windows (PowerShell)
+
+```powershell
+docker build -t monet-rcsa-exercise-tool .
+
+New-Item -ItemType Directory -Force results
+
+docker run --rm `
+  --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
+  monet-rcsa-exercise-tool `
   Germany-14nodes 1 3 1 /results/run-001
 ```
 
@@ -82,7 +118,7 @@ Example:
 Exit code `0` means the simulation completed successfully. Invalid command-line
 input returns `2`; a simulation or file error returns `3`.
 
-## Build locally
+## Build without Docker
 
 Requirements: CMake 3.20 or newer and a C++20 compiler.
 
@@ -93,9 +129,15 @@ cmake --build build --parallel
 
 ## Generate resources with TopoLib
 
-The script converts a TopoLib network into MONet-compatible topology and
-traffic-demand JSON files. The script is not included in the Docker image.
-Install its dependency and run it from the repository root:
+Use this tool to extend the available simulation inputs with additional
+networks. It converts a TopoLib network into MONet-compatible topology and
+traffic-demand JSON files.
+
+> [!NOTE]
+> The resource-generation tool is not included in the Docker image. Run the
+> commands below from the repository root.
+
+Install its dependency and run it:
 
 ```bash
 pip install -r requirements.txt
