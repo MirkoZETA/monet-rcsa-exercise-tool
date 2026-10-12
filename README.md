@@ -96,16 +96,16 @@ docker run --rm `
 
 `simulator.hpp` is the bundled MONet simulator library. Shared command-line
 parsing and route-ordering helpers are in `utils.hpp`, simulation setup is in
-`main.cpp`, and RCSA implementations belong in `algorithms.hpp`. The `gui`
-directory is reserved for the future graphical interface and does not currently
-contain an implementation.
+`main.cpp`, and spectrum-allocation implementations belong in `algorithms.hpp`.
+The `gui` directory is reserved for the future graphical interface and does not
+currently contain an implementation.
 
 ## Command-line interface
 
 The executable expects seven positional arguments in this order:
 
 ```text
-monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET RCSA OUTPUT_FOLDER
+monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET SPECTRUM_ALLOCATION OUTPUT_FOLDER
 ```
 
 - `NETWORK`: topology name, currently `Germany-14nodes`
@@ -120,7 +120,7 @@ monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET RCSA OUTPUT_FOLDER
   - `1`: all bitrates, from 100 to 600 Gbps
   - `2`: low bitrates, from 100 to 300 Gbps
   - `3`: high bitrates, from 350 to 600 Gbps
-- `RCSA`: `1` for First Fit
+- `SPECTRUM_ALLOCATION`: `1` for First Fit
 - `OUTPUT_FOLDER`: directory in which the CSV reports are created
 
 Example:

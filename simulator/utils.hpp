@@ -110,11 +110,11 @@ inline BitrateSet parseBitrateSet(const std::string &value) {
 }
 
 inline SpectrumAllocation parseSpectrumAllocation(const std::string &value) {
-  switch (parsePositiveInteger(value, "rcsa-algorithm")) {
+  switch (parsePositiveInteger(value, "spectrum-allocation")) {
   case static_cast<int>(SpectrumAllocation::FirstFit):
     return SpectrumAllocation::FirstFit;
   default:
-    throw std::invalid_argument("rcsa-algorithm must be 1 (FirstFit)");
+    throw std::invalid_argument("spectrum-allocation must be 1 (FirstFit)");
   }
 }
 

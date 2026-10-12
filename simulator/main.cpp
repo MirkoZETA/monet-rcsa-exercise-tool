@@ -11,13 +11,13 @@ void printUsage(std::ostream &stream, const char *programName) {
   stream
       << "Usage: " << programName
       << " <network-name> <route-set> <number-of-paths> <route-ordering>"
-         " <bitrate-set> <rcsa-algorithm> <output-folder>\n"
-      << "  route-set:       1 = shortest paths, 2 = disjoint paths\n"
-      << "  route-ordering:  1 = shortest first, 2 = longest first,\n"
-      << "                   3 = least loaded first, 4 = most loaded first\n"
-      << "  bitrate-set:     1 = all, 2 = low, 3 = high\n"
-      << "  rcsa-algorithm:  1 = FirstFit (FF-PIA)\n"
-      << "  output-folder:   directory for generated reports\n";
+         " <bitrate-set> <spectrum-allocation> <output-folder>\n"
+      << "  route-set:            1 = shortest paths, 2 = disjoint paths\n"
+      << "  route-ordering:       1 = shortest first, 2 = longest first,\n"
+      << "                        3 = least loaded first, 4 = most loaded first\n"
+      << "  bitrate-set:          1 = all, 2 = low, 3 = high\n"
+      << "  spectrum-allocation:  1 = FirstFit (FF-PIA)\n"
+      << "  output-folder:        directory for generated reports\n";
 }
 
 std::filesystem::path executableDirectory(const char *programName) {
