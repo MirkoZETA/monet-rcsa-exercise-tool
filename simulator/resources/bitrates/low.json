@@ -1,0 +1,75 @@
+{
+  "100": {
+    "QPSK": {
+      "symbolRate": 35e9,
+      "osnr": 6.028419687,
+      "channelBw": 41.65e9,
+      "launchPower": 0.0,
+      "modOrder": 4.0
+    }
+  },
+  "150": {
+    "QPSK": {
+      "symbolRate": 52e9,
+      "osnr": 6.209066694,
+      "channelBw": 61.88e9,
+      "launchPower": 1.719352158,
+      "modOrder": 4.0
+    }
+  },
+  "200": {
+    "QPSK": {
+      "symbolRate": 69e9,
+      "osnr": 6.180609223,
+      "channelBw": 82.11e9,
+      "launchPower": 2.947811408,
+      "modOrder": 4.0
+    },
+    "16QAM": {
+      "symbolRate": 35e9,
+      "osnr": 12.72841969,
+      "channelBw": 41.65e9,
+      "launchPower": 0.0,
+      "modOrder": 16.0
+    }
+  },
+  "250": {
+    "16QAM": {
+      "symbolRate": 46e9,
+      "osnr": 12.84152181,
+      "channelBw": 54.74e9,
+      "launchPower": 1.186898817,
+      "modOrder": 16.0
+    },
+    "32QAM": {
+      "symbolRate": 35e9,
+      "osnr": 16.72841969,
+      "channelBw": 41.65e9,
+      "launchPower": 0.0,
+      "modOrder": 32.0
+    }
+  },
+  "300": {
+    "16QAM": {
+      "symbolRate": 52e9,
+      "osnr": 13.40906669,
+      "channelBw": 61.88e9,
+      "launchPower": 1.719352158,
+      "modOrder": 16.0
+    },
+    "32QAM": {
+      "symbolRate": 42e9,
+      "osnr": 17.13660723,
+      "channelBw": 49.98e9,
+      "launchPower": 0.79181246,
+      "modOrder": 32.0
+    },
+    "64QAM": {
+      "symbolRate": 35e9,
+      "osnr": 20.52841969,
+      "channelBw": 41.65e9,
+      "launchPower": 0.0,
+      "modOrder": 64.0
+    }
+  }
+}

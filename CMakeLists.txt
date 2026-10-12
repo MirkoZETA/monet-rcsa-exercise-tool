@@ -18,9 +18,9 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy_directory
     "${CMAKE_CURRENT_SOURCE_DIR}/simulator/resources/demands"
     "$<TARGET_FILE_DIR:monet-exercise>/resources/demands"
-  COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    "${CMAKE_CURRENT_SOURCE_DIR}/simulator/resources/bitrates.json"
-    "$<TARGET_FILE_DIR:monet-exercise>/resources/bitrates.json"
+  COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_CURRENT_SOURCE_DIR}/simulator/resources/bitrates"
+    "$<TARGET_FILE_DIR:monet-exercise>/resources/bitrates"
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
     "${CMAKE_CURRENT_SOURCE_DIR}/simulator/resources/SSMF_C.json"
     "$<TARGET_FILE_DIR:monet-exercise>/resources/SSMF_C.json"
