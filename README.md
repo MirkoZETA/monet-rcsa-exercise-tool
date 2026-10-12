@@ -12,27 +12,27 @@ Pull the published Docker image and run a simulation:
 ### Unix (Linux, macOS, and WSL)
 
 ```bash
-docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.0
+docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1
 
 mkdir -p results
 
 docker run --rm \
   --user "$(id -u):$(id -g)" \
   -v "$(pwd)/results:/results" \
-  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.0 \
+  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1 \
   Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.0
+docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1
 
 New-Item -ItemType Directory -Force results
 
 docker run --rm `
   --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
-  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.0 `
+  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1 `
   Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
