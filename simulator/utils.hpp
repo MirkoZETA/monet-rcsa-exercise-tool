@@ -27,7 +27,13 @@ enum class RouteOrder : int {
   MostLoadedFirst = 4,
 };
 
-enum class SpectrumAllocationAlgorithm : int {
+enum class BitrateSet : int {
+  All = 1,
+  Low = 2,
+  High = 3,
+};
+
+enum class SpectrumAllocation : int {
   FirstFit = 1,
   BestFit = 2,
   RandomFit = 3,
@@ -43,7 +49,8 @@ struct CommandLineOptions {
   RouteSet routeSet;
   int numberOfPaths;
   RouteOrder routeOrder;
-  SpectrumAllocationAlgorithm spectrumAllocationAlgorithm;
+  BitrateSet bitrateSet;
+  SpectrumAllocation spectrumAllocation;
   std::filesystem::path outputFolder;
 };
 
@@ -88,19 +95,32 @@ inline RouteOrder parseRouteOrder(const std::string &value) {
   }
 }
 
-inline SpectrumAllocationAlgorithm
-parseSpectrumAllocationAlgorithm(const std::string &value) {
+inline BitrateSet parseBitrateSet(const std::string &value) {
+  switch (parsePositiveInteger(value, "bitrate-set")) {
+  case static_cast<int>(BitrateSet::All):
+    return BitrateSet::All;
+  case static_cast<int>(BitrateSet::Low):
+    return BitrateSet::Low;
+  case static_cast<int>(BitrateSet::High):
+    return BitrateSet::High;
+  default:
+    throw std::invalid_argument(
+        "bitrate-set must be 1 (all), 2 (low), or 3 (high)");
+  }
+}
+
+inline SpectrumAllocation parseSpectrumAllocation(const std::string &value) {
   switch (parsePositiveInteger(value, "rcsa-algorithm")) {
-  case static_cast<int>(SpectrumAllocationAlgorithm::FirstFit):
-    return SpectrumAllocationAlgorithm::FirstFit;
+  case static_cast<int>(SpectrumAllocation::FirstFit):
+    return SpectrumAllocation::FirstFit;
   default:
     throw std::invalid_argument("rcsa-algorithm must be 1 (FirstFit)");
   }
 }
 
 inline CommandLineOptions parseCommandLine(int argc, char *argv[]) {
-  if (argc != 7) {
-    throw std::invalid_argument("expected exactly six arguments");
+  if (argc != 8) {
+    throw std::invalid_argument("expected exactly seven arguments");
   }
 
   CommandLineOptions options{
@@ -108,8 +128,9 @@ inline CommandLineOptions parseCommandLine(int argc, char *argv[]) {
       .routeSet = parseRouteSet(argv[2]),
       .numberOfPaths = parsePositiveInteger(argv[3], "number-of-paths"),
       .routeOrder = parseRouteOrder(argv[4]),
-      .spectrumAllocationAlgorithm = parseSpectrumAllocationAlgorithm(argv[5]),
-      .outputFolder = std::filesystem::path(argv[6]),
+      .bitrateSet = parseBitrateSet(argv[5]),
+      .spectrumAllocation = parseSpectrumAllocation(argv[6]),
+      .outputFolder = std::filesystem::path(argv[7]),
   };
 
   if (options.outputFolder.empty()) {

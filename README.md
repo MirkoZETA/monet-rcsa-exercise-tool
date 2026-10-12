@@ -20,7 +20,7 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -v "$(pwd)/results:/results" \
   ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1 \
-  Germany-14nodes 1 3 1 1 /results/run-001
+  Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
 ### Windows (PowerShell)
@@ -33,7 +33,7 @@ New-Item -ItemType Directory -Force results
 docker run --rm `
   --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
   ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.1.1 `
-  Germany-14nodes 1 3 1 1 /results/run-001
+  Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
 ## Build locally
@@ -51,7 +51,7 @@ docker run --rm \
   --user "$(id -u):$(id -g)" \
   -v "$(pwd)/results:/results" \
   monet-rcsa-exercise-tool \
-  Germany-14nodes 1 3 1 1 /results/run-001
+  Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
 ### Windows (PowerShell)
@@ -64,7 +64,7 @@ New-Item -ItemType Directory -Force results
 docker run --rm `
   --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
   monet-rcsa-exercise-tool `
-  Germany-14nodes 1 3 1 1 /results/run-001
+  Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
 ## Project structure
@@ -83,7 +83,10 @@ docker run --rm `
 │   ├── simulator.hpp
 │   └── resources
 │       ├── SSMF_C.json
-│       ├── bitrates.json
+│       ├── bitrates
+│       │   ├── all.json
+│       │   ├── high.json
+│       │   └── low.json
 │       ├── demands
 │       └── topologies
 ├── CMakeLists.txt
@@ -91,17 +94,18 @@ docker run --rm `
 └── README.md
 ```
 
-`simulator.hpp` is the bundled MONet simulator library. Exercise-specific
-command-line handling is in `main.cpp`, while RCSA implementations belong in
-`algorithms.hpp`. The `gui` directory is reserved for the future graphical
-interface and does not currently contain an implementation.
+`simulator.hpp` is the bundled MONet simulator library. Shared command-line
+parsing and route-ordering helpers are in `utils.hpp`, simulation setup is in
+`main.cpp`, and RCSA implementations belong in `algorithms.hpp`. The `gui`
+directory is reserved for the future graphical interface and does not currently
+contain an implementation.
 
 ## Command-line interface
 
-The executable expects six positional arguments in this order:
+The executable expects seven positional arguments in this order:
 
 ```text
-monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING RCSA OUTPUT_FOLDER
+monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET RCSA OUTPUT_FOLDER
 ```
 
 - `NETWORK`: topology name, currently `Germany-14nodes`
@@ -112,13 +116,17 @@ monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING RCSA OUTPUT_FOLDER
   - `2`: longest to shortest
   - `3`: least loaded to most loaded
   - `4`: most loaded to least loaded
+- `BITRATE_SET`: available bitrates:
+  - `1`: all bitrates, from 100 to 600 Gbps
+  - `2`: low bitrates, from 100 to 300 Gbps
+  - `3`: high bitrates, from 350 to 600 Gbps
 - `RCSA`: `1` for First Fit
 - `OUTPUT_FOLDER`: directory in which the CSV reports are created
 
 Example:
 
 ```bash
-./build/monet-exercise Germany-14nodes 1 3 1 1 ./results/run-001
+./build/monet-exercise Germany-14nodes 1 3 1 1 1 ./results/run-001
 ```
 
 Exit code `0` means the simulation completed successfully. Invalid command-line

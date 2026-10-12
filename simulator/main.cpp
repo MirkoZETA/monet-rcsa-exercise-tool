@@ -11,10 +11,11 @@ void printUsage(std::ostream &stream, const char *programName) {
   stream
       << "Usage: " << programName
       << " <network-name> <route-set> <number-of-paths> <route-ordering>"
-         " <rcsa-algorithm> <output-folder>\n"
+         " <bitrate-set> <rcsa-algorithm> <output-folder>\n"
       << "  route-set:       1 = shortest paths, 2 = disjoint paths\n"
       << "  route-ordering:  1 = shortest first, 2 = longest first,\n"
       << "                   3 = least loaded first, 4 = most loaded first\n"
+      << "  bitrate-set:     1 = all, 2 = low, 3 = high\n"
       << "  rcsa-algorithm:  1 = FirstFit (FF-PIA)\n"
       << "  output-folder:   directory for generated reports\n";
 }
@@ -58,8 +59,18 @@ int runSimulation(const CommandLineOptions &options, const char *programName) {
   const std::filesystem::path demandsPath =
       resourceDirectory / "demands" /
       (options.networkName + "_demands.json");
-  const std::filesystem::path bitratesPath =
-      resourceDirectory / "bitrates.json";
+  std::filesystem::path bitratesPath = resourceDirectory / "bitrates";
+  switch (options.bitrateSet) {
+  case BitrateSet::All:
+    bitratesPath /= "all.json";
+    break;
+  case BitrateSet::Low:
+    bitratesPath /= "low.json";
+    break;
+  case BitrateSet::High:
+    bitratesPath /= "high.json";
+    break;
+  }
   const std::filesystem::path fiberPath = resourceDirectory / "SSMF_C.json";
 
   requireRegularFile(topologyPath, "Topology file");
@@ -86,8 +97,8 @@ int runSimulation(const CommandLineOptions &options, const char *programName) {
 
   routeOrdering = options.routeOrder;
 
-  switch (options.spectrumAllocationAlgorithm) {
-  case SpectrumAllocationAlgorithm::FirstFit:
+  switch (options.spectrumAllocation) {
+  case SpectrumAllocation::FirstFit:
     USE_ALLOC_FUNCTION(FirstFit, simulator);
     break;
   }
