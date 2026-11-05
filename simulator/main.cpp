@@ -16,7 +16,7 @@ void printUsage(std::ostream &stream, const char *programName) {
       << "  route-ordering:       1 = shortest first, 2 = longest first,\n"
       << "                        3 = least loaded first, 4 = most loaded first\n"
       << "  bitrate-set:          1 = all, 2 = low, 3 = high\n"
-      << "  spectrum-allocation:  1 = FirstFit (FF-PIA)\n"
+      << "  spectrum-allocation:  1 = FirstFit (FF-PIA), 2 = BestFit\n"
       << "  output-folder:        directory for generated reports\n";
 }
 
@@ -79,8 +79,7 @@ int runSimulation(const CommandLineOptions &options, const char *programName) {
   requireRegularFile(fiberPath, "Fiber specification file");
 
   Simulator simulator(topologyPath.string(), fiberPath.string(),
-                      bitratesPath.string(), demandsPath.string(),
-                      mt::SimulationMode::GN);
+                      bitratesPath.string(), demandsPath.string());
 
   simulator.setNumberOfPeriods(1);
   simulator.setAutoFeasibilityCheck(true);
@@ -100,6 +99,9 @@ int runSimulation(const CommandLineOptions &options, const char *programName) {
   switch (options.spectrumAllocation) {
   case SpectrumAllocation::FirstFit:
     USE_ALLOC_FUNCTION(FirstFit, simulator);
+    break;
+  case SpectrumAllocation::BestFit:
+    USE_ALLOC_FUNCTION(BestFit, simulator);
     break;
   }
 
