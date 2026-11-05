@@ -1,0 +1,924 @@
+{
+    "name": "UKNet",
+    "nodes": [
+        {
+            "id": 0,
+            "weight": 0,
+            "latitude": 56.462018,
+            "longitude": -2.970721,
+            "pop": 148210,
+            "DC": 1,
+            "IXP": 0,
+            "label": "Dundee"
+        },
+        {
+            "id": 1,
+            "weight": 0,
+            "latitude": 55.953252,
+            "longitude": -3.188267,
+            "pop": 514990,
+            "DC": 9,
+            "IXP": 1,
+            "label": "Edinburgh"
+        },
+        {
+            "id": 2,
+            "weight": 0,
+            "latitude": 55.8616704,
+            "longitude": -4.2583345,
+            "pop": 626410,
+            "DC": 7,
+            "IXP": 0,
+            "label": "Glasgow"
+        },
+        {
+            "id": 3,
+            "weight": 0,
+            "latitude": 54.597285,
+            "longitude": -5.93012,
+            "pop": 348005,
+            "DC": 5,
+            "IXP": 0,
+            "label": "Belfast"
+        },
+        {
+            "id": 4,
+            "weight": 0,
+            "latitude": 54.574227,
+            "longitude": -1.234956,
+            "pop": 142707,
+            "DC": 6,
+            "IXP": 0,
+            "label": "Middlesbrough"
+        },
+        {
+            "id": 5,
+            "weight": 0,
+            "latitude": 53.9614205,
+            "longitude": -1.0739108,
+            "pop": 156135,
+            "DC": 3,
+            "IXP": 0,
+            "label": "York"
+        },
+        {
+            "id": 6,
+            "weight": 0,
+            "latitude": 53.4807593,
+            "longitude": -2.2426305,
+            "pop": 568996,
+            "DC": 30,
+            "IXP": 2,
+            "label": "Manchester"
+        },
+        {
+            "id": 7,
+            "weight": 0,
+            "latitude": 53.4083714,
+            "longitude": -2.9915726,
+            "pop": 496770,
+            "DC": 8,
+            "IXP": 2,
+            "label": "Liverpool"
+        },
+        {
+            "id": 8,
+            "weight": 0,
+            "latitude": 53.381129,
+            "longitude": -1.470085,
+            "pop": 556500,
+            "DC": 5,
+            "IXP": 0,
+            "label": "Sheffield"
+        },
+        {
+            "id": 9,
+            "weight": 0,
+            "latitude": 53.3498053,
+            "longitude": -6.2603097,
+            "pop": 1024027,
+            "DC": 110,
+            "IXP": 0,
+            "label": "Dublin"
+        },
+        {
+            "id": 10,
+            "weight": 0,
+            "latitude": 51.483707,
+            "longitude": -3.1680962,
+            "pop": 372089,
+            "DC": 13,
+            "IXP": 1,
+            "label": "Cardiff"
+        },
+        {
+            "id": 11,
+            "weight": 0,
+            "latitude": 51.454513,
+            "longitude": -2.58791,
+            "pop": 465866,
+            "DC": 8,
+            "IXP": 0,
+            "label": "Bristol"
+        },
+        {
+            "id": 12,
+            "weight": 0,
+            "latitude": 50.3754565,
+            "longitude": -4.1426565,
+            "pop": 260203,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Plymouth"
+        },
+        {
+            "id": 13,
+            "weight": 0,
+            "latitude": 51.5072178,
+            "longitude": -0.1275862,
+            "pop": 8961989,
+            "DC": 186,
+            "IXP": 11,
+            "label": "London"
+        },
+        {
+            "id": 14,
+            "weight": 0,
+            "latitude": 52.4822694,
+            "longitude": -1.8900078,
+            "pop": 1144919,
+            "DC": 21,
+            "IXP": 1,
+            "label": "Birmingham"
+        },
+        {
+            "id": 15,
+            "weight": 0,
+            "latitude": 52.4128163,
+            "longitude": -1.5089521,
+            "pop": 345324,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Coventry"
+        },
+        {
+            "id": 16,
+            "weight": 0,
+            "latitude": 52.6368778,
+            "longitude": -1.1397592,
+            "pop": 368600,
+            "DC": 1,
+            "IXP": 0,
+            "label": "Leicester"
+        },
+        {
+            "id": 17,
+            "weight": 0,
+            "latitude": 52.9540223,
+            "longitude": -1.1549892,
+            "pop": 323632,
+            "DC": 5,
+            "IXP": 0,
+            "label": "Nottingham"
+        },
+        {
+            "id": 18,
+            "weight": 0,
+            "latitude": 53.0033369,
+            "longitude": -2.1827408,
+            "pop": 258366,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Stoke-on-Trent"
+        },
+        {
+            "id": 19,
+            "weight": 0,
+            "latitude": 53.7674909,
+            "longitude": -0.3273025,
+            "pop": 314018,
+            "DC": 5,
+            "IXP": 0,
+            "label": "Hull"
+        },
+        {
+            "id": 20,
+            "weight": 0,
+            "latitude": 53.8007554,
+            "longitude": -1.5490774,
+            "pop": 516298,
+            "DC": 15,
+            "IXP": 1,
+            "label": "Leeds"
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "src": 13,
+            "dst": 12,
+            "length": 396.57,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 1,
+            "src": 10,
+            "dst": 12,
+            "length": 182.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 2,
+            "src": 11,
+            "dst": 12,
+            "length": 208.94,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 3,
+            "src": 10,
+            "dst": 11,
+            "length": 53.01,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 4,
+            "src": 13,
+            "dst": 11,
+            "length": 220.61,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 5,
+            "src": 9,
+            "dst": 12,
+            "length": 469.67,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 6,
+            "src": 3,
+            "dst": 9,
+            "length": 183.39,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 7,
+            "src": 13,
+            "dst": 9,
+            "length": 601.88,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 8,
+            "src": 19,
+            "dst": 13,
+            "length": 326.83,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 9,
+            "src": 14,
+            "dst": 13,
+            "length": 210.28,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 10,
+            "src": 14,
+            "dst": 10,
+            "length": 183.01,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 11,
+            "src": 15,
+            "dst": 14,
+            "length": 37.35,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 12,
+            "src": 16,
+            "dst": 15,
+            "length": 47.12,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 13,
+            "src": 14,
+            "dst": 16,
+            "length": 66.55,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 14,
+            "src": 17,
+            "dst": 16,
+            "length": 46.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 15,
+            "src": 17,
+            "dst": 13,
+            "length": 228.68,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 16,
+            "src": 18,
+            "dst": 14,
+            "length": 82.66,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 17,
+            "src": 17,
+            "dst": 18,
+            "length": 90.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 18,
+            "src": 7,
+            "dst": 18,
+            "length": 90.33,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 19,
+            "src": 17,
+            "dst": 7,
+            "length": 171.86,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 20,
+            "src": 6,
+            "dst": 7,
+            "length": 65.29,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 21,
+            "src": 7,
+            "dst": 9,
+            "length": 281.33,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 22,
+            "src": 7,
+            "dst": 3,
+            "length": 305.32,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 23,
+            "src": 2,
+            "dst": 3,
+            "length": 231.33,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 24,
+            "src": 7,
+            "dst": 2,
+            "length": 369.2,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 25,
+            "src": 7,
+            "dst": 4,
+            "length": 221.95,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 26,
+            "src": 8,
+            "dst": 6,
+            "length": 67.71,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 27,
+            "src": 17,
+            "dst": 8,
+            "length": 62.54,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 28,
+            "src": 19,
+            "dst": 8,
+            "length": 110.74,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 29,
+            "src": 5,
+            "dst": 8,
+            "length": 88.69,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 30,
+            "src": 20,
+            "dst": 6,
+            "length": 75.85,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 31,
+            "src": 20,
+            "dst": 5,
+            "length": 46.46,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 32,
+            "src": 4,
+            "dst": 5,
+            "length": 91.41,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 33,
+            "src": 19,
+            "dst": 4,
+            "length": 139.43,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 34,
+            "src": 1,
+            "dst": 4,
+            "length": 257.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 35,
+            "src": 1,
+            "dst": 2,
+            "length": 89.09,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 36,
+            "src": 0,
+            "dst": 2,
+            "length": 135.36,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 37,
+            "src": 0,
+            "dst": 1,
+            "length": 75.66,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 38,
+            "src": 16,
+            "dst": 13,
+            "length": 185.18,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 39,
+            "src": 12,
+            "dst": 13,
+            "length": 396.57,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 40,
+            "src": 12,
+            "dst": 10,
+            "length": 182.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 41,
+            "src": 12,
+            "dst": 11,
+            "length": 208.94,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 42,
+            "src": 11,
+            "dst": 10,
+            "length": 53.01,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 43,
+            "src": 11,
+            "dst": 13,
+            "length": 220.61,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 44,
+            "src": 12,
+            "dst": 9,
+            "length": 469.67,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 45,
+            "src": 9,
+            "dst": 3,
+            "length": 183.39,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 46,
+            "src": 9,
+            "dst": 13,
+            "length": 601.88,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 47,
+            "src": 13,
+            "dst": 19,
+            "length": 326.83,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 48,
+            "src": 13,
+            "dst": 14,
+            "length": 210.28,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 49,
+            "src": 10,
+            "dst": 14,
+            "length": 183.01,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 50,
+            "src": 14,
+            "dst": 15,
+            "length": 37.35,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 51,
+            "src": 15,
+            "dst": 16,
+            "length": 47.12,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 52,
+            "src": 16,
+            "dst": 14,
+            "length": 66.55,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 53,
+            "src": 16,
+            "dst": 17,
+            "length": 46.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 54,
+            "src": 13,
+            "dst": 17,
+            "length": 228.68,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 55,
+            "src": 14,
+            "dst": 18,
+            "length": 82.66,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 56,
+            "src": 18,
+            "dst": 17,
+            "length": 90.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 57,
+            "src": 18,
+            "dst": 7,
+            "length": 90.33,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 58,
+            "src": 7,
+            "dst": 17,
+            "length": 171.86,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 59,
+            "src": 7,
+            "dst": 6,
+            "length": 65.29,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 60,
+            "src": 9,
+            "dst": 7,
+            "length": 281.33,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 61,
+            "src": 3,
+            "dst": 7,
+            "length": 305.32,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 62,
+            "src": 3,
+            "dst": 2,
+            "length": 231.33,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 63,
+            "src": 2,
+            "dst": 7,
+            "length": 369.2,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 64,
+            "src": 4,
+            "dst": 7,
+            "length": 221.95,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 65,
+            "src": 6,
+            "dst": 8,
+            "length": 67.71,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 66,
+            "src": 8,
+            "dst": 17,
+            "length": 62.54,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 67,
+            "src": 8,
+            "dst": 19,
+            "length": 110.74,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 68,
+            "src": 8,
+            "dst": 5,
+            "length": 88.69,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 69,
+            "src": 6,
+            "dst": 20,
+            "length": 75.85,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 70,
+            "src": 5,
+            "dst": 20,
+            "length": 46.46,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 71,
+            "src": 5,
+            "dst": 4,
+            "length": 91.41,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 72,
+            "src": 4,
+            "dst": 19,
+            "length": 139.43,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 73,
+            "src": 4,
+            "dst": 1,
+            "length": 257.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 74,
+            "src": 2,
+            "dst": 1,
+            "length": 89.09,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 75,
+            "src": 2,
+            "dst": 0,
+            "length": 135.36,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 76,
+            "src": 1,
+            "dst": 0,
+            "length": 75.66,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 77,
+            "src": 13,
+            "dst": 16,
+            "length": 185.18,
+            "fibers": {
+                "SSMF": 1
+            }
+        }
+    ],
+    "reference": {
+        "url": "https://ieeexplore.ieee.org/document/8995687",
+        "paper": "Survivability in optical networks: a solution for the wavelength continuity constraint case",
+        "doi": "10.1109/LADC48089.2019.8995687"
+    }
+}

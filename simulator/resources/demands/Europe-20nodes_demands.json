@@ -1,0 +1,1902 @@
+[
+    {
+        "src": "Dublin",
+        "dst": "Edinburgh",
+        "required": 1058.9
+    },
+    {
+        "src": "Dublin",
+        "dst": "Manchester",
+        "required": 1959.9
+    },
+    {
+        "src": "Dublin",
+        "dst": "London",
+        "required": 17939.0
+    },
+    {
+        "src": "Dublin",
+        "dst": "Norwich",
+        "required": 220.04
+    },
+    {
+        "src": "Dublin",
+        "dst": "Brussels",
+        "required": 2745.49
+    },
+    {
+        "src": "Dublin",
+        "dst": "Amsterdam",
+        "required": 9073.44
+    },
+    {
+        "src": "Dublin",
+        "dst": "Frankfurt",
+        "required": 10127.09
+    },
+    {
+        "src": "Dublin",
+        "dst": "Hamburgo",
+        "required": 3662.32
+    },
+    {
+        "src": "Dublin",
+        "dst": "Esbjerg",
+        "required": 442.95
+    },
+    {
+        "src": "Dublin",
+        "dst": "Kolding",
+        "required": 128.77
+    },
+    {
+        "src": "Dublin",
+        "dst": "Copenhague",
+        "required": 3374.09
+    },
+    {
+        "src": "Dublin",
+        "dst": "Gothenburg",
+        "required": 2076.6
+    },
+    {
+        "src": "Dublin",
+        "dst": "Kristiansand",
+        "required": 493.96
+    },
+    {
+        "src": "Dublin",
+        "dst": "Rjukan",
+        "required": 33.86
+    },
+    {
+        "src": "Dublin",
+        "dst": "Stockholm",
+        "required": 4807.09
+    },
+    {
+        "src": "Dublin",
+        "dst": "Oslo",
+        "required": 3234.8
+    },
+    {
+        "src": "Dublin",
+        "dst": "Bergen",
+        "required": 691.96
+    },
+    {
+        "src": "Dublin",
+        "dst": "Rennesoy",
+        "required": 0.59
+    },
+    {
+        "src": "Dublin",
+        "dst": "Newcastle upon Tyne",
+        "required": 788.39
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Dublin",
+        "required": 1058.9
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Manchester",
+        "required": 409.16
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "London",
+        "required": 3745.07
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Norwich",
+        "required": 45.94
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Brussels",
+        "required": 573.17
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Amsterdam",
+        "required": 1894.24
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Frankfurt",
+        "required": 2114.2
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Hamburgo",
+        "required": 764.57
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Esbjerg",
+        "required": 92.47
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Kolding",
+        "required": 26.88
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Copenhague",
+        "required": 704.4
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Gothenburg",
+        "required": 433.53
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Kristiansand",
+        "required": 103.12
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Rjukan",
+        "required": 7.07
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Stockholm",
+        "required": 1003.56
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Oslo",
+        "required": 675.32
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Bergen",
+        "required": 144.46
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Rennesoy",
+        "required": 0.12
+    },
+    {
+        "src": "Edinburgh",
+        "dst": "Newcastle upon Tyne",
+        "required": 164.59
+    },
+    {
+        "src": "Manchester",
+        "dst": "Dublin",
+        "required": 1959.9
+    },
+    {
+        "src": "Manchester",
+        "dst": "Edinburgh",
+        "required": 409.16
+    },
+    {
+        "src": "Manchester",
+        "dst": "London",
+        "required": 6931.69
+    },
+    {
+        "src": "Manchester",
+        "dst": "Norwich",
+        "required": 85.03
+    },
+    {
+        "src": "Manchester",
+        "dst": "Brussels",
+        "required": 1060.87
+    },
+    {
+        "src": "Manchester",
+        "dst": "Amsterdam",
+        "required": 3506.01
+    },
+    {
+        "src": "Manchester",
+        "dst": "Frankfurt",
+        "required": 3913.14
+    },
+    {
+        "src": "Manchester",
+        "dst": "Hamburgo",
+        "required": 1415.13
+    },
+    {
+        "src": "Manchester",
+        "dst": "Esbjerg",
+        "required": 171.16
+    },
+    {
+        "src": "Manchester",
+        "dst": "Kolding",
+        "required": 49.76
+    },
+    {
+        "src": "Manchester",
+        "dst": "Copenhague",
+        "required": 1303.76
+    },
+    {
+        "src": "Manchester",
+        "dst": "Gothenburg",
+        "required": 802.41
+    },
+    {
+        "src": "Manchester",
+        "dst": "Kristiansand",
+        "required": 190.87
+    },
+    {
+        "src": "Manchester",
+        "dst": "Rjukan",
+        "required": 13.08
+    },
+    {
+        "src": "Manchester",
+        "dst": "Stockholm",
+        "required": 1857.48
+    },
+    {
+        "src": "Manchester",
+        "dst": "Oslo",
+        "required": 1249.94
+    },
+    {
+        "src": "Manchester",
+        "dst": "Bergen",
+        "required": 267.38
+    },
+    {
+        "src": "Manchester",
+        "dst": "Rennesoy",
+        "required": 0.23
+    },
+    {
+        "src": "Manchester",
+        "dst": "Newcastle upon Tyne",
+        "required": 304.64
+    },
+    {
+        "src": "London",
+        "dst": "Dublin",
+        "required": 17939.0
+    },
+    {
+        "src": "London",
+        "dst": "Edinburgh",
+        "required": 3745.07
+    },
+    {
+        "src": "London",
+        "dst": "Manchester",
+        "required": 6931.69
+    },
+    {
+        "src": "London",
+        "dst": "Norwich",
+        "required": 778.24
+    },
+    {
+        "src": "London",
+        "dst": "Brussels",
+        "required": 9710.13
+    },
+    {
+        "src": "London",
+        "dst": "Amsterdam",
+        "required": 32090.56
+    },
+    {
+        "src": "London",
+        "dst": "Frankfurt",
+        "required": 35817.04
+    },
+    {
+        "src": "London",
+        "dst": "Hamburgo",
+        "required": 12952.74
+    },
+    {
+        "src": "London",
+        "dst": "Esbjerg",
+        "required": 1566.62
+    },
+    {
+        "src": "London",
+        "dst": "Kolding",
+        "required": 455.42
+    },
+    {
+        "src": "London",
+        "dst": "Copenhague",
+        "required": 11933.35
+    },
+    {
+        "src": "London",
+        "dst": "Gothenburg",
+        "required": 7344.44
+    },
+    {
+        "src": "London",
+        "dst": "Kristiansand",
+        "required": 1747.0
+    },
+    {
+        "src": "London",
+        "dst": "Rjukan",
+        "required": 119.76
+    },
+    {
+        "src": "London",
+        "dst": "Stockholm",
+        "required": 17001.49
+    },
+    {
+        "src": "London",
+        "dst": "Oslo",
+        "required": 11440.69
+    },
+    {
+        "src": "London",
+        "dst": "Bergen",
+        "required": 2447.3
+    },
+    {
+        "src": "London",
+        "dst": "Rennesoy",
+        "required": 2.1
+    },
+    {
+        "src": "London",
+        "dst": "Newcastle upon Tyne",
+        "required": 2788.34
+    },
+    {
+        "src": "Norwich",
+        "dst": "Dublin",
+        "required": 220.04
+    },
+    {
+        "src": "Norwich",
+        "dst": "Edinburgh",
+        "required": 45.94
+    },
+    {
+        "src": "Norwich",
+        "dst": "Manchester",
+        "required": 85.03
+    },
+    {
+        "src": "Norwich",
+        "dst": "London",
+        "required": 778.24
+    },
+    {
+        "src": "Norwich",
+        "dst": "Brussels",
+        "required": 119.11
+    },
+    {
+        "src": "Norwich",
+        "dst": "Amsterdam",
+        "required": 393.63
+    },
+    {
+        "src": "Norwich",
+        "dst": "Frankfurt",
+        "required": 439.34
+    },
+    {
+        "src": "Norwich",
+        "dst": "Hamburgo",
+        "required": 158.88
+    },
+    {
+        "src": "Norwich",
+        "dst": "Esbjerg",
+        "required": 19.22
+    },
+    {
+        "src": "Norwich",
+        "dst": "Kolding",
+        "required": 5.59
+    },
+    {
+        "src": "Norwich",
+        "dst": "Copenhague",
+        "required": 146.38
+    },
+    {
+        "src": "Norwich",
+        "dst": "Gothenburg",
+        "required": 90.09
+    },
+    {
+        "src": "Norwich",
+        "dst": "Kristiansand",
+        "required": 21.43
+    },
+    {
+        "src": "Norwich",
+        "dst": "Rjukan",
+        "required": 1.47
+    },
+    {
+        "src": "Norwich",
+        "dst": "Stockholm",
+        "required": 208.54
+    },
+    {
+        "src": "Norwich",
+        "dst": "Oslo",
+        "required": 140.33
+    },
+    {
+        "src": "Norwich",
+        "dst": "Bergen",
+        "required": 30.02
+    },
+    {
+        "src": "Norwich",
+        "dst": "Rennesoy",
+        "required": 0.03
+    },
+    {
+        "src": "Norwich",
+        "dst": "Newcastle upon Tyne",
+        "required": 34.2
+    },
+    {
+        "src": "Brussels",
+        "dst": "Dublin",
+        "required": 2745.49
+    },
+    {
+        "src": "Brussels",
+        "dst": "Edinburgh",
+        "required": 573.17
+    },
+    {
+        "src": "Brussels",
+        "dst": "Manchester",
+        "required": 1060.87
+    },
+    {
+        "src": "Brussels",
+        "dst": "London",
+        "required": 9710.13
+    },
+    {
+        "src": "Brussels",
+        "dst": "Norwich",
+        "required": 119.11
+    },
+    {
+        "src": "Brussels",
+        "dst": "Amsterdam",
+        "required": 4911.33
+    },
+    {
+        "src": "Brussels",
+        "dst": "Frankfurt",
+        "required": 5481.65
+    },
+    {
+        "src": "Brussels",
+        "dst": "Hamburgo",
+        "required": 1982.36
+    },
+    {
+        "src": "Brussels",
+        "dst": "Esbjerg",
+        "required": 239.76
+    },
+    {
+        "src": "Brussels",
+        "dst": "Kolding",
+        "required": 69.7
+    },
+    {
+        "src": "Brussels",
+        "dst": "Copenhague",
+        "required": 1826.35
+    },
+    {
+        "src": "Brussels",
+        "dst": "Gothenburg",
+        "required": 1124.04
+    },
+    {
+        "src": "Brussels",
+        "dst": "Kristiansand",
+        "required": 267.37
+    },
+    {
+        "src": "Brussels",
+        "dst": "Rjukan",
+        "required": 18.33
+    },
+    {
+        "src": "Brussels",
+        "dst": "Stockholm",
+        "required": 2602.01
+    },
+    {
+        "src": "Brussels",
+        "dst": "Oslo",
+        "required": 1750.95
+    },
+    {
+        "src": "Brussels",
+        "dst": "Bergen",
+        "required": 374.55
+    },
+    {
+        "src": "Brussels",
+        "dst": "Rennesoy",
+        "required": 0.32
+    },
+    {
+        "src": "Brussels",
+        "dst": "Newcastle upon Tyne",
+        "required": 426.74
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Dublin",
+        "required": 9073.44
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Edinburgh",
+        "required": 1894.24
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Manchester",
+        "required": 3506.01
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "London",
+        "required": 32090.56
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Norwich",
+        "required": 393.63
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Brussels",
+        "required": 4911.33
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Frankfurt",
+        "required": 18116.06
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Hamburgo",
+        "required": 6551.42
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Esbjerg",
+        "required": 792.39
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Kolding",
+        "required": 230.35
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Copenhague",
+        "required": 6035.82
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Gothenburg",
+        "required": 3714.78
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Kristiansand",
+        "required": 883.62
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Rjukan",
+        "required": 60.58
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Stockholm",
+        "required": 8599.26
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Oslo",
+        "required": 5786.64
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Bergen",
+        "required": 1237.83
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Rennesoy",
+        "required": 1.06
+    },
+    {
+        "src": "Amsterdam",
+        "dst": "Newcastle upon Tyne",
+        "required": 1410.32
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Dublin",
+        "required": 10127.09
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Edinburgh",
+        "required": 2114.2
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Manchester",
+        "required": 3913.14
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "London",
+        "required": 35817.04
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Norwich",
+        "required": 439.34
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Brussels",
+        "required": 5481.65
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Amsterdam",
+        "required": 18116.06
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Hamburgo",
+        "required": 7312.2
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Esbjerg",
+        "required": 884.4
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Kolding",
+        "required": 257.1
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Copenhague",
+        "required": 6736.73
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Gothenburg",
+        "required": 4146.15
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Kristiansand",
+        "required": 986.23
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Rjukan",
+        "required": 67.61
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Stockholm",
+        "required": 9597.84
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Oslo",
+        "required": 6458.61
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Bergen",
+        "required": 1381.57
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Rennesoy",
+        "required": 1.18
+    },
+    {
+        "src": "Frankfurt",
+        "dst": "Newcastle upon Tyne",
+        "required": 1574.1
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Dublin",
+        "required": 3662.32
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Edinburgh",
+        "required": 764.57
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Manchester",
+        "required": 1415.13
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "London",
+        "required": 12952.74
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Norwich",
+        "required": 158.88
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Brussels",
+        "required": 1982.36
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Amsterdam",
+        "required": 6551.42
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Frankfurt",
+        "required": 7312.2
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Esbjerg",
+        "required": 319.83
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Kolding",
+        "required": 92.98
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Copenhague",
+        "required": 2436.24
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Gothenburg",
+        "required": 1499.4
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Kristiansand",
+        "required": 356.66
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Rjukan",
+        "required": 24.45
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Stockholm",
+        "required": 3470.93
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Oslo",
+        "required": 2335.67
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Bergen",
+        "required": 499.63
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Rennesoy",
+        "required": 0.43
+    },
+    {
+        "src": "Hamburgo",
+        "dst": "Newcastle upon Tyne",
+        "required": 569.25
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Dublin",
+        "required": 442.95
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Edinburgh",
+        "required": 92.47
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Manchester",
+        "required": 171.16
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "London",
+        "required": 1566.62
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Norwich",
+        "required": 19.22
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Brussels",
+        "required": 239.76
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Amsterdam",
+        "required": 792.39
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Frankfurt",
+        "required": 884.4
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Hamburgo",
+        "required": 319.83
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Kolding",
+        "required": 11.25
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Copenhague",
+        "required": 294.66
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Gothenburg",
+        "required": 181.35
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Kristiansand",
+        "required": 43.14
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Rjukan",
+        "required": 2.96
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Stockholm",
+        "required": 419.8
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Oslo",
+        "required": 282.5
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Bergen",
+        "required": 60.43
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Rennesoy",
+        "required": 0.05
+    },
+    {
+        "src": "Esbjerg",
+        "dst": "Newcastle upon Tyne",
+        "required": 68.85
+    },
+    {
+        "src": "Kolding",
+        "dst": "Dublin",
+        "required": 128.77
+    },
+    {
+        "src": "Kolding",
+        "dst": "Edinburgh",
+        "required": 26.88
+    },
+    {
+        "src": "Kolding",
+        "dst": "Manchester",
+        "required": 49.76
+    },
+    {
+        "src": "Kolding",
+        "dst": "London",
+        "required": 455.42
+    },
+    {
+        "src": "Kolding",
+        "dst": "Norwich",
+        "required": 5.59
+    },
+    {
+        "src": "Kolding",
+        "dst": "Brussels",
+        "required": 69.7
+    },
+    {
+        "src": "Kolding",
+        "dst": "Amsterdam",
+        "required": 230.35
+    },
+    {
+        "src": "Kolding",
+        "dst": "Frankfurt",
+        "required": 257.1
+    },
+    {
+        "src": "Kolding",
+        "dst": "Hamburgo",
+        "required": 92.98
+    },
+    {
+        "src": "Kolding",
+        "dst": "Esbjerg",
+        "required": 11.25
+    },
+    {
+        "src": "Kolding",
+        "dst": "Copenhague",
+        "required": 85.66
+    },
+    {
+        "src": "Kolding",
+        "dst": "Gothenburg",
+        "required": 52.72
+    },
+    {
+        "src": "Kolding",
+        "dst": "Kristiansand",
+        "required": 12.54
+    },
+    {
+        "src": "Kolding",
+        "dst": "Rjukan",
+        "required": 0.86
+    },
+    {
+        "src": "Kolding",
+        "dst": "Stockholm",
+        "required": 122.04
+    },
+    {
+        "src": "Kolding",
+        "dst": "Oslo",
+        "required": 82.12
+    },
+    {
+        "src": "Kolding",
+        "dst": "Bergen",
+        "required": 17.57
+    },
+    {
+        "src": "Kolding",
+        "dst": "Rennesoy",
+        "required": 0.02
+    },
+    {
+        "src": "Kolding",
+        "dst": "Newcastle upon Tyne",
+        "required": 20.01
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Dublin",
+        "required": 3374.09
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Edinburgh",
+        "required": 704.4
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Manchester",
+        "required": 1303.76
+    },
+    {
+        "src": "Copenhague",
+        "dst": "London",
+        "required": 11933.35
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Norwich",
+        "required": 146.38
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Brussels",
+        "required": 1826.35
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Amsterdam",
+        "required": 6035.82
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Frankfurt",
+        "required": 6736.73
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Hamburgo",
+        "required": 2436.24
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Esbjerg",
+        "required": 294.66
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Kolding",
+        "required": 85.66
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Gothenburg",
+        "required": 1381.39
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Kristiansand",
+        "required": 328.59
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Rjukan",
+        "required": 22.53
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Stockholm",
+        "required": 3197.76
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Oslo",
+        "required": 2151.85
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Bergen",
+        "required": 460.31
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Rennesoy",
+        "required": 0.39
+    },
+    {
+        "src": "Copenhague",
+        "dst": "Newcastle upon Tyne",
+        "required": 524.45
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Dublin",
+        "required": 2076.6
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Edinburgh",
+        "required": 433.53
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Manchester",
+        "required": 802.41
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "London",
+        "required": 7344.44
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Norwich",
+        "required": 90.09
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Brussels",
+        "required": 1124.04
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Amsterdam",
+        "required": 3714.78
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Frankfurt",
+        "required": 4146.15
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Hamburgo",
+        "required": 1499.4
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Esbjerg",
+        "required": 181.35
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Kolding",
+        "required": 52.72
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Copenhague",
+        "required": 1381.39
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Kristiansand",
+        "required": 202.23
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Rjukan",
+        "required": 13.86
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Stockholm",
+        "required": 1968.08
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Oslo",
+        "required": 1324.37
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Bergen",
+        "required": 283.3
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Rennesoy",
+        "required": 0.24
+    },
+    {
+        "src": "Gothenburg",
+        "dst": "Newcastle upon Tyne",
+        "required": 322.78
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Dublin",
+        "required": 493.96
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Edinburgh",
+        "required": 103.12
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Manchester",
+        "required": 190.87
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "London",
+        "required": 1747.0
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Norwich",
+        "required": 21.43
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Brussels",
+        "required": 267.37
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Amsterdam",
+        "required": 883.62
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Frankfurt",
+        "required": 986.23
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Hamburgo",
+        "required": 356.66
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Esbjerg",
+        "required": 43.14
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Kolding",
+        "required": 12.54
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Copenhague",
+        "required": 328.59
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Gothenburg",
+        "required": 202.23
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Rjukan",
+        "required": 3.3
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Stockholm",
+        "required": 468.14
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Oslo",
+        "required": 315.02
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Bergen",
+        "required": 67.39
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Rennesoy",
+        "required": 0.06
+    },
+    {
+        "src": "Kristiansand",
+        "dst": "Newcastle upon Tyne",
+        "required": 76.78
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Dublin",
+        "required": 33.86
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Edinburgh",
+        "required": 7.07
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Manchester",
+        "required": 13.08
+    },
+    {
+        "src": "Rjukan",
+        "dst": "London",
+        "required": 119.76
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Norwich",
+        "required": 1.47
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Brussels",
+        "required": 18.33
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Amsterdam",
+        "required": 60.58
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Frankfurt",
+        "required": 67.61
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Hamburgo",
+        "required": 24.45
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Esbjerg",
+        "required": 2.96
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Kolding",
+        "required": 0.86
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Copenhague",
+        "required": 22.53
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Gothenburg",
+        "required": 13.86
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Kristiansand",
+        "required": 3.3
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Stockholm",
+        "required": 32.09
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Oslo",
+        "required": 21.6
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Bergen",
+        "required": 4.62
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Rennesoy",
+        "required": 0.0
+    },
+    {
+        "src": "Rjukan",
+        "dst": "Newcastle upon Tyne",
+        "required": 5.26
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Dublin",
+        "required": 4807.09
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Edinburgh",
+        "required": 1003.56
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Manchester",
+        "required": 1857.48
+    },
+    {
+        "src": "Stockholm",
+        "dst": "London",
+        "required": 17001.49
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Norwich",
+        "required": 208.54
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Brussels",
+        "required": 2602.01
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Amsterdam",
+        "required": 8599.26
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Frankfurt",
+        "required": 9597.84
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Hamburgo",
+        "required": 3470.93
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Esbjerg",
+        "required": 419.8
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Kolding",
+        "required": 122.04
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Copenhague",
+        "required": 3197.76
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Gothenburg",
+        "required": 1968.08
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Kristiansand",
+        "required": 468.14
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Rjukan",
+        "required": 32.09
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Oslo",
+        "required": 3065.74
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Bergen",
+        "required": 655.8
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Rennesoy",
+        "required": 0.56
+    },
+    {
+        "src": "Stockholm",
+        "dst": "Newcastle upon Tyne",
+        "required": 747.19
+    },
+    {
+        "src": "Oslo",
+        "dst": "Dublin",
+        "required": 3234.8
+    },
+    {
+        "src": "Oslo",
+        "dst": "Edinburgh",
+        "required": 675.32
+    },
+    {
+        "src": "Oslo",
+        "dst": "Manchester",
+        "required": 1249.94
+    },
+    {
+        "src": "Oslo",
+        "dst": "London",
+        "required": 11440.69
+    },
+    {
+        "src": "Oslo",
+        "dst": "Norwich",
+        "required": 140.33
+    },
+    {
+        "src": "Oslo",
+        "dst": "Brussels",
+        "required": 1750.95
+    },
+    {
+        "src": "Oslo",
+        "dst": "Amsterdam",
+        "required": 5786.64
+    },
+    {
+        "src": "Oslo",
+        "dst": "Frankfurt",
+        "required": 6458.61
+    },
+    {
+        "src": "Oslo",
+        "dst": "Hamburgo",
+        "required": 2335.67
+    },
+    {
+        "src": "Oslo",
+        "dst": "Esbjerg",
+        "required": 282.5
+    },
+    {
+        "src": "Oslo",
+        "dst": "Kolding",
+        "required": 82.12
+    },
+    {
+        "src": "Oslo",
+        "dst": "Copenhague",
+        "required": 2151.85
+    },
+    {
+        "src": "Oslo",
+        "dst": "Gothenburg",
+        "required": 1324.37
+    },
+    {
+        "src": "Oslo",
+        "dst": "Kristiansand",
+        "required": 315.02
+    },
+    {
+        "src": "Oslo",
+        "dst": "Rjukan",
+        "required": 21.6
+    },
+    {
+        "src": "Oslo",
+        "dst": "Stockholm",
+        "required": 3065.74
+    },
+    {
+        "src": "Oslo",
+        "dst": "Bergen",
+        "required": 441.3
+    },
+    {
+        "src": "Oslo",
+        "dst": "Rennesoy",
+        "required": 0.38
+    },
+    {
+        "src": "Oslo",
+        "dst": "Newcastle upon Tyne",
+        "required": 502.8
+    },
+    {
+        "src": "Bergen",
+        "dst": "Dublin",
+        "required": 691.96
+    },
+    {
+        "src": "Bergen",
+        "dst": "Edinburgh",
+        "required": 144.46
+    },
+    {
+        "src": "Bergen",
+        "dst": "Manchester",
+        "required": 267.38
+    },
+    {
+        "src": "Bergen",
+        "dst": "London",
+        "required": 2447.3
+    },
+    {
+        "src": "Bergen",
+        "dst": "Norwich",
+        "required": 30.02
+    },
+    {
+        "src": "Bergen",
+        "dst": "Brussels",
+        "required": 374.55
+    },
+    {
+        "src": "Bergen",
+        "dst": "Amsterdam",
+        "required": 1237.83
+    },
+    {
+        "src": "Bergen",
+        "dst": "Frankfurt",
+        "required": 1381.57
+    },
+    {
+        "src": "Bergen",
+        "dst": "Hamburgo",
+        "required": 499.63
+    },
+    {
+        "src": "Bergen",
+        "dst": "Esbjerg",
+        "required": 60.43
+    },
+    {
+        "src": "Bergen",
+        "dst": "Kolding",
+        "required": 17.57
+    },
+    {
+        "src": "Bergen",
+        "dst": "Copenhague",
+        "required": 460.31
+    },
+    {
+        "src": "Bergen",
+        "dst": "Gothenburg",
+        "required": 283.3
+    },
+    {
+        "src": "Bergen",
+        "dst": "Kristiansand",
+        "required": 67.39
+    },
+    {
+        "src": "Bergen",
+        "dst": "Rjukan",
+        "required": 4.62
+    },
+    {
+        "src": "Bergen",
+        "dst": "Stockholm",
+        "required": 655.8
+    },
+    {
+        "src": "Bergen",
+        "dst": "Oslo",
+        "required": 441.3
+    },
+    {
+        "src": "Bergen",
+        "dst": "Rennesoy",
+        "required": 0.08
+    },
+    {
+        "src": "Bergen",
+        "dst": "Newcastle upon Tyne",
+        "required": 107.55
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Dublin",
+        "required": 0.59
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Edinburgh",
+        "required": 0.12
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Manchester",
+        "required": 0.23
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "London",
+        "required": 2.1
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Norwich",
+        "required": 0.03
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Brussels",
+        "required": 0.32
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Amsterdam",
+        "required": 1.06
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Frankfurt",
+        "required": 1.18
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Hamburgo",
+        "required": 0.43
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Esbjerg",
+        "required": 0.05
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Kolding",
+        "required": 0.02
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Copenhague",
+        "required": 0.39
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Gothenburg",
+        "required": 0.24
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Kristiansand",
+        "required": 0.06
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Rjukan",
+        "required": 0.0
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Stockholm",
+        "required": 0.56
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Oslo",
+        "required": 0.38
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Bergen",
+        "required": 0.08
+    },
+    {
+        "src": "Rennesoy",
+        "dst": "Newcastle upon Tyne",
+        "required": 0.09
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Dublin",
+        "required": 788.39
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Edinburgh",
+        "required": 164.59
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Manchester",
+        "required": 304.64
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "London",
+        "required": 2788.34
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Norwich",
+        "required": 34.2
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Brussels",
+        "required": 426.74
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Amsterdam",
+        "required": 1410.32
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Frankfurt",
+        "required": 1574.1
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Hamburgo",
+        "required": 569.25
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Esbjerg",
+        "required": 68.85
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Kolding",
+        "required": 20.01
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Copenhague",
+        "required": 524.45
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Gothenburg",
+        "required": 322.78
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Kristiansand",
+        "required": 76.78
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Rjukan",
+        "required": 5.26
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Stockholm",
+        "required": 747.19
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Oslo",
+        "required": 502.8
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Bergen",
+        "required": 107.55
+    },
+    {
+        "src": "Newcastle upon Tyne",
+        "dst": "Rennesoy",
+        "required": 0.09
+    }
+]

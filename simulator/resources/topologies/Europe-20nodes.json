@@ -1,0 +1,788 @@
+{
+    "name": "altibox",
+    "nodes": [
+        {
+            "id": 0,
+            "weight": 0,
+            "latitude": 53.3498053,
+            "longitude": -6.2603097,
+            "pop": 1024027,
+            "DC": 110,
+            "IXP": 3,
+            "label": "Dublin"
+        },
+        {
+            "id": 1,
+            "weight": 0,
+            "latitude": 55.953252,
+            "longitude": -3.188267,
+            "pop": 514990,
+            "DC": 9,
+            "IXP": 1,
+            "label": "Edinburgh"
+        },
+        {
+            "id": 2,
+            "weight": 0,
+            "latitude": 53.4807593,
+            "longitude": -2.2426305,
+            "pop": 568996,
+            "DC": 30,
+            "IXP": 2,
+            "label": "Manchester"
+        },
+        {
+            "id": 3,
+            "weight": 0,
+            "latitude": 51.5072178,
+            "longitude": -0.1275862,
+            "pop": 8961989,
+            "DC": 186,
+            "IXP": 11,
+            "label": "London"
+        },
+        {
+            "id": 4,
+            "weight": 0,
+            "latitude": 52.6292567,
+            "longitude": 1.2978802,
+            "pop": 143135,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Norwich"
+        },
+        {
+            "id": 5,
+            "weight": 0,
+            "latitude": 50.8477029,
+            "longitude": 4.3572001,
+            "pop": 1019022,
+            "DC": 18,
+            "IXP": 5,
+            "label": "Brussels"
+        },
+        {
+            "id": 6,
+            "weight": 0,
+            "latitude": 52.3675734,
+            "longitude": 4.9041389,
+            "pop": 741636,
+            "DC": 76,
+            "IXP": 28,
+            "label": "Amsterdam"
+        },
+        {
+            "id": 7,
+            "weight": 0,
+            "latitude": 50.1109221,
+            "longitude": 8.6821267,
+            "pop": 650000,
+            "DC": 129,
+            "IXP": 26,
+            "label": "Frankfurt"
+        },
+        {
+            "id": 8,
+            "weight": 0,
+            "latitude": 53.5488282,
+            "longitude": 9.9871703,
+            "pop": 1845229,
+            "DC": 32,
+            "IXP": 3,
+            "label": "Hamburgo"
+        },
+        {
+            "id": 9,
+            "weight": 0,
+            "latitude": 55.476466,
+            "longitude": 8.459405,
+            "pop": 71698,
+            "DC": 5,
+            "IXP": 1,
+            "label": "Esbjerg"
+        },
+        {
+            "id": 10,
+            "weight": 0,
+            "latitude": 55.495973,
+            "longitude": 9.4730519,
+            "pop": 61638,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Kolding"
+        },
+        {
+            "id": 11,
+            "weight": 0,
+            "latitude": 55.6760968,
+            "longitude": 12.5683371,
+            "pop": 1153615,
+            "DC": 34,
+            "IXP": 5,
+            "label": "Copenhague"
+        },
+        {
+            "id": 12,
+            "weight": 0,
+            "latitude": 57.70887,
+            "longitude": 11.97456,
+            "pop": 608462,
+            "DC": 11,
+            "IXP": 5,
+            "label": "Gothenburg"
+        },
+        {
+            "id": 13,
+            "weight": 0,
+            "latitude": 58.1599119,
+            "longitude": 8.0182064,
+            "pop": 117237,
+            "DC": 5,
+            "IXP": 1,
+            "label": "Kristiansand"
+        },
+        {
+            "id": 14,
+            "weight": 0,
+            "latitude": 59.8792427,
+            "longitude": 8.6117346,
+            "pop": 3568,
+            "DC": 1,
+            "IXP": 0,
+            "label": "Rjukan"
+        },
+        {
+            "id": 15,
+            "weight": 0,
+            "latitude": 59.3327036,
+            "longitude": 18.0656255,
+            "pop": 1515017,
+            "DC": 47,
+            "IXP": 8,
+            "label": "Stockholm"
+        },
+        {
+            "id": 16,
+            "weight": 0,
+            "latitude": 59.9121746,
+            "longitude": 10.7312704,
+            "pop": 1082575,
+            "DC": 32,
+            "IXP": 5,
+            "label": "Oslo"
+        },
+        {
+            "id": 17,
+            "weight": 0,
+            "latitude": 60.3912628,
+            "longitude": 5.3220544,
+            "pop": 294029,
+            "DC": 5,
+            "IXP": 1,
+            "label": "Bergen"
+        },
+        {
+            "id": 18,
+            "weight": 0,
+            "latitude": 59.0971936,
+            "longitude": 5.6274122,
+            "pop": 529,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Rennesoy"
+        },
+        {
+            "id": 19,
+            "weight": 0,
+            "latitude": 54.978252,
+            "longitude": -1.61778,
+            "pop": 300125,
+            "DC": 8,
+            "IXP": 1,
+            "label": "Newcastle upon Tyne"
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "src": 3,
+            "dst": 19,
+            "length": 522.93,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 1,
+            "src": 19,
+            "dst": 3,
+            "length": 522.93,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 2,
+            "src": 3,
+            "dst": 0,
+            "length": 602.35,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 3,
+            "src": 0,
+            "dst": 3,
+            "length": 602.35,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 4,
+            "src": 0,
+            "dst": 2,
+            "length": 348.73,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 5,
+            "src": 2,
+            "dst": 0,
+            "length": 348.73,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 6,
+            "src": 2,
+            "dst": 19,
+            "length": 221.31,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 7,
+            "src": 19,
+            "dst": 2,
+            "length": 221.31,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 8,
+            "src": 0,
+            "dst": 19,
+            "length": 461.87,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 9,
+            "src": 19,
+            "dst": 0,
+            "length": 461.87,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 10,
+            "src": 1,
+            "dst": 0,
+            "length": 457.82,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 11,
+            "src": 0,
+            "dst": 1,
+            "length": 457.82,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 12,
+            "src": 3,
+            "dst": 4,
+            "length": 209.36,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 13,
+            "src": 4,
+            "dst": 3,
+            "length": 209.36,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 14,
+            "src": 5,
+            "dst": 3,
+            "length": 417.94,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 15,
+            "src": 3,
+            "dst": 5,
+            "length": 417.94,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 16,
+            "src": 5,
+            "dst": 6,
+            "length": 226.05,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 17,
+            "src": 6,
+            "dst": 5,
+            "length": 226.05,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 18,
+            "src": 6,
+            "dst": 4,
+            "length": 317.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 19,
+            "src": 4,
+            "dst": 6,
+            "length": 317.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 20,
+            "src": 13,
+            "dst": 4,
+            "length": 970.53,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 21,
+            "src": 4,
+            "dst": 13,
+            "length": 970.53,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 22,
+            "src": 7,
+            "dst": 5,
+            "length": 415.46,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 23,
+            "src": 5,
+            "dst": 7,
+            "length": 415.46,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 24,
+            "src": 8,
+            "dst": 7,
+            "length": 510.77,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 25,
+            "src": 7,
+            "dst": 8,
+            "length": 510.77,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 26,
+            "src": 6,
+            "dst": 8,
+            "length": 477.25,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 27,
+            "src": 8,
+            "dst": 6,
+            "length": 477.25,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 28,
+            "src": 19,
+            "dst": 9,
+            "length": 832.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 29,
+            "src": 9,
+            "dst": 19,
+            "length": 832.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 30,
+            "src": 8,
+            "dst": 9,
+            "length": 299.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 31,
+            "src": 9,
+            "dst": 8,
+            "length": 299.9,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 32,
+            "src": 10,
+            "dst": 8,
+            "length": 282.98,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 33,
+            "src": 8,
+            "dst": 10,
+            "length": 282.98,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 34,
+            "src": 9,
+            "dst": 10,
+            "length": 82.79,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 35,
+            "src": 10,
+            "dst": 9,
+            "length": 82.79,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 36,
+            "src": 8,
+            "dst": 11,
+            "length": 374.08,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 37,
+            "src": 11,
+            "dst": 8,
+            "length": 374.08,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 38,
+            "src": 11,
+            "dst": 10,
+            "length": 252.11,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 39,
+            "src": 10,
+            "dst": 11,
+            "length": 252.11,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 40,
+            "src": 18,
+            "dst": 1,
+            "length": 822.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 41,
+            "src": 1,
+            "dst": 18,
+            "length": 822.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 42,
+            "src": 19,
+            "dst": 18,
+            "length": 824.05,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 43,
+            "src": 18,
+            "dst": 19,
+            "length": 824.05,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 44,
+            "src": 17,
+            "dst": 18,
+            "length": 186.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 45,
+            "src": 18,
+            "dst": 17,
+            "length": 186.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 46,
+            "src": 16,
+            "dst": 18,
+            "length": 390.64,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 47,
+            "src": 18,
+            "dst": 16,
+            "length": 390.64,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 48,
+            "src": 16,
+            "dst": 14,
+            "length": 154.42,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 49,
+            "src": 14,
+            "dst": 16,
+            "length": 154.42,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 50,
+            "src": 13,
+            "dst": 16,
+            "length": 319.41,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 51,
+            "src": 16,
+            "dst": 13,
+            "length": 319.41,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 52,
+            "src": 15,
+            "dst": 16,
+            "length": 539.39,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 53,
+            "src": 16,
+            "dst": 15,
+            "length": 539.39,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 54,
+            "src": 10,
+            "dst": 16,
+            "length": 644.02,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 55,
+            "src": 16,
+            "dst": 10,
+            "length": 644.02,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 56,
+            "src": 13,
+            "dst": 9,
+            "length": 391.97,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 57,
+            "src": 9,
+            "dst": 13,
+            "length": 391.97,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 58,
+            "src": 11,
+            "dst": 12,
+            "length": 293.28,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 59,
+            "src": 12,
+            "dst": 11,
+            "length": 293.28,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 60,
+            "src": 12,
+            "dst": 16,
+            "length": 331.16,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 61,
+            "src": 16,
+            "dst": 12,
+            "length": 331.16,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 62,
+            "src": 11,
+            "dst": 15,
+            "length": 678.09,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 63,
+            "src": 15,
+            "dst": 11,
+            "length": 678.09,
+            "fibers": {
+                "SSMF": 1
+            }
+        }
+    ],
+    "reference": {
+        "url": "https://altiboxcarrier.com/",
+        "paper": "",
+        "doi": ""
+    }
+}

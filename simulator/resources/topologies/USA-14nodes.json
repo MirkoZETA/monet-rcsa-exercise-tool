@@ -1,0 +1,530 @@
+{
+    "name": "NSFNET",
+    "nodes": [
+        {
+            "id": 0,
+            "weight": 0,
+            "latitude": 47.6061389,
+            "longitude": -122.3328481,
+            "pop": 780995,
+            "DC": 58,
+            "IXP": 5,
+            "label": "Seattle"
+        },
+        {
+            "id": 1,
+            "weight": 0,
+            "latitude": 37.4418834,
+            "longitude": -122.1430195,
+            "pop": 85288,
+            "DC": 3,
+            "IXP": 3,
+            "label": "Palo Alto"
+        },
+        {
+            "id": 2,
+            "weight": 0,
+            "latitude": 32.715738,
+            "longitude": -117.1610838,
+            "pop": 1404452,
+            "DC": 14,
+            "IXP": 0,
+            "label": "San Diego"
+        },
+        {
+            "id": 3,
+            "weight": 0,
+            "latitude": 40.7605601,
+            "longitude": -111.8881397,
+            "pop": 215548,
+            "DC": 29,
+            "IXP": 2,
+            "label": "Salt Lake City"
+        },
+        {
+            "id": 4,
+            "weight": 0,
+            "latitude": 29.7600771,
+            "longitude": -95.3701108,
+            "pop": 2314157,
+            "DC": 55,
+            "IXP": 6,
+            "label": "Houston"
+        },
+        {
+            "id": 5,
+            "weight": 0,
+            "latitude": 40.0189728,
+            "longitude": -105.2747406,
+            "pop": 106803,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Boulder"
+        },
+        {
+            "id": 6,
+            "weight": 0,
+            "latitude": 40.8136634,
+            "longitude": -96.7025764,
+            "pop": 294757,
+            "DC": 5,
+            "IXP": 0,
+            "label": "Lincoln"
+        },
+        {
+            "id": 7,
+            "weight": 0,
+            "latitude": 33.7501275,
+            "longitude": -84.3885209,
+            "pop": 510823,
+            "DC": 145,
+            "IXP": 7,
+            "label": "Atlanta"
+        },
+        {
+            "id": 8,
+            "weight": 0,
+            "latitude": 40.1162884,
+            "longitude": -88.2435155,
+            "pop": 86096,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Champaign"
+        },
+        {
+            "id": 9,
+            "weight": 0,
+            "latitude": 42.2808256,
+            "longitude": -83.7430378,
+            "pop": 117070,
+            "DC": 5,
+            "IXP": 0,
+            "label": "Ann Arbor"
+        },
+        {
+            "id": 10,
+            "weight": 0,
+            "latitude": 38.9896967,
+            "longitude": -76.93776,
+            "pop": 689545,
+            "DC": 7,
+            "IXP": 3,
+            "label": "College Park"
+        },
+        {
+            "id": 11,
+            "weight": 0,
+            "latitude": 40.3503931,
+            "longitude": -74.6571416,
+            "pop": 29603,
+            "DC": 3,
+            "IXP": 0,
+            "label": "Princeton"
+        },
+        {
+            "id": 12,
+            "weight": 0,
+            "latitude": 42.4439614,
+            "longitude": -76.5018807,
+            "pop": 30788,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Ithaca"
+        },
+        {
+            "id": 13,
+            "weight": 0,
+            "latitude": 40.4386612,
+            "longitude": -79.9972352,
+            "pop": 304391,
+            "DC": 37,
+            "IXP": 1,
+            "label": "Pittsburgh"
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "src": 1,
+            "dst": 0,
+            "length": 1482.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 1,
+            "src": 2,
+            "dst": 1,
+            "length": 893.52,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 2,
+            "src": 2,
+            "dst": 0,
+            "length": 2241.21,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 3,
+            "src": 6,
+            "dst": 5,
+            "length": 944.41,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 4,
+            "src": 3,
+            "dst": 5,
+            "length": 738.23,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 5,
+            "src": 3,
+            "dst": 1,
+            "length": 1216.74,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 6,
+            "src": 8,
+            "dst": 0,
+            "length": 3660.62,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 7,
+            "src": 8,
+            "dst": 6,
+            "length": 952.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 8,
+            "src": 4,
+            "dst": 5,
+            "length": 1875.58,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 9,
+            "src": 9,
+            "dst": 3,
+            "length": 3027.42,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 10,
+            "src": 4,
+            "dst": 2,
+            "length": 2731.12,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 11,
+            "src": 4,
+            "dst": 7,
+            "length": 1446.98,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 12,
+            "src": 10,
+            "dst": 4,
+            "length": 2559.62,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 13,
+            "src": 6,
+            "dst": 7,
+            "length": 1744.47,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 14,
+            "src": 7,
+            "dst": 13,
+            "length": 1085.84,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 15,
+            "src": 13,
+            "dst": 8,
+            "length": 910.54,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 16,
+            "src": 12,
+            "dst": 9,
+            "length": 777.53,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 17,
+            "src": 10,
+            "dst": 12,
+            "length": 501.87,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 18,
+            "src": 9,
+            "dst": 11,
+            "length": 1030.13,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 19,
+            "src": 13,
+            "dst": 11,
+            "length": 594.8,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 20,
+            "src": 10,
+            "dst": 11,
+            "length": 324.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 21,
+            "src": 0,
+            "dst": 1,
+            "length": 1482.0,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 22,
+            "src": 1,
+            "dst": 2,
+            "length": 893.52,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 23,
+            "src": 0,
+            "dst": 2,
+            "length": 2241.21,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 24,
+            "src": 5,
+            "dst": 6,
+            "length": 944.41,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 25,
+            "src": 5,
+            "dst": 3,
+            "length": 738.23,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 26,
+            "src": 1,
+            "dst": 3,
+            "length": 1216.74,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 27,
+            "src": 0,
+            "dst": 8,
+            "length": 3660.62,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 28,
+            "src": 6,
+            "dst": 8,
+            "length": 952.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 29,
+            "src": 5,
+            "dst": 4,
+            "length": 1875.58,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 30,
+            "src": 3,
+            "dst": 9,
+            "length": 3027.42,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 31,
+            "src": 2,
+            "dst": 4,
+            "length": 2731.12,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 32,
+            "src": 7,
+            "dst": 4,
+            "length": 1446.98,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 33,
+            "src": 4,
+            "dst": 10,
+            "length": 2559.62,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 34,
+            "src": 7,
+            "dst": 6,
+            "length": 1744.47,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 35,
+            "src": 13,
+            "dst": 7,
+            "length": 1085.84,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 36,
+            "src": 8,
+            "dst": 13,
+            "length": 910.54,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 37,
+            "src": 9,
+            "dst": 12,
+            "length": 777.53,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 38,
+            "src": 12,
+            "dst": 10,
+            "length": 501.87,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 39,
+            "src": 11,
+            "dst": 9,
+            "length": 1030.13,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 40,
+            "src": 11,
+            "dst": 13,
+            "length": 594.8,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 41,
+            "src": 11,
+            "dst": 10,
+            "length": 324.4,
+            "fibers": {
+                "SSMF": 1
+            }
+        }
+    ],
+    "reference": {
+        "url": "https://ieeexplore.ieee.org/document/8995687",
+        "paper": "Survivability in optical networks: a solution for the wavelength continuity constraint case",
+        "doi": "10.1109/LADC48089.2019.8995687"
+    }
+}

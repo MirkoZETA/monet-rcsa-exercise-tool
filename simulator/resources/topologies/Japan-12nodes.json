@@ -1,0 +1,438 @@
+{
+    "name": "JPN-12",
+    "nodes": [
+        {
+            "id": 0,
+            "weight": 0,
+            "latitude": 26.3343533,
+            "longitude": 127.8056058,
+            "pop": 142752,
+            "DC": 2,
+            "IXP": 1,
+            "label": "Okinawa"
+        },
+        {
+            "id": 1,
+            "weight": 0,
+            "latitude": 33.5901838,
+            "longitude": 130.4016888,
+            "pop": 1612392,
+            "DC": 5,
+            "IXP": 2,
+            "label": "Fukuoka"
+        },
+        {
+            "id": 2,
+            "weight": 0,
+            "latitude": 33.5588821,
+            "longitude": 133.5312383,
+            "pop": 332059,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Kochi"
+        },
+        {
+            "id": 3,
+            "weight": 0,
+            "latitude": 34.3852894,
+            "longitude": 132.4553055,
+            "pop": 1200754,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Hiroshima"
+        },
+        {
+            "id": 4,
+            "weight": 0,
+            "latitude": 34.656228,
+            "longitude": 133.9194179,
+            "pop": 724691,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Okayama"
+        },
+        {
+            "id": 5,
+            "weight": 0,
+            "latitude": 34.6937249,
+            "longitude": 135.5022535,
+            "pop": 2753862,
+            "DC": 53,
+            "IXP": 4,
+            "label": "Osaka"
+        },
+        {
+            "id": 6,
+            "weight": 0,
+            "latitude": 36.5597341,
+            "longitude": 136.6520376,
+            "pop": 466029,
+            "DC": 3,
+            "IXP": 0,
+            "label": "Kanazawa"
+        },
+        {
+            "id": 7,
+            "weight": 0,
+            "latitude": 36.6485258,
+            "longitude": 138.1950371,
+            "pop": 372760,
+            "DC": 1,
+            "IXP": 0,
+            "label": "Nagano"
+        },
+        {
+            "id": 8,
+            "weight": 0,
+            "latitude": 36.38946,
+            "longitude": 139.06341,
+            "pop": 372973,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Maebashi"
+        },
+        {
+            "id": 9,
+            "weight": 0,
+            "latitude": 35.6803997,
+            "longitude": 139.7690174,
+            "pop": 9733276,
+            "DC": 100,
+            "IXP": 8,
+            "label": "Tokio"
+        },
+        {
+            "id": 10,
+            "weight": 0,
+            "latitude": 38.268195,
+            "longitude": 140.869418,
+            "pop": 1096704,
+            "DC": 2,
+            "IXP": 1,
+            "label": "Sendai"
+        },
+        {
+            "id": 11,
+            "weight": 0,
+            "latitude": 43.0617713,
+            "longitude": 141.3544506,
+            "pop": 1973832,
+            "DC": 6,
+            "IXP": 0,
+            "label": "Sapporo"
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "src": 0,
+            "dst": 1,
+            "length": 1097.25,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 1,
+            "src": 2,
+            "dst": 0,
+            "length": 1255.8,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 2,
+            "src": 1,
+            "dst": 2,
+            "length": 380.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 3,
+            "src": 3,
+            "dst": 1,
+            "length": 270.74,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 4,
+            "src": 2,
+            "dst": 3,
+            "length": 165.69,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 5,
+            "src": 3,
+            "dst": 4,
+            "length": 168.25,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 6,
+            "src": 2,
+            "dst": 5,
+            "length": 289.27,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 7,
+            "src": 4,
+            "dst": 5,
+            "length": 185.5,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 8,
+            "src": 5,
+            "dst": 7,
+            "length": 427.47,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 9,
+            "src": 6,
+            "dst": 4,
+            "length": 422.94,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 10,
+            "src": 6,
+            "dst": 7,
+            "length": 178.78,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 11,
+            "src": 9,
+            "dst": 5,
+            "length": 521.71,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 12,
+            "src": 8,
+            "dst": 9,
+            "length": 131.57,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 13,
+            "src": 7,
+            "dst": 8,
+            "length": 106.15,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 14,
+            "src": 9,
+            "dst": 10,
+            "length": 401.65,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 15,
+            "src": 10,
+            "dst": 11,
+            "length": 684.66,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 16,
+            "src": 8,
+            "dst": 11,
+            "length": 1003.97,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 17,
+            "src": 1,
+            "dst": 0,
+            "length": 1097.25,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 18,
+            "src": 0,
+            "dst": 2,
+            "length": 1255.8,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 19,
+            "src": 2,
+            "dst": 1,
+            "length": 380.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 20,
+            "src": 1,
+            "dst": 3,
+            "length": 270.74,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 21,
+            "src": 3,
+            "dst": 2,
+            "length": 165.69,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 22,
+            "src": 4,
+            "dst": 3,
+            "length": 168.25,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 23,
+            "src": 5,
+            "dst": 2,
+            "length": 289.27,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 24,
+            "src": 5,
+            "dst": 4,
+            "length": 185.5,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 25,
+            "src": 7,
+            "dst": 5,
+            "length": 427.47,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 26,
+            "src": 4,
+            "dst": 6,
+            "length": 422.94,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 27,
+            "src": 7,
+            "dst": 6,
+            "length": 178.78,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 28,
+            "src": 5,
+            "dst": 9,
+            "length": 521.71,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 29,
+            "src": 9,
+            "dst": 8,
+            "length": 131.57,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 30,
+            "src": 8,
+            "dst": 7,
+            "length": 106.15,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 31,
+            "src": 10,
+            "dst": 9,
+            "length": 401.65,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 32,
+            "src": 11,
+            "dst": 10,
+            "length": 684.66,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 33,
+            "src": 11,
+            "dst": 8,
+            "length": 1003.97,
+            "fibers": {
+                "SSMF": 1
+            }
+        }
+    ],
+    "reference": {
+        "url": "https://www.researchgate.net/publication/283011410_Scalable_software-defined_optical_networking_with_high-performance_routing_and_wavelength_assignment_algorithms ;  https://testbed.nict.go.jp/jgn/jgn-x_archive/english/info/network.html",
+        "paper": "Scalable software-defined optical networking with high-performance routing and wavelength assignment algorithms",
+        "doi": "10.1364/OE.23.027354"
+    }
+}

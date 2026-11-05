@@ -1,0 +1,662 @@
+[
+    {
+        "src": "Okinawa",
+        "dst": "Fukuoka",
+        "required": 431.51
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Kochi",
+        "required": 67.38
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Hiroshima",
+        "required": 254.46
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Okayama",
+        "required": 157.87
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Osaka",
+        "required": 1000.14
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Kanazawa",
+        "required": 110.79
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Nagano",
+        "required": 81.05
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Maebashi",
+        "required": 86.5
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Tokio",
+        "required": 2825.19
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Sendai",
+        "required": 272.0
+    },
+    {
+        "src": "Okinawa",
+        "dst": "Sapporo",
+        "required": 432.97
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Okinawa",
+        "required": 431.51
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Kochi",
+        "required": 370.68
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Hiroshima",
+        "required": 1399.95
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Okayama",
+        "required": 868.52
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Osaka",
+        "required": 5502.35
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Kanazawa",
+        "required": 609.54
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Nagano",
+        "required": 445.88
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Maebashi",
+        "required": 475.89
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Tokio",
+        "required": 15543.12
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Sendai",
+        "required": 1496.42
+    },
+    {
+        "src": "Fukuoka",
+        "dst": "Sapporo",
+        "required": 2382.02
+    },
+    {
+        "src": "Kochi",
+        "dst": "Okinawa",
+        "required": 67.38
+    },
+    {
+        "src": "Kochi",
+        "dst": "Fukuoka",
+        "required": 370.68
+    },
+    {
+        "src": "Kochi",
+        "dst": "Hiroshima",
+        "required": 218.59
+    },
+    {
+        "src": "Kochi",
+        "dst": "Okayama",
+        "required": 135.61
+    },
+    {
+        "src": "Kochi",
+        "dst": "Osaka",
+        "required": 859.14
+    },
+    {
+        "src": "Kochi",
+        "dst": "Kanazawa",
+        "required": 95.17
+    },
+    {
+        "src": "Kochi",
+        "dst": "Nagano",
+        "required": 69.62
+    },
+    {
+        "src": "Kochi",
+        "dst": "Maebashi",
+        "required": 74.31
+    },
+    {
+        "src": "Kochi",
+        "dst": "Tokio",
+        "required": 2426.92
+    },
+    {
+        "src": "Kochi",
+        "dst": "Sendai",
+        "required": 233.65
+    },
+    {
+        "src": "Kochi",
+        "dst": "Sapporo",
+        "required": 371.93
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Okinawa",
+        "required": 254.46
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Fukuoka",
+        "required": 1399.95
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Kochi",
+        "required": 218.59
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Okayama",
+        "required": 512.16
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Osaka",
+        "required": 3244.73
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Kanazawa",
+        "required": 359.44
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Nagano",
+        "required": 262.94
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Maebashi",
+        "required": 280.63
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Tokio",
+        "required": 9165.75
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Sendai",
+        "required": 882.43
+    },
+    {
+        "src": "Hiroshima",
+        "dst": "Sapporo",
+        "required": 1404.67
+    },
+    {
+        "src": "Okayama",
+        "dst": "Okinawa",
+        "required": 157.87
+    },
+    {
+        "src": "Okayama",
+        "dst": "Fukuoka",
+        "required": 868.52
+    },
+    {
+        "src": "Okayama",
+        "dst": "Kochi",
+        "required": 135.61
+    },
+    {
+        "src": "Okayama",
+        "dst": "Hiroshima",
+        "required": 512.16
+    },
+    {
+        "src": "Okayama",
+        "dst": "Osaka",
+        "required": 2013.0
+    },
+    {
+        "src": "Okayama",
+        "dst": "Kanazawa",
+        "required": 223.0
+    },
+    {
+        "src": "Okayama",
+        "dst": "Nagano",
+        "required": 163.12
+    },
+    {
+        "src": "Okayama",
+        "dst": "Maebashi",
+        "required": 174.1
+    },
+    {
+        "src": "Okayama",
+        "dst": "Tokio",
+        "required": 5686.35
+    },
+    {
+        "src": "Okayama",
+        "dst": "Sendai",
+        "required": 547.45
+    },
+    {
+        "src": "Okayama",
+        "dst": "Sapporo",
+        "required": 871.44
+    },
+    {
+        "src": "Osaka",
+        "dst": "Okinawa",
+        "required": 1000.14
+    },
+    {
+        "src": "Osaka",
+        "dst": "Fukuoka",
+        "required": 5502.35
+    },
+    {
+        "src": "Osaka",
+        "dst": "Kochi",
+        "required": 859.14
+    },
+    {
+        "src": "Osaka",
+        "dst": "Hiroshima",
+        "required": 3244.73
+    },
+    {
+        "src": "Osaka",
+        "dst": "Okayama",
+        "required": 2013.0
+    },
+    {
+        "src": "Osaka",
+        "dst": "Kanazawa",
+        "required": 1412.75
+    },
+    {
+        "src": "Osaka",
+        "dst": "Nagano",
+        "required": 1033.45
+    },
+    {
+        "src": "Osaka",
+        "dst": "Maebashi",
+        "required": 1102.99
+    },
+    {
+        "src": "Osaka",
+        "dst": "Tokio",
+        "required": 36025.06
+    },
+    {
+        "src": "Osaka",
+        "dst": "Sendai",
+        "required": 3468.32
+    },
+    {
+        "src": "Osaka",
+        "dst": "Sapporo",
+        "required": 5520.91
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Okinawa",
+        "required": 110.79
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Fukuoka",
+        "required": 609.54
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Kochi",
+        "required": 95.17
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Hiroshima",
+        "required": 359.44
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Okayama",
+        "required": 223.0
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Osaka",
+        "required": 1412.75
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Nagano",
+        "required": 114.48
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Maebashi",
+        "required": 122.19
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Tokio",
+        "required": 3990.76
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Sendai",
+        "required": 384.21
+    },
+    {
+        "src": "Kanazawa",
+        "dst": "Sapporo",
+        "required": 611.59
+    },
+    {
+        "src": "Nagano",
+        "dst": "Okinawa",
+        "required": 81.05
+    },
+    {
+        "src": "Nagano",
+        "dst": "Fukuoka",
+        "required": 445.88
+    },
+    {
+        "src": "Nagano",
+        "dst": "Kochi",
+        "required": 69.62
+    },
+    {
+        "src": "Nagano",
+        "dst": "Hiroshima",
+        "required": 262.94
+    },
+    {
+        "src": "Nagano",
+        "dst": "Okayama",
+        "required": 163.12
+    },
+    {
+        "src": "Nagano",
+        "dst": "Osaka",
+        "required": 1033.45
+    },
+    {
+        "src": "Nagano",
+        "dst": "Kanazawa",
+        "required": 114.48
+    },
+    {
+        "src": "Nagano",
+        "dst": "Maebashi",
+        "required": 89.38
+    },
+    {
+        "src": "Nagano",
+        "dst": "Tokio",
+        "required": 2919.29
+    },
+    {
+        "src": "Nagano",
+        "dst": "Sendai",
+        "required": 281.06
+    },
+    {
+        "src": "Nagano",
+        "dst": "Sapporo",
+        "required": 447.39
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Okinawa",
+        "required": 86.5
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Fukuoka",
+        "required": 475.89
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Kochi",
+        "required": 74.31
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Hiroshima",
+        "required": 280.63
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Okayama",
+        "required": 174.1
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Osaka",
+        "required": 1102.99
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Kanazawa",
+        "required": 122.19
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Nagano",
+        "required": 89.38
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Tokio",
+        "required": 3115.75
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Sendai",
+        "required": 299.97
+    },
+    {
+        "src": "Maebashi",
+        "dst": "Sapporo",
+        "required": 477.49
+    },
+    {
+        "src": "Tokio",
+        "dst": "Okinawa",
+        "required": 2825.19
+    },
+    {
+        "src": "Tokio",
+        "dst": "Fukuoka",
+        "required": 15543.12
+    },
+    {
+        "src": "Tokio",
+        "dst": "Kochi",
+        "required": 2426.92
+    },
+    {
+        "src": "Tokio",
+        "dst": "Hiroshima",
+        "required": 9165.75
+    },
+    {
+        "src": "Tokio",
+        "dst": "Okayama",
+        "required": 5686.35
+    },
+    {
+        "src": "Tokio",
+        "dst": "Osaka",
+        "required": 36025.06
+    },
+    {
+        "src": "Tokio",
+        "dst": "Kanazawa",
+        "required": 3990.76
+    },
+    {
+        "src": "Tokio",
+        "dst": "Nagano",
+        "required": 2919.29
+    },
+    {
+        "src": "Tokio",
+        "dst": "Maebashi",
+        "required": 3115.75
+    },
+    {
+        "src": "Tokio",
+        "dst": "Sendai",
+        "required": 9797.35
+    },
+    {
+        "src": "Tokio",
+        "dst": "Sapporo",
+        "required": 15595.55
+    },
+    {
+        "src": "Sendai",
+        "dst": "Okinawa",
+        "required": 272.0
+    },
+    {
+        "src": "Sendai",
+        "dst": "Fukuoka",
+        "required": 1496.42
+    },
+    {
+        "src": "Sendai",
+        "dst": "Kochi",
+        "required": 233.65
+    },
+    {
+        "src": "Sendai",
+        "dst": "Hiroshima",
+        "required": 882.43
+    },
+    {
+        "src": "Sendai",
+        "dst": "Okayama",
+        "required": 547.45
+    },
+    {
+        "src": "Sendai",
+        "dst": "Osaka",
+        "required": 3468.32
+    },
+    {
+        "src": "Sendai",
+        "dst": "Kanazawa",
+        "required": 384.21
+    },
+    {
+        "src": "Sendai",
+        "dst": "Nagano",
+        "required": 281.06
+    },
+    {
+        "src": "Sendai",
+        "dst": "Maebashi",
+        "required": 299.97
+    },
+    {
+        "src": "Sendai",
+        "dst": "Tokio",
+        "required": 9797.35
+    },
+    {
+        "src": "Sendai",
+        "dst": "Sapporo",
+        "required": 1501.46
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Okinawa",
+        "required": 432.97
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Fukuoka",
+        "required": 2382.02
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Kochi",
+        "required": 371.93
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Hiroshima",
+        "required": 1404.67
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Okayama",
+        "required": 871.44
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Osaka",
+        "required": 5520.91
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Kanazawa",
+        "required": 611.59
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Nagano",
+        "required": 447.39
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Maebashi",
+        "required": 477.49
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Tokio",
+        "required": 15595.55
+    },
+    {
+        "src": "Sapporo",
+        "dst": "Sendai",
+        "required": 1501.46
+    }
+]
