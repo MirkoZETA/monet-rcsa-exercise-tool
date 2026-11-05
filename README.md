@@ -108,7 +108,14 @@ The executable expects seven positional arguments in this order:
 monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET SPECTRUM_ALLOCATION OUTPUT_FOLDER
 ```
 
-- `NETWORK`: topology name, currently `Germany-14nodes`
+- `NETWORK`: topology name. Available resources:
+  - `Germany-14nodes`
+  - `Germany-50nodes`
+  - `Spain-21nodes`
+  - `USA-14nodes`
+  - `Japan-12nodes`
+  - `UK-21nodes`
+  - `Europe-20nodes`
 - `ROUTE_SET`: `1` for shortest paths or `2` for disjoint paths
 - `K`: positive number of candidate paths
 - `ROUTE_ORDERING`: candidate evaluation order:
