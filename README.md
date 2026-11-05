@@ -120,7 +120,7 @@ monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET SPECTRUM_ALLOCATIO
   - `1`: all bitrates, from 100 to 600 Gbps
   - `2`: low bitrates, from 100 to 300 Gbps
   - `3`: high bitrates, from 350 to 600 Gbps
-- `SPECTRUM_ALLOCATION`: `1` for First Fit
+- `SPECTRUM_ALLOCATION`: `1` for First Fit or `2` for Best Fit
 - `OUTPUT_FOLDER`: directory in which the CSV reports are created
 
 Example:
