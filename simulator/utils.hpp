@@ -115,9 +115,12 @@ inline SpectrumAllocation parseSpectrumAllocation(const std::string &value) {
     return SpectrumAllocation::FirstFit;
   case static_cast<int>(SpectrumAllocation::BestFit):
     return SpectrumAllocation::BestFit;
+  case static_cast<int>(SpectrumAllocation::RandomFit):
+    return SpectrumAllocation::RandomFit;
   default:
     throw std::invalid_argument(
-        "spectrum-allocation must be 1 (FirstFit) or 2 (BestFit)");
+        "spectrum-allocation must be 1 (FirstFit), 2 (BestFit), or "
+        "3 (RandomFit)");
   }
 }
 
