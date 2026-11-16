@@ -13,18 +13,23 @@
 #include <vector>
 
 /**
- * FF-PIA: demand-driven first-fit RBMSA with GN admission control.
+ * Physical-impairment-aware (PIA), demand-driven RBMSA algorithms with GN
+ * admission control.
  *
  * Underprovisioned traffic demands are initially ordered by decreasing unmet
- * capacity. Only fiber 0 is considered on every route hop. A working lightpath
- * is placed using a route/band/modulation/slot first-fit search, then mirrored
- * for the reverse direction.
+ * capacity. This is a single-fiber implementation, so only fiber 0 is
+ * considered on every route hop. Candidate working lightpaths are examined in
+ * bitrate, route, band, and modulation order, while the selected
+ * spectrum-allocation policy determines the order in which contiguous slot
+ * windows are tried. An admitted working lightpath is then mirrored in the
+ * reverse direction.
  *
- * A candidate that is infeasible or disturbs committed lightpaths is rejected
- * and the slot window advances by one. If it disturbs only staged lightpaths,
- * each affected symmetric connection is permanently removed, its capacity is
- * restored once per direction, and its forward demand is requeued with an
- * additional requeueMarginStepDb GSNR margin.
+ * A candidate that is infeasible or makes a committed lightpath infeasible is
+ * rejected, and the search continues with another slot window. If it makes
+ * only staged lightpaths infeasible, each affected symmetric connection pair
+ * is rolled back, its unmet capacity is restored once per direction, and its
+ * forward demand is requeued with an additional requeueMarginStepDb GSNR
+ * margin.
  */
 
 BEGIN_ALLOC_FUNCTION(FirstFit)
