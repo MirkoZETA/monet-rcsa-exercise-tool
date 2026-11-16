@@ -580,8 +580,8 @@ BEGIN_ALLOC_FUNCTION(RandomFit)
 
   const double baseAcceptanceMarginDb = 0.00;
   const double requeueMarginStepDb = 0.3; // Extra margin per rollback/requeue.
-  std::mt19937 randomEngine(
-      12345u + static_cast<unsigned int>(PERIOD));
+  std::random_device randomDevice;
+  std::mt19937 randomEngine(randomDevice());
 
   // ── 1. Underprovisioned Demands queue initialization ───────────────────────
   std::deque<std::tuple<int, int, double>> underprovisionedDemands;
