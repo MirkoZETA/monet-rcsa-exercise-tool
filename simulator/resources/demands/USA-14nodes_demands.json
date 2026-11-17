@@ -1,0 +1,912 @@
+[
+    {
+        "src": "Seattle",
+        "dst": "Palo Alto",
+        "required": 1663.15
+    },
+    {
+        "src": "Seattle",
+        "dst": "San Diego",
+        "required": 4013.55
+    },
+    {
+        "src": "Seattle",
+        "dst": "Salt Lake City",
+        "required": 3092.51
+    },
+    {
+        "src": "Seattle",
+        "dst": "Houston",
+        "required": 11115.63
+    },
+    {
+        "src": "Seattle",
+        "dst": "Boulder",
+        "required": 241.12
+    },
+    {
+        "src": "Seattle",
+        "dst": "Lincoln",
+        "required": 966.46
+    },
+    {
+        "src": "Seattle",
+        "dst": "Atlanta",
+        "required": 12892.67
+    },
+    {
+        "src": "Seattle",
+        "dst": "Champaign",
+        "required": 314.78
+    },
+    {
+        "src": "Seattle",
+        "dst": "Ann Arbor",
+        "required": 565.31
+    },
+    {
+        "src": "Seattle",
+        "dst": "College Park",
+        "required": 3268.14
+    },
+    {
+        "src": "Seattle",
+        "dst": "Princeton",
+        "required": 247.44
+    },
+    {
+        "src": "Seattle",
+        "dst": "Ithaca",
+        "required": 69.51
+    },
+    {
+        "src": "Seattle",
+        "dst": "Pittsburgh",
+        "required": 3344.71
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Seattle",
+        "required": 1663.15
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "San Diego",
+        "required": 901.44
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Salt Lake City",
+        "required": 694.58
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Houston",
+        "required": 2496.57
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Boulder",
+        "required": 54.16
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Lincoln",
+        "required": 217.07
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Atlanta",
+        "required": 2895.7
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Champaign",
+        "required": 70.7
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Ann Arbor",
+        "required": 126.97
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "College Park",
+        "required": 734.03
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Princeton",
+        "required": 55.58
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Ithaca",
+        "required": 15.61
+    },
+    {
+        "src": "Palo Alto",
+        "dst": "Pittsburgh",
+        "required": 751.22
+    },
+    {
+        "src": "San Diego",
+        "dst": "Seattle",
+        "required": 4013.55
+    },
+    {
+        "src": "San Diego",
+        "dst": "Palo Alto",
+        "required": 901.44
+    },
+    {
+        "src": "San Diego",
+        "dst": "Salt Lake City",
+        "required": 1676.17
+    },
+    {
+        "src": "San Diego",
+        "dst": "Houston",
+        "required": 6024.76
+    },
+    {
+        "src": "San Diego",
+        "dst": "Boulder",
+        "required": 130.69
+    },
+    {
+        "src": "San Diego",
+        "dst": "Lincoln",
+        "required": 523.83
+    },
+    {
+        "src": "San Diego",
+        "dst": "Atlanta",
+        "required": 6987.94
+    },
+    {
+        "src": "San Diego",
+        "dst": "Champaign",
+        "required": 170.61
+    },
+    {
+        "src": "San Diego",
+        "dst": "Ann Arbor",
+        "required": 306.4
+    },
+    {
+        "src": "San Diego",
+        "dst": "College Park",
+        "required": 1771.36
+    },
+    {
+        "src": "San Diego",
+        "dst": "Princeton",
+        "required": 134.12
+    },
+    {
+        "src": "San Diego",
+        "dst": "Ithaca",
+        "required": 37.67
+    },
+    {
+        "src": "San Diego",
+        "dst": "Pittsburgh",
+        "required": 1812.86
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Seattle",
+        "required": 3092.51
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Palo Alto",
+        "required": 694.58
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "San Diego",
+        "required": 1676.17
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Houston",
+        "required": 4642.19
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Boulder",
+        "required": 100.7
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Lincoln",
+        "required": 403.62
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Atlanta",
+        "required": 5384.33
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Champaign",
+        "required": 131.46
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Ann Arbor",
+        "required": 236.09
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "College Park",
+        "required": 1364.87
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Princeton",
+        "required": 103.34
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Ithaca",
+        "required": 29.03
+    },
+    {
+        "src": "Salt Lake City",
+        "dst": "Pittsburgh",
+        "required": 1396.84
+    },
+    {
+        "src": "Houston",
+        "dst": "Seattle",
+        "required": 11115.63
+    },
+    {
+        "src": "Houston",
+        "dst": "Palo Alto",
+        "required": 2496.57
+    },
+    {
+        "src": "Houston",
+        "dst": "San Diego",
+        "required": 6024.76
+    },
+    {
+        "src": "Houston",
+        "dst": "Salt Lake City",
+        "required": 4642.19
+    },
+    {
+        "src": "Houston",
+        "dst": "Boulder",
+        "required": 361.95
+    },
+    {
+        "src": "Houston",
+        "dst": "Lincoln",
+        "required": 1450.76
+    },
+    {
+        "src": "Houston",
+        "dst": "Atlanta",
+        "required": 19353.27
+    },
+    {
+        "src": "Houston",
+        "dst": "Champaign",
+        "required": 472.51
+    },
+    {
+        "src": "Houston",
+        "dst": "Ann Arbor",
+        "required": 848.6
+    },
+    {
+        "src": "Houston",
+        "dst": "College Park",
+        "required": 4905.83
+    },
+    {
+        "src": "Houston",
+        "dst": "Princeton",
+        "required": 371.44
+    },
+    {
+        "src": "Houston",
+        "dst": "Ithaca",
+        "required": 104.34
+    },
+    {
+        "src": "Houston",
+        "dst": "Pittsburgh",
+        "required": 5020.76
+    },
+    {
+        "src": "Boulder",
+        "dst": "Seattle",
+        "required": 241.12
+    },
+    {
+        "src": "Boulder",
+        "dst": "Palo Alto",
+        "required": 54.16
+    },
+    {
+        "src": "Boulder",
+        "dst": "San Diego",
+        "required": 130.69
+    },
+    {
+        "src": "Boulder",
+        "dst": "Salt Lake City",
+        "required": 100.7
+    },
+    {
+        "src": "Boulder",
+        "dst": "Houston",
+        "required": 361.95
+    },
+    {
+        "src": "Boulder",
+        "dst": "Lincoln",
+        "required": 31.47
+    },
+    {
+        "src": "Boulder",
+        "dst": "Atlanta",
+        "required": 419.81
+    },
+    {
+        "src": "Boulder",
+        "dst": "Champaign",
+        "required": 10.25
+    },
+    {
+        "src": "Boulder",
+        "dst": "Ann Arbor",
+        "required": 18.41
+    },
+    {
+        "src": "Boulder",
+        "dst": "College Park",
+        "required": 106.42
+    },
+    {
+        "src": "Boulder",
+        "dst": "Princeton",
+        "required": 8.06
+    },
+    {
+        "src": "Boulder",
+        "dst": "Ithaca",
+        "required": 2.26
+    },
+    {
+        "src": "Boulder",
+        "dst": "Pittsburgh",
+        "required": 108.91
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Seattle",
+        "required": 966.46
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Palo Alto",
+        "required": 217.07
+    },
+    {
+        "src": "Lincoln",
+        "dst": "San Diego",
+        "required": 523.83
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Salt Lake City",
+        "required": 403.62
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Houston",
+        "required": 1450.76
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Boulder",
+        "required": 31.47
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Atlanta",
+        "required": 1682.69
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Champaign",
+        "required": 41.08
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Ann Arbor",
+        "required": 73.78
+    },
+    {
+        "src": "Lincoln",
+        "dst": "College Park",
+        "required": 426.54
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Princeton",
+        "required": 32.29
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Ithaca",
+        "required": 9.07
+    },
+    {
+        "src": "Lincoln",
+        "dst": "Pittsburgh",
+        "required": 436.54
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Seattle",
+        "required": 12892.67
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Palo Alto",
+        "required": 2895.7
+    },
+    {
+        "src": "Atlanta",
+        "dst": "San Diego",
+        "required": 6987.94
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Salt Lake City",
+        "required": 5384.33
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Houston",
+        "required": 19353.27
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Boulder",
+        "required": 419.81
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Lincoln",
+        "required": 1682.69
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Champaign",
+        "required": 548.05
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Ann Arbor",
+        "required": 984.26
+    },
+    {
+        "src": "Atlanta",
+        "dst": "College Park",
+        "required": 5690.12
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Princeton",
+        "required": 430.82
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Ithaca",
+        "required": 121.02
+    },
+    {
+        "src": "Atlanta",
+        "dst": "Pittsburgh",
+        "required": 5823.42
+    },
+    {
+        "src": "Champaign",
+        "dst": "Seattle",
+        "required": 314.78
+    },
+    {
+        "src": "Champaign",
+        "dst": "Palo Alto",
+        "required": 70.7
+    },
+    {
+        "src": "Champaign",
+        "dst": "San Diego",
+        "required": 170.61
+    },
+    {
+        "src": "Champaign",
+        "dst": "Salt Lake City",
+        "required": 131.46
+    },
+    {
+        "src": "Champaign",
+        "dst": "Houston",
+        "required": 472.51
+    },
+    {
+        "src": "Champaign",
+        "dst": "Boulder",
+        "required": 10.25
+    },
+    {
+        "src": "Champaign",
+        "dst": "Lincoln",
+        "required": 41.08
+    },
+    {
+        "src": "Champaign",
+        "dst": "Atlanta",
+        "required": 548.05
+    },
+    {
+        "src": "Champaign",
+        "dst": "Ann Arbor",
+        "required": 24.03
+    },
+    {
+        "src": "Champaign",
+        "dst": "College Park",
+        "required": 138.93
+    },
+    {
+        "src": "Champaign",
+        "dst": "Princeton",
+        "required": 10.52
+    },
+    {
+        "src": "Champaign",
+        "dst": "Ithaca",
+        "required": 2.95
+    },
+    {
+        "src": "Champaign",
+        "dst": "Pittsburgh",
+        "required": 142.18
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Seattle",
+        "required": 565.31
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Palo Alto",
+        "required": 126.97
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "San Diego",
+        "required": 306.4
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Salt Lake City",
+        "required": 236.09
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Houston",
+        "required": 848.6
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Boulder",
+        "required": 18.41
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Lincoln",
+        "required": 73.78
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Atlanta",
+        "required": 984.26
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Champaign",
+        "required": 24.03
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "College Park",
+        "required": 249.5
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Princeton",
+        "required": 18.89
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Ithaca",
+        "required": 5.31
+    },
+    {
+        "src": "Ann Arbor",
+        "dst": "Pittsburgh",
+        "required": 255.34
+    },
+    {
+        "src": "College Park",
+        "dst": "Seattle",
+        "required": 3268.14
+    },
+    {
+        "src": "College Park",
+        "dst": "Palo Alto",
+        "required": 734.03
+    },
+    {
+        "src": "College Park",
+        "dst": "San Diego",
+        "required": 1771.36
+    },
+    {
+        "src": "College Park",
+        "dst": "Salt Lake City",
+        "required": 1364.87
+    },
+    {
+        "src": "College Park",
+        "dst": "Houston",
+        "required": 4905.83
+    },
+    {
+        "src": "College Park",
+        "dst": "Boulder",
+        "required": 106.42
+    },
+    {
+        "src": "College Park",
+        "dst": "Lincoln",
+        "required": 426.54
+    },
+    {
+        "src": "College Park",
+        "dst": "Atlanta",
+        "required": 5690.12
+    },
+    {
+        "src": "College Park",
+        "dst": "Champaign",
+        "required": 138.93
+    },
+    {
+        "src": "College Park",
+        "dst": "Ann Arbor",
+        "required": 249.5
+    },
+    {
+        "src": "College Park",
+        "dst": "Princeton",
+        "required": 109.21
+    },
+    {
+        "src": "College Park",
+        "dst": "Ithaca",
+        "required": 30.68
+    },
+    {
+        "src": "College Park",
+        "dst": "Pittsburgh",
+        "required": 1476.17
+    },
+    {
+        "src": "Princeton",
+        "dst": "Seattle",
+        "required": 247.44
+    },
+    {
+        "src": "Princeton",
+        "dst": "Palo Alto",
+        "required": 55.58
+    },
+    {
+        "src": "Princeton",
+        "dst": "San Diego",
+        "required": 134.12
+    },
+    {
+        "src": "Princeton",
+        "dst": "Salt Lake City",
+        "required": 103.34
+    },
+    {
+        "src": "Princeton",
+        "dst": "Houston",
+        "required": 371.44
+    },
+    {
+        "src": "Princeton",
+        "dst": "Boulder",
+        "required": 8.06
+    },
+    {
+        "src": "Princeton",
+        "dst": "Lincoln",
+        "required": 32.29
+    },
+    {
+        "src": "Princeton",
+        "dst": "Atlanta",
+        "required": 430.82
+    },
+    {
+        "src": "Princeton",
+        "dst": "Champaign",
+        "required": 10.52
+    },
+    {
+        "src": "Princeton",
+        "dst": "Ann Arbor",
+        "required": 18.89
+    },
+    {
+        "src": "Princeton",
+        "dst": "College Park",
+        "required": 109.21
+    },
+    {
+        "src": "Princeton",
+        "dst": "Ithaca",
+        "required": 2.32
+    },
+    {
+        "src": "Princeton",
+        "dst": "Pittsburgh",
+        "required": 111.77
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Seattle",
+        "required": 69.51
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Palo Alto",
+        "required": 15.61
+    },
+    {
+        "src": "Ithaca",
+        "dst": "San Diego",
+        "required": 37.67
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Salt Lake City",
+        "required": 29.03
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Houston",
+        "required": 104.34
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Boulder",
+        "required": 2.26
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Lincoln",
+        "required": 9.07
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Atlanta",
+        "required": 121.02
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Champaign",
+        "required": 2.95
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Ann Arbor",
+        "required": 5.31
+    },
+    {
+        "src": "Ithaca",
+        "dst": "College Park",
+        "required": 30.68
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Princeton",
+        "required": 2.32
+    },
+    {
+        "src": "Ithaca",
+        "dst": "Pittsburgh",
+        "required": 31.4
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Seattle",
+        "required": 3344.71
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Palo Alto",
+        "required": 751.22
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "San Diego",
+        "required": 1812.86
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Salt Lake City",
+        "required": 1396.84
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Houston",
+        "required": 5020.76
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Boulder",
+        "required": 108.91
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Lincoln",
+        "required": 436.54
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Atlanta",
+        "required": 5823.42
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Champaign",
+        "required": 142.18
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Ann Arbor",
+        "required": 255.34
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "College Park",
+        "required": 1476.17
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Princeton",
+        "required": 111.77
+    },
+    {
+        "src": "Pittsburgh",
+        "dst": "Ithaca",
+        "required": 31.4
+    }
+]

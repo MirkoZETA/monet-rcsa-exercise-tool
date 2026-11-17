@@ -1,0 +1,852 @@
+{
+    "name": "Telefonica-21",
+    "nodes": [
+        {
+            "id": 0,
+            "weight": 0,
+            "latitude": 42.8768606,
+            "longitude": -8.5441729,
+            "pop": 97849,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Santiago de Compostela"
+        },
+        {
+            "id": 1,
+            "weight": 0,
+            "latitude": 43.3622522,
+            "longitude": -5.8485461,
+            "pop": 220020,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Oviedo"
+        },
+        {
+            "id": 2,
+            "weight": 0,
+            "latitude": 42.5983611,
+            "longitude": -5.5718779,
+            "pop": 124772,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Leon"
+        },
+        {
+            "id": 3,
+            "weight": 0,
+            "latitude": 43.2633799,
+            "longitude": -2.9348121,
+            "pop": 347342,
+            "DC": 10,
+            "IXP": 0,
+            "label": "Bilbao"
+        },
+        {
+            "id": 4,
+            "weight": 0,
+            "latitude": 41.6543639,
+            "longitude": -4.7222733,
+            "pop": 299265,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Valladolid"
+        },
+        {
+            "id": 5,
+            "weight": 0,
+            "latitude": 39.4755328,
+            "longitude": -6.3734664,
+            "pop": 96068,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Caceres"
+        },
+        {
+            "id": 6,
+            "weight": 0,
+            "latitude": 41.6474339,
+            "longitude": -0.8861451,
+            "pop": 686986,
+            "DC": 13,
+            "IXP": 0,
+            "label": "Zaragoza"
+        },
+        {
+            "id": 7,
+            "weight": 0,
+            "latitude": 42.812526,
+            "longitude": -1.6457745,
+            "pop": 209672,
+            "DC": 5,
+            "IXP": 0,
+            "label": "Pamplona"
+        },
+        {
+            "id": 8,
+            "weight": 0,
+            "latitude": 41.9794005,
+            "longitude": 2.8214264,
+            "pop": 100266,
+            "DC": 1,
+            "IXP": 0,
+            "label": "Girona"
+        },
+        {
+            "id": 9,
+            "weight": 0,
+            "latitude": 41.3873974,
+            "longitude": 2.168568,
+            "pop": 1620343,
+            "DC": 31,
+            "IXP": 5,
+            "label": "Barcelona"
+        },
+        {
+            "id": 10,
+            "weight": 0,
+            "latitude": 40.4167279,
+            "longitude": -3.7032905,
+            "pop": 3255944,
+            "DC": 65,
+            "IXP": 5,
+            "label": "Madrid"
+        },
+        {
+            "id": 11,
+            "weight": 0,
+            "latitude": 39.8628316,
+            "longitude": -4.0273231,
+            "pop": 84282,
+            "DC": 2,
+            "IXP": 0,
+            "label": "Toledo"
+        },
+        {
+            "id": 12,
+            "weight": 0,
+            "latitude": 40.656685,
+            "longitude": -4.6812086,
+            "pop": 57657,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Avila"
+        },
+        {
+            "id": 13,
+            "weight": 0,
+            "latitude": 40.0703925,
+            "longitude": -2.1374162,
+            "pop": 55866,
+            "DC": 0,
+            "IXP": 0,
+            "label": "Cuenca"
+        },
+        {
+            "id": 14,
+            "weight": 0,
+            "latitude": 39.4738338,
+            "longitude": -0.3756348,
+            "pop": 825948,
+            "DC": 10,
+            "IXP": 1,
+            "label": "Valencia"
+        },
+        {
+            "id": 15,
+            "weight": 0,
+            "latitude": 38.9943983,
+            "longitude": -1.860173,
+            "pop": 173050,
+            "DC": 1,
+            "IXP": 0,
+            "label": "Albacete"
+        },
+        {
+            "id": 16,
+            "weight": 0,
+            "latitude": 37.9893044,
+            "longitude": -1.1320073,
+            "pop": 460349,
+            "DC": 3,
+            "IXP": 0,
+            "label": "Murcia"
+        },
+        {
+            "id": 17,
+            "weight": 0,
+            "latitude": 37.8893025,
+            "longitude": -4.7792753,
+            "pop": 325708,
+            "DC": 1,
+            "IXP": 0,
+            "label": "Cordoba"
+        },
+        {
+            "id": 18,
+            "weight": 0,
+            "latitude": 37.3890924,
+            "longitude": -5.9844589,
+            "pop": 687488,
+            "DC": 3,
+            "IXP": 0,
+            "label": "Sevilla"
+        },
+        {
+            "id": 19,
+            "weight": 0,
+            "latitude": 36.5210142,
+            "longitude": -6.2804565,
+            "pop": 126766,
+            "DC": 3,
+            "IXP": 0,
+            "label": "Cadiz"
+        },
+        {
+            "id": 20,
+            "weight": 0,
+            "latitude": 36.7178196,
+            "longitude": -4.425557,
+            "pop": 591637,
+            "DC": 7,
+            "IXP": 0,
+            "label": "Malaga"
+        }
+    ],
+    "links": [
+        {
+            "id": 0,
+            "src": 19,
+            "dst": 20,
+            "length": 216.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 1,
+            "src": 20,
+            "dst": 17,
+            "length": 176.12,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 2,
+            "src": 18,
+            "dst": 17,
+            "length": 156.31,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 3,
+            "src": 19,
+            "dst": 18,
+            "length": 130.19,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 4,
+            "src": 5,
+            "dst": 18,
+            "length": 301.14,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 5,
+            "src": 17,
+            "dst": 5,
+            "length": 291.06,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 6,
+            "src": 20,
+            "dst": 16,
+            "length": 421.49,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 7,
+            "src": 15,
+            "dst": 16,
+            "length": 164.76,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 8,
+            "src": 17,
+            "dst": 15,
+            "length": 366.98,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 9,
+            "src": 15,
+            "dst": 11,
+            "length": 271.44,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 10,
+            "src": 11,
+            "dst": 5,
+            "length": 269.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 11,
+            "src": 2,
+            "dst": 5,
+            "length": 458.71,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 12,
+            "src": 11,
+            "dst": 12,
+            "length": 137.82,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 13,
+            "src": 4,
+            "dst": 12,
+            "length": 150.68,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 14,
+            "src": 2,
+            "dst": 4,
+            "length": 162.63,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 15,
+            "src": 11,
+            "dst": 10,
+            "length": 89.27,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 16,
+            "src": 4,
+            "dst": 10,
+            "length": 211.39,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 17,
+            "src": 15,
+            "dst": 13,
+            "length": 157.52,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 18,
+            "src": 10,
+            "dst": 13,
+            "length": 179.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 19,
+            "src": 16,
+            "dst": 14,
+            "length": 234.56,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 20,
+            "src": 14,
+            "dst": 13,
+            "length": 213.23,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 21,
+            "src": 9,
+            "dst": 13,
+            "length": 509.24,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 22,
+            "src": 14,
+            "dst": 9,
+            "length": 387.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 23,
+            "src": 6,
+            "dst": 10,
+            "length": 357.29,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 24,
+            "src": 9,
+            "dst": 6,
+            "length": 331.15,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 25,
+            "src": 6,
+            "dst": 8,
+            "length": 401.17,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 26,
+            "src": 8,
+            "dst": 9,
+            "length": 111.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 27,
+            "src": 7,
+            "dst": 6,
+            "length": 188.73,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 28,
+            "src": 8,
+            "dst": 7,
+            "length": 490.04,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 29,
+            "src": 3,
+            "dst": 7,
+            "length": 148.95,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 30,
+            "src": 4,
+            "dst": 3,
+            "length": 301.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 31,
+            "src": 2,
+            "dst": 0,
+            "length": 316.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 32,
+            "src": 0,
+            "dst": 1,
+            "length": 293.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 33,
+            "src": 2,
+            "dst": 1,
+            "length": 109.85,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 34,
+            "src": 3,
+            "dst": 1,
+            "length": 301.75,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 35,
+            "src": 20,
+            "dst": 19,
+            "length": 216.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 36,
+            "src": 17,
+            "dst": 20,
+            "length": 176.12,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 37,
+            "src": 17,
+            "dst": 18,
+            "length": 156.31,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 38,
+            "src": 18,
+            "dst": 19,
+            "length": 130.19,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 39,
+            "src": 18,
+            "dst": 5,
+            "length": 301.14,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 40,
+            "src": 5,
+            "dst": 17,
+            "length": 291.06,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 41,
+            "src": 16,
+            "dst": 20,
+            "length": 421.49,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 42,
+            "src": 16,
+            "dst": 15,
+            "length": 164.76,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 43,
+            "src": 15,
+            "dst": 17,
+            "length": 366.98,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 44,
+            "src": 11,
+            "dst": 15,
+            "length": 271.44,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 45,
+            "src": 5,
+            "dst": 11,
+            "length": 269.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 46,
+            "src": 5,
+            "dst": 2,
+            "length": 458.71,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 47,
+            "src": 12,
+            "dst": 11,
+            "length": 137.82,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 48,
+            "src": 12,
+            "dst": 4,
+            "length": 150.68,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 49,
+            "src": 4,
+            "dst": 2,
+            "length": 162.63,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 50,
+            "src": 10,
+            "dst": 11,
+            "length": 89.27,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 51,
+            "src": 10,
+            "dst": 4,
+            "length": 211.39,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 52,
+            "src": 13,
+            "dst": 15,
+            "length": 157.52,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 53,
+            "src": 13,
+            "dst": 10,
+            "length": 179.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 54,
+            "src": 14,
+            "dst": 16,
+            "length": 234.56,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 55,
+            "src": 13,
+            "dst": 14,
+            "length": 213.23,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 56,
+            "src": 13,
+            "dst": 9,
+            "length": 509.24,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 57,
+            "src": 9,
+            "dst": 14,
+            "length": 387.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 58,
+            "src": 10,
+            "dst": 6,
+            "length": 357.29,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 59,
+            "src": 6,
+            "dst": 9,
+            "length": 331.15,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 60,
+            "src": 8,
+            "dst": 6,
+            "length": 401.17,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 61,
+            "src": 9,
+            "dst": 8,
+            "length": 111.1,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 62,
+            "src": 6,
+            "dst": 7,
+            "length": 188.73,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 63,
+            "src": 7,
+            "dst": 8,
+            "length": 490.04,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 64,
+            "src": 7,
+            "dst": 3,
+            "length": 148.95,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 65,
+            "src": 3,
+            "dst": 4,
+            "length": 301.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 66,
+            "src": 0,
+            "dst": 2,
+            "length": 316.89,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 67,
+            "src": 1,
+            "dst": 0,
+            "length": 293.07,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 68,
+            "src": 1,
+            "dst": 2,
+            "length": 109.85,
+            "fibers": {
+                "SSMF": 1
+            }
+        },
+        {
+            "id": 69,
+            "src": 1,
+            "dst": 3,
+            "length": 301.75,
+            "fibers": {
+                "SSMF": 1
+            }
+        }
+    ],
+    "reference": {
+        "url": "https://ieeexplore.ieee.org/document/6476351",
+        "paper": "CAPEX study for grid dependent multi-layer IP/MPLS-over-EON using relative BV-WSS costs",
+        "doi": ""
+    }
+}

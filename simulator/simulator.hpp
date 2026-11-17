@@ -67,8 +67,8 @@ public:
    * power-equalization sites.
    *
    * Sites are placed at the farthest existing span boundary that keeps each
-   * transmission section within 500 km for single-band P2Ps or 250 km for
-   * multiband P2Ps.
+   * transmission section within 500 km for an exactly C-band-only route or
+   * 250 km for every other band configuration.
    */
   static void designP2P(
       P2P& p2p,
@@ -154,6 +154,160 @@ class UniformVariable : public RandomVariable {
  private:
   std::uniform_real_distribution<double> dist;
 };
+#pragma once
+
+// STL
+#include <string>
+#include <optional>
+
+/**
+ * @brief Class ModulationFormat
+ *
+ * The ModulationFormat class represents a specific optical modulation format (e.g., BPSK, QPSK, 8-QAM).
+ *
+ * It stores the physical transmission parameters used by the GN engine: OSNR,
+ * symbol rate, channel bandwidth, launch power, and modulation order.
+ */
+class ModulationFormat
+{
+public:
+	/**
+	 * @brief Construct a new ModulationFormat object
+	 *
+	 * @param modulationStr The name of the modulation format (e.g., "BPSK", "QPSK")
+	 */
+	ModulationFormat(const std::string &modulationStr);
+
+	/**
+	 * @brief Construct a modulation format for GN evaluation.
+	 * 
+	 * Uses physical transmission parameters for Quality of Transmission (QoT) estimation.
+	 * Launch power is optional (defaults to 0 dBm if not specified).
+	 * 
+	 * @param modulationStr The name of the modulation format (e.g., "QPSK", "16QAM")
+	 * @param requiredOsnr Required OSNR threshold in dB (must be positive)
+	 * @param symbolRate Symbol rate in Hz (must be positive)
+	 * @param channelBw Channel bandwidth in Hz (must be positive)
+	 * @param modOrder QAM constellation size (must be positive, e.g., 4 for QPSK, 16 for 16QAM)
+	 * @param launchPower Optional launch power in dBm (can be negative, defaults to std::nullopt)
+	 * 
+	 * @throws std::invalid_argument if mandatory parameters are non-positive
+	 */
+	ModulationFormat(const std::string &modulationStr,
+	                 double requiredOsnr,
+	                 double symbolRate,
+	                 double channelBw,
+	                 double modOrder,
+	                 std::optional<double> launchPower = std::nullopt);
+
+	/**
+	 * @brief Get the modulation format name
+	 *
+	 * @return std::string The modulation format name
+	 */
+	std::string getModulationStr() const;
+
+	/**
+	 * @brief Get required slots based on channel bandwidth and slot width.
+	 *
+	 * Throws if channelBw is not set or slotWidth <= 0.
+	 * Uses ceil(channelBw / slotWidth) to avoid under-allocation.
+	 *
+	 * @param slotWidth Width of each slot in Hz
+	 * @return int Number of required slots
+	 * @throws std::runtime_error if channel bandwidth is not set
+	 */
+	int getRequiredSlots(double slotWidth) const;
+
+	/**
+	 * @brief Get required OSNR
+	 *
+	 * @return double Required OSNR in dB
+	 */
+	double getRequiredOSNR() const;
+
+	/**
+	 * @brief Set required OSNR
+	 *
+	 * @param osnr Required OSNR in dB
+	 */
+	void setRequiredOSNR(double osnr);
+
+	/**
+	 * @brief Get symbol rate
+	 *
+	 * @return double Symbol rate in Hz
+	 */
+	double getSymbolRate() const;
+
+	/**
+	 * @brief Set symbol rate
+	 *
+	 * @param symbolRate Symbol rate in Hz
+	 */
+	void setSymbolRate(double symbolRate);
+
+	/**
+	 * @brief Get channel bandwidth
+	 *
+	 * @return double Channel bandwidth in Hz
+	 */
+	double getChannelBw() const;
+
+	/**
+	 * @brief Set channel bandwidth
+	 *
+	 * @param channelBw Channel bandwidth in Hz
+	 */
+	void setChannelBw(double channelBw);
+
+	/**
+	 * @brief Get launch power
+	 *
+	 * @return double Launch power in dBm
+	 */
+	double getLaunchPower() const;
+
+	/**
+	 * @brief Set launch power
+	 *
+	 * @param launchPower Launch power in dBm
+	 */
+	void setLaunchPower(double launchPower);
+
+	/**
+	 * @brief Get modulation order
+	 *
+	 * @return double QAM Modulation Order
+	 */
+	double getModOrder() const;
+
+	/**
+	 * @brief Return the constellation excess kurtosis used by the Semrau
+	 *        modulation-format correction.
+	 *
+	 * @throws std::invalid_argument if the modulation name is unsupported
+	 */
+	double getExcessKurtosis() const;
+
+	/**
+	 * @brief Set modulation order
+	 *
+	 * @param modOrder QAM Modulation Order
+	 */
+	void setModOrder(double modOrder);
+
+	private:
+		std::string modulationStr;
+
+	std::optional<double> requiredOSNR; // Required OSNR in dB
+	std::optional<double> symbolRate; // Symbol rate in Hz
+	std::optional<double> channelBw;  // Required Channel bandwidth in Hz
+	std::optional<double> launchPower; // Required Launch power in dBm
+	std::optional<double> modOrder; // QAM Modulation Order
+
+};
+
 /*
     __ _____ _____ _____
  __|  |   __|     |   | |  JSON for Modern C++
@@ -25964,31 +26118,6 @@ inline void allocate_connection_p2p(
     bitRates__[bitrateIdx__]->getModulationFormats()
 
 /**
- * @brief Get the best adaptive modulation format for a route and band.
- * This finds the modulation that uses the fewest slots while having enough
- * reach for the route length.
- * 
- * Cannot be used in physical layer aware mode.
- * 
- * @param bitrateIdx__ Index of the bitrate in the bitrates list.
- * @param routeIdx__ Index of the route to evaluate.
- * @param band__ The spectrum band to use (C_BAND or L_BAND).
- * 
- * @return int The index of the best modulation format, or -1 if none found.
- * 
- * Example:
- *   int modFormat = BEST_ADAPTIVE_MODULATION(0, 0, mt::Band::C_BAND);
- *   if (modFormat != -1) {
- *       // Use this modulation format
- *   }
- */
-#define BEST_ADAPTIVE_MODULATION(bitrateIdx__, routeIdx__, band__) \
-    CONTROLLER.getAdaptiveModulationFormat(                        \
-        *bitRates__[bitrateIdx__],                                 \
-        (*NETWORK.getPaths())[SRC][DST][routeIdx__],               \
-        band__)
-
-/**
  * @brief The current simulation period.
  */
 #define PERIOD period__
@@ -26500,11 +26629,6 @@ namespace mt {
     Undefined
   };
 
-  enum class SimulationMode {
-    ReachTable,
-    GN
-  };
-
   //==============================================================================
   // Constants
   //==============================================================================
@@ -26518,9 +26642,8 @@ namespace mt {
     constexpr double PI = 3.14159265358979323846;
     constexpr double SPEED_OF_LIGHT = 299792458.0;   ///< Speed of light in m/s
     constexpr double PLANCK_CONSTANT = 6.62607015e-34; ///< Planck's constant in J·s
-    // GSNR impairment budget — single source of truth used by Lightpath and Controller
-    constexpr double OSNR_ROADM_0_1NM_DB = 38.0;           ///< Per-transit ROADM OSNR [dB]
-    constexpr double OSNR_ROADM_ADD_DROP_0_1NM_DB = 41.0;  ///< Add/drop ROADM OSNR [dB]
+    constexpr double REFERENCE_BANDWIDTH_0_1NM_HZ = 12.5e9; ///< 0.1 nm reference bandwidth
+    constexpr double TRX_SNR_0_1NM_DB = 36.0; ///< Combined intrinsic TX+RX SNR
   }
 
   //==============================================================================
@@ -27068,6 +27191,8 @@ public:
    * @brief Set the operational state of the amplifier.
    * 
    * @param state Device state.
+   * @throws std::invalid_argument if state is `Affected`, which is derived
+   * from failures in contained equipment.
    */
   void setOperationalState(mt::DeviceState state);
 
@@ -28254,15 +28379,13 @@ class Network
    * @brief Creates a `Network` from topology and spectrum files.
    *
    * @details Loads fiber specifications from `fiberSpectrumFilename`, then reads
-   * nodes and links from `networkFilename`. The `simulationMode` flag controls
-   * how fiber specs are interpreted (reach-table vs physical-layer mode).
+   * nodes and links from `networkFilename`.
    *
    * @param networkFilename Path to the network topology JSON file.
    * @param fiberSpectrumFilename Path to the fiber spectrum configuration JSON file.
-   * @param simulationMode Simulation mode (e.g., Reach, GNPy, GN)
    */
-  Network(const std::string& networkFilename, const std::string& fiberSpectrumFilename,
-          mt::SimulationMode simulationMode = mt::SimulationMode::ReachTable);
+  Network(const std::string& networkFilename,
+          const std::string& fiberSpectrumFilename);
 
   /**
    * @brief Copy constructor.
@@ -28292,20 +28415,6 @@ class Network
    * @throws std::logic_error if the name is not set.
    */
   std::string getName() const;
-
-  /**
-   * @brief Sets the simulation mode for the network.
-   *
-   * @param simulationMode The simulation mode to set.
-   * @throws std::logic_error if nodes and/or links are already defined in the network.
-   */
-  void setSimulationMode(mt::SimulationMode simulationMode);
-
-  /**
-   * @brief Gets the simulation mode for the network.
-   * @return The simulation mode.
-   */
-  mt::SimulationMode getSimulationMode() const;
 
   /**
    * @brief Adds a new `Node` to the network.
@@ -28533,8 +28642,7 @@ class Network
   /**
    * @brief Reads fiber specifications from a JSON configuration file.
    *
-   * @details Populates the fiber specification registry based on the operational mode.
-   * Physical-layer mode (`mt::SimulationMode::GN`) expects:
+   * @details Populates the fiber specification registry for GN evaluation. It expects:
    * - Fiber-level physical fields:
    *   - `dispersion` in `ps/(nm·km)`
    *   - `dispersionSlope` in `ps/(nm²·km)`
@@ -28544,8 +28652,7 @@ class Network
    * - Per-band spectral fields under `SI`:
    *   - `freqMinHz`, `freqMaxHz`, `slotWidthHz` in `Hz`
    *
-   * Reach-table mode expects integer slot counts per band under `SI`.
-   * GN keeps this JSON contract in engineering units and converts to SI internally.
+   * This JSON contract uses engineering units and is converted to SI internally.
    *
    * @param fiberSpectrumsFile Path to the JSON fiber specifications file.
    * @throws std::runtime_error if the file cannot be opened or parsed.
@@ -28604,7 +28711,6 @@ private:
   std::vector<std::shared_ptr<Link>> links;
   int linkCounter;
   
-  mt::SimulationMode simulationMode;
   bool symmetricNetwork;  ///< True if network is bidirectional (computed during readNetworkFile)
   std::map<std::string, std::shared_ptr<FiberSpec>> fiberSpecs;
   
@@ -28899,7 +29005,6 @@ class Node {
 #pragma once
 
 // STL
-#include <map>
 #include <memory>
 #include <optional>
 #include <string>
@@ -28917,8 +29022,7 @@ class ModulationFormat;
  * Represents a bit rate value (Gbps) and the modulation formats that support it.
  *
  * Each BitRate stores the numeric value, its string form, and a collection of
- * ModulationFormat options. Different formats trade spectral efficiency (slots)
- * against reach. Formats are loaded from JSON via readBitRatesFile().
+ * ModulationFormat options. Formats are loaded from JSON via readBitRatesFile().
  */
 class BitRate {
  public:
@@ -28964,18 +29068,7 @@ class BitRate {
   void addModulationFormat(std::shared_ptr<ModulationFormat> modulationFormat);
 
   /**
-   * @brief Add a modulation format (Reach Table mode).
-   *
-   * @param modulation Name (e.g., "QPSK", "16QAM")
-   * @param requiredSlots Band-independent slots required
-   * @param reachPerBand Per-band reach in km
-   */
-  void addModulationFormat(const std::string& modulation, 
-                                     int requiredSlots, 
-                                     const std::map<mt::Band, double>& reachPerBand);
-
-  /**
-   * @brief Add a modulation format (Physical Layer mode).
+   * @brief Add a modulation format.
    *
    * @param modulationStr Name (e.g., "QPSK", "16QAM")
    * @param requiredOsnr Required OSNR in dB
@@ -28983,15 +29076,13 @@ class BitRate {
    * @param channelBw Channel bandwidth in Hz
    * @param modOrder Constellation size (e.g., 4 for QPSK, 16 for 16QAM)
    * @param launchPower Optional launch power in dBm (std::nullopt if not specified)
-   * @param maxReach Optional maximum reach in km for hybrid approach (std::nullopt if not specified)
    */
   void addModulationFormat(const std::string& modulationStr,
                                         double requiredOsnr,
                                         double symbolRate,
                                         double channelBw,
                                         double modOrder,
-                                        std::optional<double> launchPower = std::nullopt,
-                                        std::optional<double> maxReach = std::nullopt);
+                                        std::optional<double> launchPower = std::nullopt);
 
   /**
    * @brief Get the modulation format at a given position.
@@ -29026,16 +29117,14 @@ class BitRate {
 /**
  * @brief Read a JSON file and create BitRate objects.
  *
- * Parses bitrate configuration from JSON using reach table or physical layer mode.
+ * Parses bitrate and physical-layer modulation parameters from JSON.
  * Structure: bitrate value → modulation → parameters.
  *
  * @param fileName Location of JSON file as a relative or absolute path.
- * @param mode Parser mode (ReachTable or PhysicalLayer). Default: ReachTable.
  * @return Vector of shared pointers to BitRate objects, sorted by bitrate value (ascending).
- *         Within each BitRate, modulation formats are sorted as follows:
- *         - **Physical Layer**: by modulation order (descending), then channel bandwidth (ascending),
- *           then required OSNR (ascending).
- *         - **Reach Table**: by required slots (ascending), then maximum reach (descending).
+ *         Within each BitRate, modulation formats are sorted by modulation order
+ *         (descending), then channel bandwidth (ascending), then required OSNR
+ *         (ascending).
  * @throws std::runtime_error if file cannot be opened, JSON is malformed, or validation fails.
  * 
  * ---
@@ -29045,32 +29134,6 @@ class BitRate {
  * higher efficiency/capability formats appear first in the list.
  * 
  * ---
- * ## MODE 1: REACH TABLE
- * Pre-calculated slots and reach values per band.
- *
- * \code{.json}
- * {
- *   "200": [
- *     {
- *       "QPSK": {
- *         "slots": 3,
- *         "C": 4800,       // C-band reach (km)
- *         "L": 4200        // L-band reach (km)
- *       },
- *       "8QAM": {
- *         "slots": 2,
- *         "C": 3200,
- *         "L": 2800
- *       }
- *     }
- *   ]
- * }
- * \endcode
- *
- * **Required**: `slots` (int), at least one band identifier (`C`, `L`, `S`) with reach (double, km)
- *
- * ---
- * ## MODE 2: PHYSICAL LAYER
  * Physical transmission parameters for QoT estimation via OSNR calculations.
  *
  * \code{.json}
@@ -29082,8 +29145,7 @@ class BitRate {
  *         "symbolRate": 64e9,
  *         "channelBw": 75e9,
  *         "modOrder": 4.0,
- *         "launchPower": 0.0,
- *         "reach": 4000
+ *         "launchPower": 0.0
  *       }
  *     }
  *   ]
@@ -29091,19 +29153,10 @@ class BitRate {
  * \endcode
  *
  * **Required**: `osnr` (dB), `symbolRate` (Hz), `channelBw` (Hz), `modOrder`
- * **Optional**: `launchPower` (dBm), `reach` (km)
- *
- * ---
- * **Compatibility**: Different bitrates can use different modes in the same file. 
- * Do not mix reach table and physical layer fields within the same modulation format.
- *
- * @see parseReachTableMode() for Mode 1 implementation
- * @see parsePhysicalLayerMode() for Mode 2 implementation
+ * **Optional**: `launchPower` (dBm)
  */
 static std::vector<std::shared_ptr<BitRate>> readBitRatesFile(
-    std::string fileName, 
-    mt::SimulationMode simulationMode = mt::SimulationMode::ReachTable
-);
+    std::string fileName);
   
 private:
 
@@ -29112,33 +29165,18 @@ private:
     std::vector<std::shared_ptr<ModulationFormat>> modulationFormats;
 
     /**
-     * @brief Parses Reach Table Mode JSON and creates a ModulationFormat.
-     * 
-     * Handles single-band and multi-band formats uniformly.
-     * Validates that slots and reach are positive values.
-     * 
-     * @param modulationInfo JSON object containing modulation data
-     * @param modulationName Name of the modulation format being parsed
-     * @return std::shared_ptr<ModulationFormat> Constructed modulation format
-     * @throws std::runtime_error if format is invalid or values are non-positive
-     */
-    static std::shared_ptr<ModulationFormat> parseReachTableMode(
-        const nlohmann::json& modulationInfo,
-        const std::string& modulationName);
-
-    /**
-     * @brief Parses Physical Layer Mode JSON and creates a ModulationFormat.
+     * @brief Parses GN physical-layer JSON and creates a ModulationFormat.
      * 
      * Extracts and validates physical layer parameters needed for QoT estimation.
-     * Uses canonical field names: OSNR, symbol_rate, channel_bw, mod_order, launch_power, reach.
-     * Optionally extracts maxReach for hybrid approaches.
+     * Uses the canonical fields `osnr`, `symbolRate`, `channelBw`, `modOrder`,
+     * and optional `launchPower`.
      * 
      * @param modulationInfo JSON object containing modulation data
      * @param modulationName Name of the modulation format being parsed
      * @return std::shared_ptr<ModulationFormat> Constructed modulation format
      * @throws std::invalid_argument if mandatory parameters are missing or values are invalid
      */
-    static std::shared_ptr<ModulationFormat> parsePhysicalLayerMode(
+    static std::shared_ptr<ModulationFormat> parseModulation(
         const nlohmann::json& modulationInfo,
         const std::string& modulationName);
 };
@@ -29157,29 +29195,22 @@ private:
 /**
  * @brief Compact description of a fiber type plus its spectrum layout.
  *
- * FiberSpec serves a dual purpose: it captures physical-layer parameters of a
- * fiber and also the per-band spectrum configuration (slot layout, baud rate,
- *  margins). This keeps a single source of truth for both QoT estimation and 
- * resource allocation. It can operate in two modes:
- *  - Physical Layer mode.
- *  - Slot-only mode: bands only store slot counts (used in reach-table
- *    simulations where detailed physics is not needed).
+ * FiberSpec captures physical-layer parameters and the per-band spectrum
+ * configuration used for QoT estimation and resource allocation. A lightweight
+ * slot-count constructor remains available for isolated topology objects.
  */
 class FiberSpec
 {
 public:
 	/**
-	 * @brief Band-specific spectrum configuration (physical or slot-only).
-	 *
-	 * In physical mode, frequencies/baud/slot width must be set; otherwise they
-	 * remain UNSET and only the slot count is used (reach-table mode).
+	 * @brief Band-specific spectrum configuration.
 	 */
 	struct BandConfig
 	{
 		BandConfig();
 		BandConfig(int slots);
 		BandConfig(double freqMin, double freqMax, double slotWidth,
-							 double sysMarginsDb, double deltaPowerDb, double txOnsnr);
+							 double deltaPowerDb);
 
 		/** @brief Check if physical parameters are set */
 		bool hasPhysicalParams(void) const noexcept;
@@ -29195,15 +29226,11 @@ public:
 		double slotWidthHz;       ///< Slot width (Hz);
 
 		// Optional parameters
-		double sysMarginsDb;		///< System margins in db for QoT
 		double deltaPowerDb;    ///< Delta power in dBm
-		double txOnsnr;         ///< Transmitter OSNR in dB
 	};
 
 	/**
-	 * @brief Construct a specification without physical layer parameters.
-	 *
-	 * Used in Reach Table mode where only slots are relevant.
+	 * @brief Construct a lightweight specification for manual topology objects.
 	 *
 	 * @param fiberName Name of the fiber type
 	 * @param modes Number of spatial modes (default 1)
@@ -29230,7 +29257,7 @@ public:
 	const std::string &getName(void) const noexcept;
 
 	/**
-	 * @brief Add a band providing only the number of slots. Used in slot-only mode.
+	 * @brief Add a band providing only the number of slots.
 	 */
 	void addBandConfig(mt::Band band, int slots);
 
@@ -29244,10 +29271,10 @@ public:
      * @param freqMinHz Minimum frequency range (Hz)
      * @param freqMaxHz Maximum frequency range (Hz)
      * @param slotWidthHz Slot width (Hz)
-     * @param sysMarginsDb System margins in dB (default 0.0)
+	 * @param deltaPowerDb Per-band launch-power offset in dB (default 0.0)
 	 */
 	void addBandConfig(mt::Band band, double freqMinHz, double freqMaxHz, double slotWidthHz,
-										 double sysMarginsDb = 2.0, double deltaPowerDb = 0.0, double txOnsnr = 40.0);
+										 double deltaPowerDb = 0.0);
 
 	/**
 	 * @brief Retrieve the configuration for a band.
@@ -29421,6 +29448,19 @@ public:
   std::shared_ptr<const ModulationFormat> getModulationFormat(void) const;
 
   /**
+   * @brief Override this channel's launch power.
+   * @param launchPowerDbm Launch power in dBm.
+   *
+   * setModulationFormat() initializes this value from the modulation format.
+   * Subsequent changes to the shared ModulationFormat do not affect the
+   * lightpath until the format is assigned again.
+   */
+  void setLaunchPower(double launchPowerDbm);
+
+  /** @brief Return this channel's snapshotted launch power in dBm. */
+  double getLaunchPower() const;
+
+  /**
    * @brief Add a link allocation information to the lightpath.
    * @param idLink ID of the link.
    * @param fiber Fiber index on the link.
@@ -29551,7 +29591,7 @@ public:
    * @brief Computes the raw propagation GSNR in dB.
    *
    * This value contains only the accumulated ASE and NLI contributions:
-   * GSNR_raw = P_signal / (P_ASE + P_NLI). Transceiver, add/drop, PDL,
+   * GSNR_raw = P_signal / (P_ASE + P_NLI). Transceiver, PDL,
    * filtering, and aging terms are intentionally excluded.
    *
    * @return Raw GSNR in dB.
@@ -29561,7 +29601,7 @@ public:
   double getGsnrDbRaw() const;
 
   /**
-   * @brief Return the number of intermediate P2P power-equalization sites
+   * @brief Return the number of intermediate power-equalization sites
    * recorded by the GN solver for this lightpath.
    */
   std::size_t getPowerEqualizationSiteCount() const noexcept;
@@ -29570,31 +29610,28 @@ public:
    * @brief Computes the end-to-end Generalized Signal-to-Noise Ratio (GSNR) in dB.
    *
    * Computes the GSNR by combining the raw propagation GSNR (from ASE + NLI) 
-   * with equipment noise contributions (Transceiver TX noise and ROADM Add/Drop noise), 
+   * with one combined TX+RX intrinsic transceiver-noise contribution,
    * followed by subtractive penalties for normal ROADM Polarization Dependent
-   * Loss (PDL), normal-lightpath WSS filtering, P2P DGE filtering,
-   * and aging margins. P2P equalization sites do not add ROADM PDL or the
-   * normal-lightpath WSS term; P2P DGE PDL is intentionally neglected.
+   * Loss (PDL), normal-lightpath WSS filtering, equalization-site filtering,
+   * and aging margins. Equalization sites do not add ROADM PDL or the
+   * normal-lightpath WSS term. Every equalization site contributes its DGE
+   * filtering term. DGE PDL is intentionally neglected.
    *
    * This implementation follows the QoT estimator structure presented in Equation (3) 
    * and Section III.A of [1], hybridized with GNPy-aligned methodologies [2] for 
    * equipment bandwidth scaling and PDL accumulation:
    * 
-   *   Γ_LP|dB = 10 * log10 [ ( 1/GSNR_raw + 1/OSNR_tx + 1/OSNR_add_drop )^-1 ]
+   *   Γ_LP|dB = 10 * log10 [ ( 1/GSNR_raw + 1/SNR_trx )^-1 ]
    *             - Π_Pen_pdl|dB - Π_Pen_ROADM,WSS|dB
    *             - Π_Pen_DGE,filter|dB - Π_Pen_age|dB
    *
-   * ## Equipment Noise Contributions (Inverse-Linear Domain)
-   * Equipment imperfections are modeled as independent additive noise sources evaluated 
-   * in the inverse-linear domain (1/OSNR). Because equipment OSNR values are typically 
-   * specified at a 0.1 nm (12.5 GHz) reference bandwidth, they are dynamically scaled 
+   * ## Transceiver Noise Contribution (Inverse-Linear Domain)
+   * Transceiver imperfections are modeled as an independent additive noise source evaluated
+   * in the inverse-linear domain (1/SNR). The fixed combined TX+RX value is
+   * specified at a 0.1 nm (12.5 GHz) reference bandwidth and dynamically scaled
    * to the actual signal channel bandwidth:
-   *   - Transceiver (TRX) Noise: Accounts for laser phase noise, modulator 
-   *     imperfections, and DAC quantization noise.
-   *   - ROADM Add/Drop Noise: Applies exclusively to the ingress (add) and egress 
-   *     (drop) stages of the lightpath. Express/pass-through ROADMs do not contribute 
-   *     broadband additive OSNR here. Dedicated P2P endpoints do not contribute
-   *     add/drop ROADM noise.
+   *   - Transceiver (TRX) Noise: One intrinsic emitter-and-receiver SNR term,
+   *     following GNPy's detailed-receiver `snr_trx_db_0.1nm` meaning.
    *
    * ## Subtractive Penalties (dB Domain)
    * As defined in [1, Eq. 3 & Sec. III.A], the following penalties are subtracted 
@@ -29605,11 +29642,9 @@ public:
    *     stations are not included because they contain no modeled PDL-bearing ROADM.
    *   - ROADM WSS Filtering (Π_Pen_ROADM,WSS): SNR penalty due to the narrowing of the
    *     optical channel from cascaded Wavelength Selective Switches (WSSs). It is
-   *     applied to normal ROADM stages only. P2P sites use a separate fixed DGE
-   *     filtering penalty instead of the normal WSS count.
-   *   - DGE Filtering (Π_Pen_DGE,filter): Fixed 0.10 dB per P2P equalization
-   *     site, representing DGE passband shaping or narrowing. DGE PDL is not
-   *     modeled.
+   *     applied to normal ROADM stages only.
+   *   - DGE Filtering (Π_Pen_DGE,filter): Fixed 0.15 dB per equalization site,
+   *     representing DGE passband shaping or narrowing. DGE PDL is not modeled.
    *   - Aging (Π_Pen_age): System SNR margin to account for fiber and hardware 
    *     degradation over time. (TODO: Validate EOL values)
    *
@@ -29621,8 +29656,8 @@ public:
    *       Optical Network Planning Tool." [Online]. Available: 
    *       https://github.com/Telecominfraproject/gnpy
    *
-   * @return Final GSNR in dB, including the applicable TRX, ROADM Add/Drop,
-   * PDL, WSS, DGE filtering, and Aging terms.
+   * @return Full GSNR in dB, including the applicable TRX, PDL, WSS, DGE
+   * filtering, and Aging terms.
    * @throws std::logic_error if the modulation format is not set.
    * @throws std::runtime_error if signal power, noise power, or channel bandwidth <= 0.
    */
@@ -29641,6 +29676,7 @@ public:
 private:
   mt::LightpathType type;
   std::shared_ptr<const ModulationFormat> modulationFormat;
+  std::optional<double> launchPowerDbm;
 
   // Allocation details
   std::vector<int> links;              // IDs of links in the lightpath
@@ -29667,227 +29703,6 @@ private:
   friend class GnEngine;
 
 }; // class Lightpath
-
-#pragma once
-
-// STL
-#include <string>
-#include <map>
-#include <optional>
-// util
-// #include "../util/utils.hpp"
-
-/**
- * @brief Class ModulationFormat
- *
- * The ModulationFormat class represents a specific optical modulation format (e.g., BPSK, QPSK, 8-QAM).
- *
- * This class supports two modes of operation enforced at construction time:
- *   - Reach Table Mode: Uses band-specific tables for required slots and transmission reach.
- *   - Physical Layer Mode: Uses physical transmission parameters (OSNR, symbol rate, channel bandwidth, modulation order).
- *
- * Each mode uses a dedicated constructor to ensure type safety. Physical layer getters return std::optional
- * which will be std::nullopt for Reach Table Mode objects and have values for Physical Layer Mode objects.
- * 
- * Hybrid approach: Physical Layer Mode can optionally include maxReach for fallback reach-based routing.
- * 
- */
-class ModulationFormat
-{
-public:
-	/**
-	 * @brief Construct a new ModulationFormat object
-	 *
-	 * @param modulationStr The name of the modulation format (e.g., "BPSK", "QPSK")
-	 */
-	ModulationFormat(const std::string &modulationStr);
-
-	/**
-	 * @brief Construct a ModulationFormat for Reach Table Mode
-	 * 
-	 * Uses pre-calculated slots and reach tables per band for adaptive modulation selection.
-	 * 
-	 * @param modulationStr The name of the modulation format (e.g., "QPSK", "16QAM")
-	 * @param requiredSlots Required spectrum slots (band-independent; must be positive)
-	 * @param reachPerBand Map of maximum transmission reach per band in km (must be positive)
-	 * 
-	 * @throws std::invalid_argument if reach map is empty or any value is non-positive
-	 */
-	ModulationFormat(const std::string &modulationStr,
-	                 int requiredSlots,
-	                 const std::map<mt::Band, double> &reachPerBand);
-
-	/**
-	 * @brief Construct a ModulationFormat for Physical Layer Mode
-	 * 
-	 * Uses physical transmission parameters for Quality of Transmission (QoT) estimation.
-	 * Launch power is optional (defaults to 0 dBm if not specified).
-	 * Optionally includes reach for hybrid approaches.
-	 * 
-	 * @param modulationStr The name of the modulation format (e.g., "QPSK", "16QAM")
-	 * @param requiredOsnr Required OSNR threshold in dB (must be positive)
-	 * @param symbolRate Symbol rate in Hz (must be positive)
-	 * @param channelBw Channel bandwidth in Hz (must be positive)
-	 * @param modOrder QAM constellation size (must be positive, e.g., 4 for QPSK, 16 for 16QAM)
-	 * @param launchPower Optional launch power in dBm (can be negative, defaults to std::nullopt)
-	 * @param maxReach Optional maximum reach in km for hybrid approach (must be positive if provided)
-	 * 
-	 * @throws std::invalid_argument if mandatory parameters are non-positive
-	 */
-	ModulationFormat(const std::string &modulationStr,
-	                 double requiredOsnr,
-	                 double symbolRate,
-	                 double channelBw,
-	                 double modOrder,
-	                 std::optional<double> launchPower = std::nullopt,
-	                 std::optional<double> maxReach = std::nullopt);
-
-	/**
-	 * @brief Get the modulation format name
-	 *
-	 * @return std::string The modulation format name
-	 */
-	std::string getModulationStr() const;
-
-	/**
-	 * @brief Get required slots (band-independent, reach-table mode).
-	 *
-	 * @return int Number of required slots
-	 */
-	int getRequiredSlots(void) const;
-
-	/**
-	 * @brief Get maximum reach for a specific band
-	 *
-	 * @param band The band to query
-	 * @return double Maximum reach distance for the band
-	 */
-	double getReach(mt::Band band=mt::Band::C) const;
-
-	/**
-	 * @brief Set required slots (band-independent)
-	 *
-	 * @param slots Number of required slots
-	 */
-	void setRequiredSlots(int slots);
-
-	/**
-	 * @brief Set maximum reach for a specific band
-	 *
-	 * @param band The band to set
-	 * @param reach Maximum reach distance
-	 */
-	void setReach(mt::Band band, double reach);
-
-	// PHYSICAL LAYER METHODS
-
-	/**
-	 * @brief Get required slots based on channel bandwidth and slot width.
-	 *
-	 * Only valid for Physical Layer Mode. Will throw if channelBw is not set or slotWidth <= 0.
-	 * Uses ceil(channelBw / slotWidth) to avoid under-allocation.
-	 *
-	 * @param slotWidth Width of each slot in Hz
-	 * @return int Number of required slots
-	 * @throws std::runtime_error if channel bandwidth is not set
-	 */
-	int getRequiredSlots(double slotWidth) const;
-
-	/**
-	 * @brief Get required OSNR
-	 *
-	 * @return double Required OSNR in dB, or std::nullopt if not set (Reach Table Mode)
-	 */
-	double getRequiredOSNR() const;
-
-	/**
-	 * @brief Set required OSNR
-	 *
-	 * @param osnr Required OSNR in dB
-	 */
-	void setRequiredOSNR(double osnr);
-
-	/**
-	 * @brief Get symbol rate
-	 *
-	 * @return double Symbol rate in Hz
-	 */
-	double getSymbolRate() const;
-
-	/**
-	 * @brief Set symbol rate
-	 *
-	 * @param symbolRate Symbol rate in Hz
-	 */
-	void setSymbolRate(double symbolRate);
-
-	/**
-	 * @brief Get channel bandwidth
-	 *
-	 * @return double Channel bandwidth in Hz
-	 */
-	double getChannelBw() const;
-
-	/**
-	 * @brief Set channel bandwidth
-	 *
-	 * @param channelBw Channel bandwidth in Hz
-	 */
-	void setChannelBw(double channelBw);
-
-	/**
-	 * @brief Get launch power
-	 *
-	 * @return double Launch power in dBm
-	 */
-	double getLaunchPower() const;
-
-	/**
-	 * @brief Set launch power
-	 *
-	 * @param launchPower Launch power in dBm
-	 */
-	void setLaunchPower(double launchPower);
-
-	/**
-	 * @brief Get modulation order
-	 *
-	 * @return double QAM Modulation Order
-	 */
-	double getModOrder() const;
-
-	/**
-	 * @brief Return the constellation excess kurtosis used by the Semrau
-	 *        modulation-format correction.
-	 *
-	 * The value is inferred from the existing modulation name and order, so no
-	 * additional configuration field is required. Unknown or shaped formats
-	 * conservatively fall back to the Gaussian value (zero).
-	 */
-	double getExcessKurtosis() const noexcept;
-
-	/**
-	 * @brief Set modulation order
-	 *
-	 * @param modOrder QAM Modulation Order
-	 */
-	void setModOrder(double modOrder);
-
-	private:
-		std::string modulationStr;
-
-	// REACH TABLES
-	std::optional<int> requiredSlots;
-	std::optional<std::map<mt::Band, double>> reachPerBand;
-
-	// PHYSICAL LAYER
-	std::optional<double> requiredOSNR; // Required OSNR in dB
-	std::optional<double> symbolRate; // Symbol rate in Hz
-	std::optional<double> channelBw;  // Required Channel bandwidth in Hz
-	std::optional<double> launchPower; // Required Launch power in dBm
-	std::optional<double> modOrder; // QAM Modulation Order
-
-};
 
 #pragma once
 
@@ -29943,9 +29758,10 @@ public:
   /**
    * @brief Mark a power-equalization site immediately after a span.
    *
-   * Power-equalization sites are valid only on ROADM-bypassing chains. The
-   * span's normal post-span amplifier supplies the preamplifier contribution;
-   * the GN engine adds the corresponding booster contribution.
+   * The span's normal post-span amplifier supplies the preamplifier
+   * contribution; the GN engine adds the corresponding equalization-booster
+   * contribution. This marker can be used on both normal and ROADM-bypassing
+   * chains.
    *
    * @param spanIndex Zero-based span index.
    */
@@ -30108,8 +29924,9 @@ public:
   /**
    * @brief Check operational status of all elements in the fiber chain.
    * 
-   * @return DeviceState::Up if all bands operational, DeviceState::Down if all failed,
-   *         DeviceState::Partial if some bands are operational.
+   * @return DeviceState::Powered if all bands are operational,
+   *         DeviceState::Defective if every configured band has failed, or
+   *         DeviceState::Affected if only some configured bands have failed.
    */
   mt::DeviceState getOperationalState() const;
 
@@ -30132,7 +29949,7 @@ private:
   // Indicates whether this fiber chain bypasses ROADM elements (e.g., for P2P fibers).
   bool bypassRoadm;
 
-  // One marker per span. True means an intermediate P2P equalization site is
+  // One marker per span. True means an intermediate power-equalization site is
   // placed after that span.
   std::vector<bool> powerEqualizationAfterSpan;
   std::size_t powerEqualizationStageCount = 0;
@@ -30354,15 +30171,16 @@ public:
 	const FiberChain& getFiberChain(void) const;
 
 	/**
-	 * @brief Sets the operational state of the fiber (Up or Down).
+	 * @brief Sets the directly controlled operational state of the fiber.
 	 * @param state The desired device state.
-	 * @throws std::invalid_argument if state is `Partial`.
+	 * @throws std::invalid_argument if state is `Affected`, which is derived
+	 * from failures in the fiber chain.
 	 */
 	void setOperationalState(mt::DeviceState state);
 
 	/**
 	 * @brief Gets the current operational state of the fiber.
-	 * @return The current device state (Up, Down, or Partial).
+	 * @return The current device state.
 	 * @throws std::logic_error if the `FiberChain` is not initialized.
 	 */
 	mt::DeviceState getOperationalState() const;
@@ -30694,7 +30512,6 @@ private:
 // util
 // #include "../util/utils.hpp"
 // maths
-// #include "../math/uniform_variable.hpp"
 
 // ============================================================
 // Internal math helpers (not part of the public API)
@@ -30707,6 +30524,7 @@ namespace gn_detail {
 /// Semrau frequency offsets f_i and f_k in this implementation.
 static constexpr double REF_LAMBDA_M     = 1550e-9;
 static constexpr double REF_FREQUENCY_HZ = mt::constants::SPEED_OF_LIGHT / REF_LAMBDA_M;
+static constexpr double SIGNAL_ROLL_OFF  = 0.19;
 
 /// Converts dispersion D [ps/(nm·km)] to beta2 [s²/m].
 /// No direct Semrau (2019) equation.
@@ -30761,6 +30579,21 @@ inline double getLossCoefDbPerKmFromFreqHz(double fHz) {
             + 9.51929185e-05) * d
             + 3.66872568e-03) * d
             + 2.09135928e-01);
+}
+
+/// Returns dual-polarization ASE integrated over the receiver noise bandwidth.
+///
+/// noiseFigureLinear is the amplifier noise figure F, not the spontaneous-
+/// emission factor n_sp. With the engineering high-gain convention F ≈ 2 n_sp,
+/// this is exactly 2 n_sp h f B (G - 1); an additional factor of two would
+/// double-count polarization. A requested gain below unity is passive
+/// attenuation/equalization and therefore contributes no amplifier ASE.
+inline double computeDualPolarizationAsePower(
+    double noiseBandwidth_hz, double frequency_hz,
+    double noiseFigureLinear, double gainLinear) {
+  const double opticalGain = std::max(1.0, gainLinear);
+  return noiseBandwidth_hz * mt::constants::PLANCK_CONSTANT * frequency_hz *
+         noiseFigureLinear * (opticalGain - 1.0);
 }
 
 /// Computes the SPM phase factor phi_i for channel i.
@@ -30991,36 +30824,8 @@ inline std::vector<std::vector<double>> buildRamanMatrix(
 }
 
 /**
- * @brief Generates discrete fusion splice losses along a fiber span.
- *
- * Values: 0.02–0.12 dB per splice, every 2 km.
- *   Source: "Synergizing Hyper-Accelerated Power Optimization..." (Table/Section X)
- *   Original: 0.01–0.06 dB/km × 2 km splice sections = 0.02–0.12 dB per event.
- *
- * Mechanism: Splices are applied as discrete multiplicative power drops
- * at fixed z-positions during the SRS integration, following GNPy's
- * lumped loss model (oopt-gnpy, science_utils.py:267-272), where each
- * splice multiplies all channel powers by 10^(-loss_dB/10).
- *
- * TODO: Make splice spacing and loss range
- */
-inline std::vector<std::pair<double, double>> generateSpliceLosses(
-    double spanLength_m,
-    double spliceSpacing_m)
-{
-    UniformVariable spliceLoss(505, 0.02, 0.12);
-    std::vector<std::pair<double, double>> losses;
-    for (double pos = spliceSpacing_m; pos < spanLength_m; pos += spliceSpacing_m) {
-        double loss_dB = spliceLoss.getNextValue();
-        double loss_linear = std::pow(10.0, -loss_dB / 10.0);
-        losses.emplace_back(pos, loss_linear);
-    }
-    return losses;
-}
-
-/**
  * @brief Computes per-channel output power after fiber propagation with
- *        SRS, splice losses, and output connector loss.
+ *        SRS and output connector loss.
  *
  * ## SRS integration
  *   Solves the coupled power ODE:
@@ -31028,10 +30833,6 @@ inline std::vector<std::pair<double, double>> generateSpliceLosses(
  *   using exponential Euler: P(z+dz) = P(z) · exp(rate · dz).
  *   Based on GNPy's numerical Raman solver (science_utils.py:267-272),
  *   but using exp(x) instead of (1+x) for better stability.
- *
- * ## Splice losses
- *   See generateSpliceLosses(). Applied mid-span as lumped losses
- *   following GNPy's approach (science_utils.py:267-272).
  *
  * ## Connector losses
  *   Following GNPy's Fiber.propagate() (elements.py:1116-1144):
@@ -31046,7 +30847,7 @@ inline std::vector<std::pair<double, double>> generateSpliceLosses(
  *   Values: 0.2–0.5 dB per connector.
  *     Source: "Synergizing Hyper-Accelerated Power Optimization..."
  *
- * TODO: Make connector loss range and splice spacing configurable.
+ * TODO: Make connector loss range configurable.
  */
 struct RamanPowerProfile {
   std::vector<double> z_m;
@@ -31059,9 +30860,9 @@ struct RamanPowerProfile {
  * @brief Numerically solve the measured-gain Raman equations and retain the
  *        longitudinal samples needed by the S+C+L profile regression.
  *
- * Samples include discrete in-span splice losses. The final connector is kept
- * only in outputAfterConnector_W and is deliberately excluded from power_W so
- * it cannot bias the fitted in-fiber profile.
+ * The final connector is kept only in outputAfterConnector_W and is
+ * deliberately excluded from power_W so it cannot bias the fitted in-fiber
+ * profile.
  */
 inline RamanPowerProfile computeSpanPowerProfileSRS(
     const std::vector<double>& centralFreqs,
@@ -31070,7 +30871,6 @@ inline RamanPowerProfile computeSpanPowerProfileSRS(
     const double con_loss_lin,        
     double length_m,
     double dz_m = 1000.0,
-    bool includeSplices = true,
     bool enableSrs = true) // 1km default integration steps
 {
     if (centralFreqs.size() != Pch_W.size() ||
@@ -31084,10 +30884,6 @@ inline RamanPowerProfile computeSpanPowerProfileSRS(
     }
 
     const size_t num_channels = Pch_W.size();
-    const std::vector<std::pair<double, double>> spliceLosses = includeSplices
-        ? generateSpliceLosses(length_m, 2000.0)
-        : std::vector<std::pair<double, double>>{};
-    
     const std::vector<std::vector<double>> cr_matrix = enableSrs
         ? buildRamanMatrix(centralFreqs, ramanOffsetFreqs, ramanGainProfile)
         : std::vector<std::vector<double>>(
@@ -31100,20 +30896,8 @@ inline RamanPowerProfile computeSpanPowerProfileSRS(
     profile.power_W.push_back(P_current);
     
     double z = 0.0;
-    size_t lossIdx = 0;
     while (z < length_m) {
-        // Enforce boundary step safety explicitly
         double step = std::min(dz_m, length_m - z);
-
-        // Check if a lumped loss falls within this step
-        // If so, split the step at the loss position
-        if (lossIdx < spliceLosses.size() && 
-            spliceLosses[lossIdx].first > z && 
-            spliceLosses[lossIdx].first <= z + step) 
-        {
-            // Shorten step to reach the lumped loss position exactly
-            step = spliceLosses[lossIdx].first - z;
-        }
         
         for (size_t i = 0; i < num_channels; ++i) {
             double srs_transfer = 0.0;
@@ -31128,17 +30912,6 @@ inline RamanPowerProfile computeSpanPowerProfileSRS(
         
         P_current = P_next;
         z += step;
-
-        // Apply lumped loss if we've arrived at its position
-        if (lossIdx < spliceLosses.size() && 
-            std::abs(z - spliceLosses[lossIdx].first) < 1e-6) 
-        {
-            double loss_factor = spliceLosses[lossIdx].second; // < 1.0
-            for (size_t i = 0; i < num_channels; ++i) {
-                P_current[i] *= loss_factor;
-            }
-            ++lossIdx;
-        }
 
         profile.z_m.push_back(z);
         profile.power_W.push_back(P_current);
@@ -31158,12 +30931,11 @@ inline std::vector<double> computeSpanOutputPowerSRS(
     const double con_loss_lin,
     double length_m,
     double dz_m = 1000.0,
-    bool includeSplices = true,
     bool enableSrs = true)
 {
     return computeSpanPowerProfileSRS(
         centralFreqs, Pch_W, attNpPerM, con_loss_lin, length_m, dz_m,
-        includeSplices, enableSrs).outputAfterConnector_W;
+        enableSrs).outputAfterConnector_W;
 }
 
 struct RamanProfileFit {
@@ -31297,21 +31069,6 @@ inline std::vector<double> computeSpanOutputPowerNoSRS(
     }
 
     const size_t numChannels = Pch_W.size();
-    const std::vector<std::pair<double, double>> spliceLosses =
-        generateSpliceLosses(length_m, 2000.0);
-
-    double totalSpliceLossLin = 1.0;
-    for (const auto& [splicePos, lossFactor] : spliceLosses) {
-        if (splicePos < 0.0 || splicePos > length_m) {
-            throw std::runtime_error(
-                "computeSpanOutputPowerNoSRS: invalid splice position.");
-        }
-        if (lossFactor <= 0.0 || lossFactor > 1.0) {
-            throw std::runtime_error(
-                "computeSpanOutputPowerNoSRS: invalid splice loss factor.");
-        }
-        totalSpliceLossLin *= lossFactor;
-    }
 
     std::vector<double> Pout(numChannels);
     for (size_t i = 0; i < numChannels; ++i) {
@@ -31325,7 +31082,7 @@ inline std::vector<double> computeSpanOutputPowerNoSRS(
         }
 
         const double fiberLossLin = std::exp(-attNpPerM[i] * length_m);
-        Pout[i] = Pch_W[i] * fiberLossLin * totalSpliceLossLin * con_loss_lin;
+        Pout[i] = Pch_W[i] * fiberLossLin * con_loss_lin;
     }
 
     return Pout;
@@ -31832,9 +31589,8 @@ public:
    * @brief Sets the default allocation function if no custom function is set by
    * the user.
    *
-   * This method assigns a default allocation function to the controller.
-   * Depending on the network physical layer mode, it sets either a reach-based
-   * allocation function or a GNPy based allocation function.
+   * This method assigns the built-in default allocation function to the
+   * controller.
    */
   void setDefaultAllocationFunction();
 
@@ -31955,14 +31711,13 @@ public:
    * @brief Update topology after modifications (addLink, addNode).
    *
    * This method handles all necessary recomputation after topology changes:
-   * 1. Re-designs the network (if physical layer mode)
-   * 2. Reloads GNPy engine (if physical layer mode)
+   * 1. Re-designs the network
+   * 2. Refreshes the GN engine state
    * 3. Recomputes paths
    *
    * Should be called when needsRecompute() returns true.
    *
-   * @throws std::runtime_error if in physical layer mode and DesignConfig not
-   * set.
+   * @throws std::runtime_error if DesignConfig is not set.
    */
   void updateNetwork();
 
@@ -32215,7 +31970,7 @@ public:
   * @brief Pre-computes which (bitrate, modulation, band) tuples are physically
   * feasible on each route, for every demand in the network.
   *
-  * Only runs in GN simulation mode. Results are stored directly on each Demand
+  * Results are stored directly on each Demand
   * via Demand::setValidConfigurations().
   *
   * For each demand pair, every (route, bitrate, modulation, band) combination
@@ -32240,25 +31995,6 @@ public:
   void precomputeValidConfigurations(
       std::vector<std::vector<Demand>> &demands,
       const std::vector<std::shared_ptr<BitRate>> &bitRates);
-
-  // User utility methods
-
-  /**
-   * @brief Get optimal modulation format for a bitrate on a given route.
-   *
-   * Selection criteria (in priority order):
-   * 1. Must meet distance requirement (reach >= route length)
-   * 2. Minimum number of slots (highest spectral efficiency)
-   * 3. Maximum reach (highest reliability for same slot count)
-   *
-   * @param bitRate The bitrate to provision.
-   * @param route The physical route (sequence of links).
-   * @param band The frequency band to use.
-   * @return Index of best modulation format, or -1 if none feasible.
-   * @throws std::logic_error if network is in physicalLayer mode.
-   */
-  int getAdaptiveModulationFormat(const BitRate &bitRate,
-                                  const mt::Route &route, mt::Band band) const;
 
   /**
    * @brief Exports the computed routes to a JSON file named
@@ -32416,11 +32152,9 @@ public:
    * @param networkFilename Network topology file
    * @param fiberConfigFilename Fiber configuration specifications
    * @param bitratesFilename Bitrate and modulation definitions
-   * @param simulationMode Simulation mode (e.g., Reach, GNPy, GN)
    */
   Simulator(std::string networkFilename, std::string fiberConfigFilename,
-            std::string bitratesFilename,
-            mt::SimulationMode simulationMode = mt::SimulationMode::ReachTable);
+            std::string bitratesFilename);
 
   /**
    * @brief Construct a simulator with an initial demands file.
@@ -32429,11 +32163,9 @@ public:
    * @param fiberConfigFilename Fiber configuration specifications
    * @param bitratesFilename Bitrate and modulation definitions
    * @param demandsFilename Initial demands file
-   * @param simulationMode Simulation mode (e.g., Reach, GNPy, GN)
    */
   Simulator(std::string networkFilename, std::string fiberConfigFilename,
-            std::string bitratesFilename, std::string demandsFilename,
-            mt::SimulationMode simulationMode = mt::SimulationMode::ReachTable);
+            std::string bitratesFilename, std::string demandsFilename);
 
   /** Configure precomputed routes to be loaded by init(). Must precede init(). */
   void setPathsFile(const std::string &filename);
@@ -32445,24 +32177,6 @@ public:
   void setPathsDisjoint(int k = 3, const std::string &metric = "length");
 
   // Simulation Parameters
-
-  /**
-   * @brief Sets the simulation mode for the network.
-   * 
-   * This method must be called before init(). Changing the simulation mode after initialization
-   * is not allowed and will throw an exception. The simulation mode determines how the network
-   * and fiber specifications are interpreted, as well as how feasibility checks are performed.
-   * 
-   * @param mode The simulation mode to set (e.g., ReachTable, GNPy, GN).
-   * @throws std::runtime_error if called after initialization.
-   */
-  void setSimulationMode(mt::SimulationMode mode);
-
-  /**
-   * @brief Gets the simulation mode for the network.
-   * @return The current simulation mode.
-   */
-  mt::SimulationMode getSimulationMode() const;
 
   /**
    * @brief Sets the number of simulation periods.
@@ -32501,9 +32215,14 @@ public:
   void setSeedGrowthRate(unsigned int seedGrowthRate);
 
   /**
-   * @brief Sets explicit per-period growth rates, overriding stochastic generation.
-   * Size must equal numberOfPeriods. Must be called before init().
-   * @param growthRates Vector of relative growth rates per period (e.g., 0.29 for 29%)
+   * @brief Sets explicit growth rates for transitions between periods,
+   * overriding stochastic generation.
+   *
+   * Period 1 uses the input demands as its baseline. Entry 0 is applied before
+   * period 2, entry 1 before period 3, and so on. The vector size must therefore
+   * equal numberOfPeriods - 1. Must be called before init().
+   * @param growthRates Vector of relative growth rates per period transition
+   * (e.g., 0.29 for 29%)
    */
   void setGrowthRates(std::vector<double> growthRates);
 
@@ -32561,7 +32280,7 @@ public:
   double getGrowthRateStdDev() const;
 
   /**
-   * @brief Returns the explicit per-period growth rates (if set).
+   * @brief Returns the explicit per-transition growth rates (if set).
    * @return Vector of relative growth rates, or empty if using stochastic generation
    */
   std::vector<double> getGrowthRates() const;
@@ -32734,7 +32453,6 @@ private:
   std::vector<double> growthRates;
 
   // Seteable parameters
-  mt::SimulationMode simulationMode;
   int numberOfPeriods;
   std::shared_ptr<DesignConfig> designConfig;
   bool autoFeasibilityCheck;
@@ -32799,8 +32517,7 @@ private:
   std::map<int, NlsLineWssInventory> nlsLineWssInventory;
   std::map<int, int> nlsFilterInventory;
   std::map<std::pair<mt::Band, int>, int> nlsSpareWssInventory;
-  std::map<mt::Band, int> nlsP2pEqualizationInventory;
-  std::map<mt::Band, int> nlsP2pEqualizationBoosterInventory;
+  std::map<mt::Band, int> nlsEqualizationInventory;
 
 
   // Constructor private methods
@@ -32836,9 +32553,10 @@ private:
   /**
    * @brief Updates the demands values using multiplicative growth factors.
    *
-   * If a growth rates vector is provided, each entry r is applied as (1 + r);
-   * otherwise, samples are drawn around (1 + baseGrowthRate) with dispersion
-   * growthRateStdDev on that same multiplier scale.
+   * If a growth rates vector is provided, entry 0 is the transition from period
+   * 1 to period 2 and each entry r is applied as (1 + r). Otherwise, samples are
+   * drawn around (1 + baseGrowthRate) with dispersion growthRateStdDev on that
+   * same multiplier scale.
    */
   void updateDemands();
 
@@ -32903,8 +32621,8 @@ private:
 
 namespace {
 
-constexpr double P2P_SINGLE_BAND_EQUALIZATION_DISTANCE_KM = 500.0;
-constexpr double P2P_MULTIBAND_EQUALIZATION_DISTANCE_KM = 250.0;
+constexpr double C_BAND_ONLY_EQUALIZATION_DISTANCE_KM = 500.0;
+constexpr double OTHER_BANDS_EQUALIZATION_DISTANCE_KM = 250.0;
 constexpr double DISTANCE_EPSILON_KM = 1e-9;
 
 struct P2PSpanLocation {
@@ -32912,6 +32630,53 @@ struct P2PSpanLocation {
   std::size_t spanIndex;
   double lengthKm;
 };
+
+void placeNormalLinkEqualizationSites(
+    FiberChain& chain, const std::vector<double>& spanLengths,
+    double equalizationDistanceKm) {
+  double sectionLengthKm = 0.0;
+
+  for (std::size_t spanIndex = 0; spanIndex < spanLengths.size();
+       ++spanIndex) {
+    const double spanLengthKm = spanLengths[spanIndex];
+    if (spanLengthKm > equalizationDistanceKm + DISTANCE_EPSILON_KM) {
+      throw std::logic_error(
+          "DesignEngine::design: A span exceeds the normal-link "
+          "power-equalization distance.");
+    }
+
+    if (sectionLengthKm + spanLengthKm >
+        equalizationDistanceKm + DISTANCE_EPSILON_KM) {
+      if (spanIndex == 0 || sectionLengthKm <= DISTANCE_EPSILON_KM) {
+        throw std::logic_error(
+            "DesignEngine::design: Cannot place a normal-link "
+            "power-equalization site within the required distance.");
+      }
+      chain.addPowerEqualizationAfterSpan(spanIndex - 1);
+      sectionLengthKm = 0.0;
+    }
+
+    sectionLengthKm += spanLengthKm;
+  }
+}
+
+double normalLinkEqualizationDistanceKm(const Link& link) {
+  bool hasCBand = false;
+  bool hasOtherBand = false;
+  for (const auto& fiber : link.getFibers()) {
+    for (mt::Band band : fiber->getBands()) {
+      if (band == mt::Band::C) {
+        hasCBand = true;
+      } else {
+        hasOtherBand = true;
+      }
+    }
+  }
+
+  return hasCBand && !hasOtherBand
+             ? C_BAND_ONLY_EQUALIZATION_DISTANCE_KM
+             : OTHER_BANDS_EQUALIZATION_DISTANCE_KM;
+}
 
 } // namespace
 
@@ -32927,11 +32692,19 @@ void DesignEngine::design(Network& network, const DesignConfig& config) {
   for (int i = 0; i < numLinks; ++i) {
     Link& link = network.getLink(i);
     auto spanLengths = computeSpanLengths(link.getLength(), config);
+    const double equalizationDistanceKm =
+        normalLinkEqualizationDistanceKm(link);
     
     // Design each fiber in the link
     int numFibers = link.getNumberOfFibers();
     for (int f = 0; f < numFibers; ++f) {
-      designFiber(link.getFiber(f), spanLengths);
+      Fiber& fiber = link.getFiber(f);
+      const bool isDedicatedToP2P = fiber.isDedicatedToP2P();
+      designFiber(fiber, spanLengths);
+      if (!isDedicatedToP2P) {
+        placeNormalLinkEqualizationSites(
+            fiber.getFiberChain(), spanLengths, equalizationDistanceKm);
+      }
     }
   }
 }
@@ -33059,13 +32832,17 @@ void DesignEngine::designP2P(P2P& p2p, const Network& network,
         "DesignEngine::designP2P: Link and fiber counts do not match.");
   }
 
-  const bool isMultiband = std::any_of(
+  const bool isCBandOnly = std::all_of(
       fibers.begin(), fibers.end(), [](const auto& fiber) {
-        return fiber && fiber->getNumberOfBands() > 1;
+        if (!fiber) {
+          return false;
+        }
+        const auto bands = fiber->getBands();
+        return bands.size() == 1 && bands.front() == mt::Band::C;
       });
   const double equalizationDistanceKm =
-      isMultiband ? P2P_MULTIBAND_EQUALIZATION_DISTANCE_KM
-                  : P2P_SINGLE_BAND_EQUALIZATION_DISTANCE_KM;
+      isCBandOnly ? C_BAND_ONLY_EQUALIZATION_DISTANCE_KM
+                  : OTHER_BANDS_EQUALIZATION_DISTANCE_KM;
 
   double totalLengthKm = 0.0;
   std::vector<P2PSpanLocation> routeSpans;
@@ -33125,6 +32902,8 @@ void DesignEngine::designP2P(P2P& p2p, const Network& network,
 
 // #include "gn_engine.hpp"
 
+// #include "../math/uniform_variable.hpp"
+
 // optics
 // #include "../optics/fiber_chain.hpp"
 // transmission
@@ -33140,9 +32919,9 @@ using namespace gn_detail;
 namespace {
 
 constexpr double TEMPORARY_ROADM_INSERTION_LOSS_DB = 15.0;
-// P2P equalization stations bypass the ROADM switching fabric and use a
-// lower additional booster loss assumption than normal lightpath endpoints.
-constexpr double P2P_EQUALIZATION_BOOSTER_LOSS_DB = 12.0;
+// Intermediate equalization sites use an additional booster contribution in
+// the ASE model. The same proxy is used for normal and ROADM-bypassing links.
+constexpr double EQUALIZATION_BOOSTER_LOSS_DB = 12.0;
 
 struct RouteSpanDescriptor {
   int linkId = -1;
@@ -33619,7 +33398,8 @@ void GnEngine::solveFiberNoise(
 
   // Per-channel parameters.
   std::vector<double> fi(channelCount);           // frequency offset from reference [Hz]
-  std::vector<double> Bch(channelCount);          // channel bandwidth [Hz]
+  std::vector<double> Bch(channelCount);          // transmitted signal bandwidth [Hz]
+  std::vector<double> noiseBw(channelCount);      // receiver noise bandwidth [Hz]
   std::vector<double> Pch(channelCount);          // launch power [W]
   std::vector<double> centralFreqs(channelCount); // absolute central frequency [Hz]
   std::vector<double> lossDbPerKm(channelCount);  // fitted loss coefficient [dB/km]
@@ -33633,15 +33413,18 @@ void GnEngine::solveFiberNoise(
 
     centralFreqs[i] = fSpec->getCentralFrequencyMultiSlot(band, slots);
     fi[i]           = centralFreqs[i] - REF_FREQUENCY_HZ;  // offset from ref [Hz]
-    Bch[i]          = mf->getChannelBw();
-    Pch[i]          = mt::dbmToWatt(mf->getLaunchPower());
+    // Semrau B_i is the transmitted signal bandwidth, including roll-off.
+    // Receiver ASE is integrated separately over the baud-rate noise bandwidth.
+    noiseBw[i]      = mf->getSymbolRate();
+    Bch[i]          = noiseBw[i] * (1.0 + SIGNAL_ROLL_OFF);
+    Pch[i]          = mt::dbmToWatt(lp->getLaunchPower());
     lossDbPerKm[i]  = getLossCoefDbPerKmFromFreqHz(centralFreqs[i]);
     attNpPerM[i]    = attenuationNpPerMFromDbPerKm(lossDbPerKm[i]);
 
     lp->linkToNliPerSpanMap[linkId] = std::vector<double>(spanCount, 0.0);
     lp->linkToAsePerSpanMap[linkId] = std::vector<double>(spanCount, 0.0);
     lp->linkToPowerEqualizationSiteCountMap[linkId] =
-        isP2P ? chain.getPowerEqualizationStageCount() : 0;
+        chain.getPowerEqualizationStageCount();
   }
 
   std::vector<std::vector<RouteSpanDescriptor>> lightpathRouteSpans(
@@ -33676,9 +33459,8 @@ void GnEngine::solveFiberNoise(
       shouldFitRamanProfiles(
           occupiedBandwidthHz, options_.ramanFitThresholdHz);
 
-  const double h = mt::constants::PLANCK_CONSTANT;
   const double equalizationBoosterGainLinear =
-      mt::dbToLinear(P2P_EQUALIZATION_BOOSTER_LOSS_DB);
+      mt::dbToLinear(EQUALIZATION_BOOSTER_LOSS_DB);
 
   // Define connector loss generator
   int seed = spanCount + static_cast<int>(spans.front().getLength());
@@ -33694,10 +33476,9 @@ void GnEngine::solveFiberNoise(
   for (int j = 0; j < spanCount; ++j) {
     const double length_m = spans[j].getLength() * 1000.0;
     const bool hasPowerEqualizationAfterSpan =
-        isP2P && chain.hasPowerEqualizationAfterSpan(j);
+        chain.hasPowerEqualizationAfterSpan(j);
 
-    // Apply input connector loss for span j. Paper-plot mode disables all
-    // synthetic connector/splice losses without changing production defaults.
+    // Apply input connector loss for span j.
     double con_loss_dB = options_.includeLumpedLosses
         ? connectorLoss.getNextValue() : 0.0;
     double con_loss_lin = mt::dbToLinear(-con_loss_dB);
@@ -33719,7 +33500,7 @@ void GnEngine::solveFiberNoise(
     con_loss_lin = mt::dbToLinear(-con_loss_dB);
     const RamanPowerProfile powerProfile = computeSpanPowerProfileSRS(
         centralFreqs, Pch_con, attNpPerM, con_loss_lin, length_m, dz_m,
-        options_.includeLumpedLosses, srsEnabled);
+        srsEnabled);
     const std::vector<double> &P_at_L = powerProfile.outputAfterConnector_W;
 
     std::vector<double> attBarNpPerM = attNpPerM;
@@ -33832,16 +33613,18 @@ void GnEngine::solveFiberNoise(
           Pi_target * Pi_span_in * Pi_span_in *
           (spmCoherenceFactor * etaSPM + etaXPM);
 
-      // P_ASE = Bch · h · fch · NF_lin · (G - 1)
-      double asePower = Bch[i] * h * centralFreqs[i]
-          * ampNfLinear * (ampGainLinear - 1.0);
+      // Dual-polarization ASE. NF_lin already contains the 2*n_sp
+      // polarization factor under the engineering high-gain convention.
+      double asePower = computeDualPolarizationAsePower(
+          noiseBw[i], centralFreqs[i], ampNfLinear, ampGainLinear);
 
-      // At an intermediate P2P equalization site, the existing post-span
-      // amplifier is the preamp. Add only the corresponding lower-loss
-      // equalization-booster ASE.
+      // At an intermediate equalization site, the existing post-span
+      // amplifier is the preamp. Add the corresponding equalization-booster
+      // ASE. This applies to both normal and ROADM-bypassing chains.
       if (hasPowerEqualizationAfterSpan) {
-        asePower += Bch[i] * h * centralFreqs[i]
-            * ampNfLinear * (equalizationBoosterGainLinear - 1.0);
+        asePower += computeDualPolarizationAsePower(
+            noiseBw[i], centralFreqs[i], ampNfLinear,
+            equalizationBoosterGainLinear);
       }
 
       lightpaths[i]->linkToAsePerSpanMap[linkId][j] = asePower;
@@ -33872,9 +33655,8 @@ void GnEngine::solveFiberNoise(
       if (boosterGainLinear <= 1.0)
         continue;
 
-      const double boosterAse =
-        Bch[i] * h * centralFreqs[i]
-        * boosterNfLinear * (boosterGainLinear - 1.0);
+      const double boosterAse = computeDualPolarizationAsePower(
+          noiseBw[i], centralFreqs[i], boosterNfLinear, boosterGainLinear);
 
       // TODO: Decide final storage strategy for booster ASE. Now 
       //       Accumulating into span-0 here as a safe default.
@@ -34868,6 +34650,10 @@ double Amplifier::getNoiseFigure() const {
   return this->NF;
 }
 void Amplifier::setOperationalState(mt::DeviceState state) {
+  if (state == mt::DeviceState::Affected) {
+    throw std::invalid_argument(
+        "Affected is a derived state and cannot be assigned to an amplifier.");
+  }
   operationalState = state;
 }
 
@@ -34934,10 +34720,6 @@ bool FiberChain::bypassesRoadm() const {
 }
 
 void FiberChain::addPowerEqualizationAfterSpan(std::size_t spanIndex) {
-  if (!this->bypassRoadm) {
-    throw std::logic_error(
-        "Power equalization can only be added to a ROADM-bypassing chain.");
-  }
   if (spanIndex >= this->spanElements.size()) {
     throw std::out_of_range("Power-equalization span index out of bounds.");
   }
@@ -35210,9 +34992,20 @@ void FiberChain::addElement(const Span& span) {
 // Operational state
 
 mt::DeviceState FiberChain::getOperationalState() const {
-  std::vector<mt::Band> failingBands = getFailingBands();
+  const std::vector<mt::Band> failingBands = getFailingBands();
 
-  if (!failingBands.empty()) return mt::DeviceState::Affected;
+  std::set<mt::Band> configuredBands;
+  for (const auto& [band, _] : boosterStages) configuredBands.insert(band);
+  for (const auto& [band, _] : inlineStages) configuredBands.insert(band);
+  for (const auto& [band, _] : preampStages) configuredBands.insert(band);
+
+  if (!configuredBands.empty() &&
+      failingBands.size() == configuredBands.size()) {
+    return mt::DeviceState::Defective;
+  }
+  if (!failingBands.empty()) {
+    return mt::DeviceState::Affected;
+  }
   return mt::DeviceState::Powered;
 }
 
@@ -35945,21 +35738,16 @@ controller_detail::buildP2PChannelLayout(
 
 Controller::Controller()
     : network(nullptr), p2ps(), p2pCounter(0), connections(), connectionIdCounter(1),
-      operationalThresholdMarginDb(0.0),
       allocationFunction(nullptr), allocationFunctionName(""),
       callbackFunction(nullptr),
-      failureManagementFunction(nullptr), paths(nullptr), recompute(false),
-      fiberChainsDesigned(false), pathK(0), pathAlgorithm(PathAlgorithm::Shortest),
-      pathMetric("length"), gnEngine(nullptr), designConfig(nullptr) {}
+      failureManagementFunction(nullptr), paths(nullptr), gnEngine(nullptr) {}
 
 Controller::Controller(std::unique_ptr<Network> network)
     : network(std::move(network)), p2ps(), p2pCounter(0), connections(),
-      connectionIdCounter(1), operationalThresholdMarginDb(0.0),
+      connectionIdCounter(1),
       allocationFunction(nullptr), allocationFunctionName(""),
       callbackFunction(nullptr),
-      failureManagementFunction(nullptr), paths(nullptr), recompute(false),
-      fiberChainsDesigned(false), pathK(0), pathAlgorithm(PathAlgorithm::Shortest),
-      pathMetric("length"), gnEngine(nullptr), designConfig(nullptr) {}
+      failureManagementFunction(nullptr), paths(nullptr), gnEngine(nullptr) {}
 
 void Controller::setNetwork(std::unique_ptr<Network> network) {
   if (!network) {
@@ -36032,8 +35820,7 @@ void Controller::recomputeAffectedByConnection(
     const Connection &allocatedConnection,
     const std::unordered_map<int, std::unique_ptr<Connection>>
         &stagedConnections) {
-  if (!this->network || this->network->getSimulationMode() != mt::SimulationMode::GN ||
-      !this->gnEngine) {
+  if (!this->network || !this->gnEngine) {
     return;
   }
 
@@ -36061,14 +35848,7 @@ std::string Controller::getAllocationFunctionName() const {
 // TODO: Implement the default functions in separate source files and include
 // them here.
 void Controller::setDefaultAllocationFunction() {
-  switch (this->network->getSimulationMode()) {
-  case mt::SimulationMode::ReachTable:
-    this->setAllocationFunction(nullptr, "");
-    break;
-  case mt::SimulationMode::GN:
-    this->setAllocationFunction(nullptr, "");
-    break;
-  }
+  this->setAllocationFunction(nullptr, "");
 }
 
 // Failure management function
@@ -36306,7 +36086,7 @@ void Controller::addP2P(int src, int dst, int pathIdx, std::shared_ptr<FiberSpec
   if (!bitRates.empty()) {
     auto result = this->checkFullLoad(src, dst, pathIdx, fiberSpec, bitRates);
     newP2P->setTotalCapacityGbps(result.totalGbps);
-    newP2P->setBestBitRateModFormatIdx(result.bitRateIdx, result.modulationIdx);    
+    newP2P->setBestBitRateModFormatIdx(result.bitRateIdx, result.modulationIdx);
   }
 
   // Add the new P2P to the controller's list of P2Ps
@@ -36378,7 +36158,7 @@ void Controller::addP2P(int src, int dst, int pathIdx, std::vector<int> fiberIdx
   if (!bitRates.empty()) {
     auto result = this->checkFullLoad(src, dst, pathIdx, fiberSpec, bitRates);
     newP2P->setTotalCapacityGbps(result.totalGbps);
-    newP2P->setBestBitRateModFormatIdx(result.bitRateIdx, result.modulationIdx);    
+    newP2P->setBestBitRateModFormatIdx(result.bitRateIdx, result.modulationIdx);
   }
 
   this->p2ps.push_back(std::move(newP2P));
@@ -36557,161 +36337,159 @@ void Controller::assignConnections(
 
   // If enabled, perform an automatic feasibility check
   if (autoFeasibilityCheck) {
-    if (this->network->getSimulationMode() == mt::SimulationMode::GN) {
-      std::set<std::pair<int, int>> deferredDirtyScope;
+    std::set<std::pair<int, int>> deferredDirtyScope;
 
-      // Helper: release all slots occupied by a lightpath
-      auto freeLightpath = [this](const Lightpath &lp) {
-        for (size_t i = 0; i < lp.getLinks().size(); ++i) {
-          const auto &slots = lp.getSlots()[i];
-          if (slots.empty())
-            continue;
-          this->network->unuseSlots(lp.getLinks()[i], lp.getFibers()[i],
-                                    lp.getCores()[i], lp.getBands()[i],
-                                    lp.getModes()[i], slots.front(),
-                                    slots.back() + 1);
-        }
-      };
+    // Helper: release all slots occupied by a lightpath
+    auto freeLightpath = [this](const Lightpath &lp) {
+      for (size_t i = 0; i < lp.getLinks().size(); ++i) {
+        const auto &slots = lp.getSlots()[i];
+        if (slots.empty())
+          continue;
+        this->network->unuseSlots(lp.getLinks()[i], lp.getFibers()[i],
+                                  lp.getCores()[i], lp.getBands()[i],
+                                  lp.getModes()[i], slots.front(),
+                                  slots.back() + 1);
+      }
+    };
 
-      auto collectLightpathScope =
-          [](const Lightpath &lp, std::set<std::pair<int, int>> &scope) {
-            for (size_t i = 0; i < lp.getLinks().size(); ++i) {
-              scope.emplace(lp.getLinks()[i], lp.getFibers()[i]);
-            }
-          };
-
-      auto collectConnectionScope =
-          [&](const std::unique_ptr<Connection> &conn,
-              std::set<std::pair<int, int>> &scope) {
-            if (!conn) {
-              return;
-            }
-            if (conn->hasWorkingLightpath()) {
-              collectLightpathScope(conn->getWorkingLightpath(), scope);
-            }
-            if (conn->hasBackupLightpath()) {
-              collectLightpathScope(conn->getBackupLightpath(), scope);
-            }
-          };
-
-      // Helper: resolve mirror pointer from any connection map
-      auto getMirror = [&](auto &map, const std::unique_ptr<Connection> &conn)
-          -> std::unique_ptr<Connection> * {
-        if (!symmetricProvisioning || !conn)
-          return nullptr;
-        try {
-          auto it = map.find(conn->getMirrorId());
-          return (it != map.end() && it->second &&
-                  it->second.get() != conn.get())
-                     ? &it->second
-                     : nullptr;
-        } catch (const std::logic_error &) {
-          return nullptr;
-        }
-      };
-
-      // Core policy — applied identically to staged and committed connections
-      auto applyFeasibilityPolicy = [&](std::unique_ptr<Connection> &conn,
-                                        std::unique_ptr<Connection> *mirror) {
-        if (!conn)
-          return;
-
-        if (conn->hasWorkingLightpath() &&
-            !conn->getWorkingLightpath().hasNoiseMaps()) {
-          this->gnEngine->computeAffectedByConnection(
-              *this->network, this->connections, stagedConnections, *conn);
-        }
-        if (conn->hasBackupLightpath() &&
-            !conn->getBackupLightpath().hasNoiseMaps()) {
-          this->gnEngine->computeAffectedByConnection(
-              *this->network, this->connections, stagedConnections, *conn);
-        }
-
-        const bool wOk = conn->hasWorkingLightpath() 
-                && conn->getWorkingLightpath().isFeasible(this->getOperationalThresholdMarginDb());
-        const bool bOk = !conn->hasBackupLightpath() 
-                || conn->getBackupLightpath().isFeasible(this->getOperationalThresholdMarginDb());
-
-        if (wOk && bOk)
-          return; // Both fine — nothing to do
-
-        std::set<std::pair<int, int>> mutationScope;
-        collectConnectionScope(conn, mutationScope);
-        if (mirror && *mirror) {
-          collectConnectionScope(*mirror, mutationScope);
-        }
-
-        // Full rollback helper (frees slots, subtracts demand, nulls ptr)
-        auto rollback = [&](std::unique_ptr<Connection> &c) {
-          if (!c)
-            return;
-          demands[c->getSrc()][c->getDst()].subtractAllocatedCapacity(
-              c->getBitRate().getBitRate(), c->getSlaLevel());
-          if (c->hasWorkingLightpath())
-            freeLightpath(c->getWorkingLightpath());
-          if (c->hasBackupLightpath())
-            freeLightpath(c->getBackupLightpath());
-          c.reset(); // Prevents commit of staged connections
+    auto collectLightpathScope =
+        [](const Lightpath &lp, std::set<std::pair<int, int>> &scope) {
+          for (size_t i = 0; i < lp.getLinks().size(); ++i) {
+            scope.emplace(lp.getLinks()[i], lp.getFibers()[i]);
+          }
         };
 
-        if (wOk && !bOk) {
-          // Case 2: working OK, backup infeasible — drop backup only
-          freeLightpath(conn->getBackupLightpath());
-          conn->setBackupLightpath(nullptr);
-          if (mirror && *mirror && (*mirror)->hasBackupLightpath()) {
-            freeLightpath((*mirror)->getBackupLightpath());
-            (*mirror)->setBackupLightpath(nullptr);
+    auto collectConnectionScope =
+        [&](const std::unique_ptr<Connection> &conn,
+            std::set<std::pair<int, int>> &scope) {
+          if (!conn) {
+            return;
           }
-          deferredDirtyScope.insert(mutationScope.begin(), mutationScope.end());
-        } else if (!wOk && conn->hasBackupLightpath() && bOk) {
-          // Case 3: working infeasible, backup OK — promote backup → working
-          freeLightpath(conn->getWorkingLightpath());
-          this->promoteBackupToWorking(*conn);
-          if (mirror && *mirror && (*mirror)->hasWorkingLightpath() &&
-              (*mirror)->hasBackupLightpath()) {
-            freeLightpath((*mirror)->getWorkingLightpath());
-            this->promoteBackupToWorking(**mirror);
+          if (conn->hasWorkingLightpath()) {
+            collectLightpathScope(conn->getWorkingLightpath(), scope);
           }
-          deferredDirtyScope.insert(mutationScope.begin(), mutationScope.end());
-        } else {
-          // Case 1/4: working infeasible, no usable backup — full rollback
-          std::cout << "Rolling back connection " << conn->getId() << " due to infeasibility (working and backup failed)\n";
-          std::cout << std::fixed << std::setprecision(4) << "With margin: "
-          << conn->getWorkingLightpath().getGsnrMarginDb(this->getOperationalThresholdMarginDb()) << " dB\n";
-          // Show mirror information also
-          std::cout << "Mirror connection ID: " << (mirror && *mirror ? std::to_string((*mirror)->getId()) : "N/A") << "\n";
-          if (mirror && *mirror) { std::cout << std::fixed << std::setprecision(4) << "Mirror With margin: "
-                      << (*mirror)->getWorkingLightpath().getGsnrMarginDb(this->getOperationalThresholdMarginDb()) << " dB\n";
+          if (conn->hasBackupLightpath()) {
+            collectLightpathScope(conn->getBackupLightpath(), scope);
           }
-          rollback(conn);
-          if (mirror)
-            rollback(*mirror);
-          deferredDirtyScope.insert(mutationScope.begin(), mutationScope.end());
-        }
+        };
+
+    // Helper: resolve mirror pointer from any connection map
+    auto getMirror = [&](auto &map, const std::unique_ptr<Connection> &conn)
+        -> std::unique_ptr<Connection> * {
+      if (!symmetricProvisioning || !conn)
+        return nullptr;
+      try {
+        auto it = map.find(conn->getMirrorId());
+        return (it != map.end() && it->second &&
+                it->second.get() != conn.get())
+                   ? &it->second
+                   : nullptr;
+      } catch (const std::logic_error &) {
+        return nullptr;
+      }
+    };
+
+    // Core policy — applied identically to staged and committed connections
+    auto applyFeasibilityPolicy = [&](std::unique_ptr<Connection> &conn,
+                                      std::unique_ptr<Connection> *mirror) {
+      if (!conn)
+        return;
+
+      if (conn->hasWorkingLightpath() &&
+          !conn->getWorkingLightpath().hasNoiseMaps()) {
+        this->gnEngine->computeAffectedByConnection(
+            *this->network, this->connections, stagedConnections, *conn);
+      }
+      if (conn->hasBackupLightpath() &&
+          !conn->getBackupLightpath().hasNoiseMaps()) {
+        this->gnEngine->computeAffectedByConnection(
+            *this->network, this->connections, stagedConnections, *conn);
+      }
+
+      const bool wOk = conn->hasWorkingLightpath()
+              && conn->getWorkingLightpath().isFeasible(this->getOperationalThresholdMarginDb());
+      const bool bOk = !conn->hasBackupLightpath()
+              || conn->getBackupLightpath().isFeasible(this->getOperationalThresholdMarginDb());
+
+      if (wOk && bOk)
+        return; // Both fine — nothing to do
+
+      std::set<std::pair<int, int>> mutationScope;
+      collectConnectionScope(conn, mutationScope);
+      if (mirror && *mirror) {
+        collectConnectionScope(*mirror, mutationScope);
+      }
+
+      // Full rollback helper (frees slots, subtracts demand, nulls ptr)
+      auto rollback = [&](std::unique_ptr<Connection> &c) {
+        if (!c)
+          return;
+        demands[c->getSrc()][c->getDst()].subtractAllocatedCapacity(
+            c->getBitRate().getBitRate(), c->getSlaLevel());
+        if (c->hasWorkingLightpath())
+          freeLightpath(c->getWorkingLightpath());
+        if (c->hasBackupLightpath())
+          freeLightpath(c->getBackupLightpath());
+        c.reset(); // Prevents commit of staged connections
       };
 
-      for (auto &[id, connPtr] : stagedConnections)
-        applyFeasibilityPolicy(connPtr, getMirror(stagedConnections, connPtr));
-
-      for (auto &[id, connPtr] : this->connections)
-        applyFeasibilityPolicy(connPtr, getMirror(this->connections, connPtr));
-
-      // Remove fully rolled-back committed entries (nullptr values).
-      for (auto it = this->connections.begin();
-           it != this->connections.end();) {
-        if (!it->second) {
-          it = this->connections.erase(it);
-        } else {
-          ++it;
+      if (wOk && !bOk) {
+        // Case 2: working OK, backup infeasible — drop backup only
+        freeLightpath(conn->getBackupLightpath());
+        conn->setBackupLightpath(nullptr);
+        if (mirror && *mirror && (*mirror)->hasBackupLightpath()) {
+          freeLightpath((*mirror)->getBackupLightpath());
+          (*mirror)->setBackupLightpath(nullptr);
         }
+        deferredDirtyScope.insert(mutationScope.begin(), mutationScope.end());
+      } else if (!wOk && conn->hasBackupLightpath() && bOk) {
+        // Case 3: working infeasible, backup OK — promote backup → working
+        freeLightpath(conn->getWorkingLightpath());
+        this->promoteBackupToWorking(*conn);
+        if (mirror && *mirror && (*mirror)->hasWorkingLightpath() &&
+            (*mirror)->hasBackupLightpath()) {
+          freeLightpath((*mirror)->getWorkingLightpath());
+          this->promoteBackupToWorking(**mirror);
+        }
+        deferredDirtyScope.insert(mutationScope.begin(), mutationScope.end());
+      } else {
+        // Case 1/4: working infeasible, no usable backup — full rollback
+        std::cout << "Rolling back connection " << conn->getId() << " due to infeasibility (working and backup failed)\n";
+        std::cout << std::fixed << std::setprecision(4) << "With margin: "
+        << conn->getWorkingLightpath().getGsnrMarginDb(this->getOperationalThresholdMarginDb()) << " dB\n";
+        // Show mirror information also
+        std::cout << "Mirror connection ID: " << (mirror && *mirror ? std::to_string((*mirror)->getId()) : "N/A") << "\n";
+        if (mirror && *mirror) { std::cout << std::fixed << std::setprecision(4) << "Mirror With margin: "
+                    << (*mirror)->getWorkingLightpath().getGsnrMarginDb(this->getOperationalThresholdMarginDb()) << " dB\n";
+        }
+        rollback(conn);
+        if (mirror)
+          rollback(*mirror);
+        deferredDirtyScope.insert(mutationScope.begin(), mutationScope.end());
       }
+    };
 
-      if (!deferredDirtyScope.empty()) {
-        this->gnEngine->computeAffectedByDirtyFibers(*this->network,
-                                                     this->connections,
-                                                     stagedConnections,
-                                                     deferredDirtyScope);
+    for (auto &[id, connPtr] : stagedConnections)
+      applyFeasibilityPolicy(connPtr, getMirror(stagedConnections, connPtr));
+
+    for (auto &[id, connPtr] : this->connections)
+      applyFeasibilityPolicy(connPtr, getMirror(this->connections, connPtr));
+
+    // Remove fully rolled-back committed entries (nullptr values).
+    for (auto it = this->connections.begin();
+         it != this->connections.end();) {
+      if (!it->second) {
+        it = this->connections.erase(it);
+      } else {
+        ++it;
       }
+    }
+
+    if (!deferredDirtyScope.empty()) {
+      this->gnEngine->computeAffectedByDirtyFibers(*this->network,
+                                                   this->connections,
+                                                   stagedConnections,
+                                                   deferredDirtyScope);
     }
   }
 
@@ -36732,10 +36510,6 @@ GnEngine::FeasibilityResult Controller::checkFeasibility(
     double extraThresholdMarginDb) {
   if (!this->network) {
     throw std::logic_error("Controller::checkFeasibility: Network is not set.");
-  }
-  if (this->network->getSimulationMode() != mt::SimulationMode::GN) {
-    throw std::logic_error(
-        "Controller::checkFeasibility: Available only in GN mode.");
   }
   if (!this->gnEngine) {
     throw std::logic_error(
@@ -36790,17 +36564,10 @@ void Controller::precomputeValidConfigurations(
     throw std::logic_error("Controller::precomputeValidConfigurations: Network is not set");
   if (!this->paths || this->paths->empty())
     throw std::logic_error("Controller::precomputeValidConfigurations: Paths must be set");
-  if (this->network->getSimulationMode() != mt::SimulationMode::GN)
-    return; // Only applicable in GN mode
   if (!this->gnEngine)
     throw std::logic_error(
         "Controller::precomputeValidConfigurations: GN engine is not configured");
 
-  // During precomputation, feasibility is evaluated at a canonical spectrum position
-  // (center of each band), while real allocations may land at different slots.
-  // We therefore subtract 0.5 dB from the operational margin, which intentionally
-  // relaxes the acceptance threshold during precomputation to avoid rejecting
-  // candidates that are likely to be feasible after actual placement.
   const double feasibilityThresholdDb = this->getOperationalThresholdMarginDb();
 
   // band -> [(modOrder, marginDb, modIdx)]: collects feasible mods per band before sorting
@@ -37010,48 +36777,6 @@ void Controller::promoteBackupToWorking(Connection &conn) {
   conn.backupLightpath = nullptr;
 }
 
-// User Utility Methods
-
-int Controller::getAdaptiveModulationFormat(const BitRate &bitRate,
-                                            const mt::Route &route,
-                                            mt::Band band) const {
-
-  if (this->network->getSimulationMode() != mt::SimulationMode::ReachTable) {
-    throw std::logic_error("Controller::getAdaptiveModulationFormat: This "
-                           "method is not applicable in GNPy or GN modes");
-  }
-
-  double totalLength =
-      std::accumulate(route.begin(), route.end(), 0.0,
-                      [](double sum, const std::shared_ptr<Link> &link) {
-                        return sum + link->getLength();
-                      });
-
-  int bestModulation = -1;
-  int minSlots = std::numeric_limits<int>::max();
-  double maxReach = 0.0;
-
-  for (int i = 0; i < bitRate.getNumberOfModulations(); ++i) {
-    try {
-      double reach = bitRate.getModulationFormat(i)->getReach(band);
-      int slots = bitRate.getModulationFormat(i)
-                      ->getRequiredSlots(); // No band argument
-      if (reach >= totalLength) {
-        if (slots < minSlots || (slots == minSlots && reach > maxReach)) {
-          minSlots = slots;
-          maxReach = reach;
-          bestModulation = i;
-        }
-      }
-    } catch (const std::invalid_argument &) {
-      // Band not supported by this modulation, skip it
-      continue;
-    }
-    // Let std::runtime_error propagate (e.g., physical layer mode errors)
-  }
-  return bestModulation;
-}
-
 Controller::FullLoadResult Controller::checkFullLoad(
     int src, int dst, int pathIdx, std::shared_ptr<const FiberSpec> fiberSpec,
     const std::vector<std::shared_ptr<BitRate>> &bitRates, double extraThresholdMarginDb) {
@@ -37060,10 +36785,6 @@ Controller::FullLoadResult Controller::checkFullLoad(
   if (!this->network) {
     throw std::logic_error(
         "Controller::checkFullLoad: Network is not set.");
-  }
-  if (this->network->getSimulationMode() != mt::SimulationMode::GN) {
-    throw std::logic_error(
-        "Controller::checkFullLoad: Available only in GN mode.");
   }
   if (!this->gnEngine) {
     throw std::logic_error(
@@ -37679,56 +37400,28 @@ Simulator::Simulator(void) {
   this->controller = std::make_unique<Controller>();
   this->defaultValues();
   this->events = std::list<Event>();
+}
 
-  // Bit Rates - Using band-specific modulation format maps
-  this->bitRates = std::vector<std::shared_ptr<BitRate>>();
-  std::shared_ptr<BitRate> auxB = std::make_shared<BitRate>(10.0);
-  // Use addModulationFormat with reach-table signature (name, slots, reach per
-  // band)
-  auxB->addModulationFormat("BPSK", 1,
-                            std::map<mt::Band, double>{{mt::Band::C, 5520}});
-  this->bitRates.push_back(auxB);
-  auxB = std::make_shared<BitRate>(40.0);
-  auxB->addModulationFormat("BPSK", 4,
-                            std::map<mt::Band, double>{{mt::Band::C, 5520}});
-  this->bitRates.push_back(auxB);
-  auxB = std::make_shared<BitRate>(100.0);
-  auxB->addModulationFormat("BPSK", 8,
-                            std::map<mt::Band, double>{{mt::Band::C, 5520}});
-  this->bitRates.push_back(auxB);
-  auxB = std::make_shared<BitRate>(400.0);
-  auxB->addModulationFormat("BPSK", 32,
-                            std::map<mt::Band, double>{{mt::Band::C, 5520}});
-  this->bitRates.push_back(auxB);
-  auxB = std::make_shared<BitRate>(1000.0);
-  auxB->addModulationFormat("BPSK", 80,
-                            std::map<mt::Band, double>{{mt::Band::C, 5520}});
-  this->bitRates.push_back(auxB);
+Simulator::Simulator(std::string networkFilename,
+                     std::string fiberConfigFilename,
+                     std::string bitratesFilename) {
+  // Controller and Network
+  this->controller = std::make_unique<Controller>();
+  // Default simulation values (requires controller to exist).
+  this->defaultValues();
+  this->controller->setNetwork(
+      std::make_unique<Network>(networkFilename, fiberConfigFilename));
+  // Events list
+  this->events = std::list<Event>();
+  // Bit Rates from file
+  this->bitRates = BitRate::readBitRatesFile(bitratesFilename);
 }
 
 Simulator::Simulator(std::string networkFilename,
                      std::string fiberConfigFilename,
                      std::string bitratesFilename,
-                     mt::SimulationMode simulationMode)
-    : simulationMode(simulationMode) {
-  // Controller and Network
-  this->controller = std::make_unique<Controller>();
-  // Default simulation values (requires controller to exist).
-  this->defaultValues();
-  this->controller->setNetwork(std::make_unique<Network>(
-      networkFilename, fiberConfigFilename, simulationMode));
-  // Events list
-  this->events = std::list<Event>();
-  // Bit Rates from file
-  this->bitRates = BitRate::readBitRatesFile(bitratesFilename, simulationMode);
-}
-
-Simulator::Simulator(std::string networkFilename,
-                     std::string fiberConfigFilename,
-                     std::string bitratesFilename, std::string demandsFilename,
-                     mt::SimulationMode simulationMode)
-    : Simulator(networkFilename, fiberConfigFilename, bitratesFilename,
-                simulationMode) {
+                     std::string demandsFilename)
+    : Simulator(networkFilename, fiberConfigFilename, bitratesFilename) {
   // Read demands from file
   this->readDemandsFile(demandsFilename);
 }
@@ -37785,18 +37478,6 @@ void Simulator::setPathsDisjoint(int k, const std::string &metric) {
 }
 
 // Simulation parameters
-
-void Simulator::setSimulationMode(mt::SimulationMode mode) {
-  if (this->initReady) {
-    throw std::runtime_error("You can not set 'simulationMode' parameter AFTER "
-                             "calling init simulator method.");
-  }
-  this->simulationMode = mode;
-}
-
-mt::SimulationMode Simulator::getSimulationMode() const {
-  return this->simulationMode;
-}
 
 void Simulator::setNumberOfPeriods(int numberOfPeriods) {
   if (this->initReady) {
@@ -37868,10 +37549,11 @@ void Simulator::setGrowthRates(std::vector<double> growthRates) {
     throw std::runtime_error(
         "You can not set growth rates AFTER calling init simulator method.");
   }
-  if (growthRates.size() != static_cast<size_t>(this->numberOfPeriods)) {
+  const size_t expectedRates = static_cast<size_t>(this->numberOfPeriods - 1);
+  if (growthRates.size() != expectedRates) {
     throw std::invalid_argument(
         "The size of the growth rates vector must be equal to the number of "
-        "periods.");
+        "period transitions (numberOfPeriods - 1).");
   }
   this->growthRates = std::move(growthRates);
 }
@@ -38014,8 +37696,7 @@ void Simulator::init(void) {
   this->nlsLineWssInventory.clear();
   this->nlsFilterInventory.clear();
   this->nlsSpareWssInventory.clear();
-  this->nlsP2pEqualizationInventory.clear();
-  this->nlsP2pEqualizationBoosterInventory.clear();
+  this->nlsEqualizationInventory.clear();
 
   // Resolve the configured routing policy. If the user made no selection,
   // defaultValues() supplies three shortest paths by length.
@@ -38047,14 +37728,10 @@ void Simulator::init(void) {
   // input files if physical layer aware
   this->controller->designFiberChains();
 
-  // Here we initialize the physical-layer engine if needed.
-  if (this->controller->getNetwork().getSimulationMode() == mt::SimulationMode::GN) {
-    std::unique_ptr<GnEngine> gnEngine = std::make_unique<GnEngine>();
-    this->controller->setGnEngine(std::move(gnEngine));
+  this->controller->setGnEngine(std::make_unique<GnEngine>());
 
-    // Pre-compute valid (bitrate, modulation) configurations per demand/route
-    this->controller->precomputeValidConfigurations(this->demands, this->bitRates);
-  }
+  // Pre-compute valid (bitrate, modulation) configurations per demand/route.
+  this->controller->precomputeValidConfigurations(this->demands, this->bitRates);
 
   // TODO: If allocation function was not set by user, set it to default.
   if (!this->controller->getAllocationFunction()) {
@@ -38230,7 +37907,7 @@ void Simulator::defaultValues() {
   this->requestedOutputDir.reset();
   this->outputDir.clear();
 
-  // Default operational margin of 1 dB
+  // Default operational margin of 0.5 dB
   this->controller->setOperationalThresholdMarginDb(0.5);
 
   // Parameters for the network design are contained in DesignConfig struct
@@ -38572,7 +38249,7 @@ void Simulator::updateDemands() {
   const bool useVariableGrowth = this->growthRates.empty();
   const double multiplier =
       useVariableGrowth ? this->growthVariable.getNextValue()
-                        : (this->growthRates[this->currentPeriod] + 1.0);
+                        : (this->growthRates[this->currentPeriod - 1] + 1.0);
 
   if (this->demands.empty() || multiplier == 1.0) {
     return;
@@ -38768,7 +38445,7 @@ void Simulator::printRow() {
   std::optional<double> growthPct;
   if (this->currentPeriod > 1) {
     if (!this->growthRates.empty()) {
-      growthPct = this->growthRates[this->currentPeriod - 1] * 100.0;
+      growthPct = this->growthRates[this->currentPeriod - 2] * 100.0;
     } else {
       growthPct = (this->growthVariable.getCurrentValue() - 1.0) * 100.0;
     }
@@ -38894,7 +38571,7 @@ void Simulator::writePeriodSummary(double utilization, double activeFiberUtiliza
   std::optional<double> growthPct;
   if (this->currentPeriod > 1) {
     if (!this->growthRates.empty()) {
-      growthPct = this->growthRates[this->currentPeriod - 1] * 100.0;
+      growthPct = this->growthRates[this->currentPeriod - 2] * 100.0;
     } else {
       growthPct = (this->growthVariable.getCurrentValue() - 1.0) * 100.0;
     }
@@ -38942,18 +38619,6 @@ void Simulator::writePeriodSummary(double utilization, double activeFiberUtiliza
       growthStdDevValue = growthStdDevStream.str();
     }
 
-    std::string simulationModeValue = "Unknown";
-    switch (this->getSimulationMode()) {
-    case mt::SimulationMode::ReachTable:
-      simulationModeValue = "ReachTable";
-      break;
-    case mt::SimulationMode::GN:
-      simulationModeValue = "GN";
-      break;
-    default:
-      break;
-    }
-
     std::ostringstream maxSpanStream;
     maxSpanStream << std::fixed << std::setprecision(2)
                   << this->designConfig->maxSpanLength << " km";
@@ -38983,7 +38648,6 @@ void Simulator::writePeriodSummary(double utilization, double activeFiberUtiliza
     row("Growth Rate", growthRateValue);
     row("Std dev (mult.)", growthStdDevValue);
     row("Unique Demand Pairs", std::to_string(uniqueDemandPairs));
-    row("Simulation Mode", simulationModeValue);
     row("Allocator Algorithm",
         this->controller->getAllocationFunctionName().empty()
             ? "Not set"
@@ -39010,17 +38674,13 @@ void Simulator::writePeriodSummary(double utilization, double activeFiberUtiliza
     glossaryEntry("Growth Rate",
                   {"Configured demand growth model for the simulation.",
                    "Shows either the stochastic base rate or the explicit "
-                   "per-period values."});
+                   "per-transition values."});
     glossaryEntry("Std dev (mult.)",
                   {"Standard deviation used by the stochastic growth multiplier.",
                    "Marked as N/A when explicit per-period growth values are used."});
     glossaryEntry("Unique Demand Pairs",
                   {"Number of src-dst demand pairs reported in this summary.",
                    "When symmetric provisioning is enabled, each pair is counted once."});
-    glossaryEntry("Simulation Mode",
-                  {"Optical evaluation mode used for the run.",
-                   "Current modes are ReachTable (reach-table based validation)",
-                   "and GN (GN-engine ASE/NLI/GSNR evaluation)."});
     glossaryEntry("Allocator Algorithm",
                   {"Registered label of the allocation function used during",
                    "demand provisioning in this run."});
@@ -39351,7 +39011,7 @@ void Simulator::writeConnectionsCSV() {
         << "power_nli_w,"
         << "gsnr_db,"
         << "gsnr_raw_db,"
-        << "gsnr_raw_margin_db,"
+        << "gsnr_margin_db,"
         << "gsnr_operational_margin_db,"
         << "route_length_km,"
         << "is_allocated_in_p2p,"
@@ -39428,21 +39088,16 @@ void Simulator::writeConnectionsCSV() {
         << mt::bandToChar(band) << ","
         << lp.getLinks().size() << "," 
         << std::setprecision(6) << lp.getSignalPowerW() << ",";
-    // Only report ASE, NLI, and GSNR in the GN simulation mode
-    if (this->getSimulationMode() == mt::SimulationMode::GN) {
-      const double gsnrDb = lp.getGsnrDb();
-      const double gsnrRawDb = lp.getGsnrDbRaw();
-      const double gsnrRawMarginDb = lp.getGsnrMarginDb(0.0);
-      const double gsnrOperationalMarginDb = lp.getGsnrMarginDb(this->controller->getOperationalThresholdMarginDb());
-      outFileLP << std::scientific << std::setprecision(6) << lp.getAsePowerW() << ","
-                << std::scientific << std::setprecision(6) << lp.getNliPowerW() << ","
-                << std::fixed << std::setprecision(6) << gsnrDb << ","
-                << std::fixed << std::setprecision(6) << gsnrRawDb << ","
-                << std::fixed << std::setprecision(6) << gsnrRawMarginDb << ","
-                << std::fixed << std::setprecision(6) << gsnrOperationalMarginDb << ",";
-    } else {
-      outFileLP << "N/A,N/A,N/A,N/A,N/A,N/A,";
-    }
+    const double gsnrDb = lp.getGsnrDb();
+    const double gsnrRawDb = lp.getGsnrDbRaw();
+    const double gsnrMarginDb = lp.getGsnrMarginDb(0.0);
+    const double gsnrOperationalMarginDb = lp.getGsnrMarginDb(this->controller->getOperationalThresholdMarginDb());
+    outFileLP << std::scientific << std::setprecision(6) << lp.getAsePowerW() << ","
+              << std::scientific << std::setprecision(6) << lp.getNliPowerW() << ","
+              << std::fixed << std::setprecision(6) << gsnrDb << ","
+              << std::fixed << std::setprecision(6) << gsnrRawDb << ","
+              << std::fixed << std::setprecision(6) << gsnrMarginDb << ","
+              << std::fixed << std::setprecision(6) << gsnrOperationalMarginDb << ",";
     outFileLP 
       << std::fixed << std::setprecision(2) << routeLengthKM << ","
       << (lp.isAllocatedInP2P() ? "true" : "false") << ","
@@ -39534,6 +39189,7 @@ void Simulator::writeLinksCSV() {
                      "length_km,"
                      "fiber_idx,"
                      "fiber_type,"
+                     "dedicated_to_p2p,"
                      "operational_state,"
                      "utilization_pct,"
                      "carried_traffic_gbps,"
@@ -39600,15 +39256,11 @@ void Simulator::writeLinksCSV() {
           auto &workingLp = conn->getWorkingLightpath();
           if (connId > 0 && workingLp.getOperationalState() == mt::DeviceState::Powered) {
             activeCount++;
-            if (this->getSimulationMode() == mt::SimulationMode::GN) {
-              averageGsnrDb += workingLp.getGsnrDb();
-            }
+            averageGsnrDb += workingLp.getGsnrDb();
             carriedTrafficGbps += conn->getBitRate().getBitRate();
           } else if (connId < 0 && conn->getBackupLightpath().getOperationalState() == mt::DeviceState::Powered) {
             activeCount++;
-            if (this->getSimulationMode() == mt::SimulationMode::GN) {
-              averageGsnrDb += conn->getBackupLightpath().getGsnrDb();
-            }
+            averageGsnrDb += conn->getBackupLightpath().getGsnrDb();
             carriedTrafficGbps += conn->getBitRate().getBitRate();
           }
         }
@@ -39622,14 +39274,12 @@ void Simulator::writeLinksCSV() {
           << getNodeLabelOrDash(network, link->getDst()) << ","
           << std::fixed << std::setprecision(2) << link->getLength() << ","
           << fiberIdx << "," << fiber.getFiberSpec()->getName() << ","
+          << (fiber.isDedicatedToP2P() ? "true" : "false") << ","
           << deviceStateStr(fiber.getOperationalState()) << "," << std::fixed
           << std::setprecision(2) << fiber.getUsagePercentage() << ","
           << std::fixed << std::setprecision(1) << carriedTrafficGbps << ",";
-      if (this->getSimulationMode() == mt::SimulationMode::GN)
-        outFileFibers << std::fixed << std::setprecision(4) << averageGsnrDb
-                      << "\n";
-      else
-        outFileFibers << "N/A\n";
+      outFileFibers << std::fixed << std::setprecision(4) << averageGsnrDb
+                    << "\n";
     }
 
     avgUtilizationPct /= fibers.size();
@@ -39714,6 +39364,8 @@ void Simulator::writeDevicesCSV() {
   // Amps per band
   std::map<mt::Band, int> activeAmpCountsPerBand;
   std::map<mt::Band, int> inactiveAmpCountsPerBand;
+  std::map<mt::Band, int> activePowerEqualizationCountsPerBand;
+  std::map<mt::Band, int> inactivePowerEqualizationCountsPerBand;
 
   // Accumulate fiber lengths, mux/demux and amps
   for (const auto& link : network.getLinks()) {
@@ -39746,15 +39398,22 @@ void Simulator::writeDevicesCSV() {
       }
 
       for (mt::Band band : fiber->getBands()) {
+        const int equalizationSiteCount =
+            fiber->getFiberChain().getPowerEqualizationStageCount();
         if (fiber->isActive()) {
           if (!fiber->isDedicatedToP2P()) {
             activeAmpCountsPerBand[band] += 2;
           }
+          activeAmpCountsPerBand[band] += equalizationSiteCount;
+          activePowerEqualizationCountsPerBand[band] += equalizationSiteCount;
           activeAmpCountsPerBand[band] += totalAmps;
         } else {
           if (!fiber->isDedicatedToP2P()) {
             inactiveAmpCountsPerBand[band] += 2;
           }
+          inactiveAmpCountsPerBand[band] += equalizationSiteCount;
+          inactivePowerEqualizationCountsPerBand[band] +=
+              equalizationSiteCount;
           inactiveAmpCountsPerBand[band] += totalAmps;
         }
       }
@@ -39767,6 +39426,12 @@ void Simulator::writeDevicesCSV() {
     int inactiveCount = inactiveAmpCountsPerBand[band];
     outFile << this->currentPeriod << ",active_amps," << mt::bandToChar(band) << "," << activeCount << "\n";
     outFile << this->currentPeriod << ",inactive_amps," << mt::bandToChar(band) << "," << inactiveCount << "\n";
+    outFile << this->currentPeriod << ",active_power_equalization,"
+            << mt::bandToChar(band) << ","
+            << activePowerEqualizationCountsPerBand[band] << "\n";
+    outFile << this->currentPeriod << ",inactive_power_equalization,"
+            << mt::bandToChar(band) << ","
+            << inactivePowerEqualizationCountsPerBand[band] << "\n";
   }
   outFile << this->currentPeriod << ",active_mux_demux,N/A," << activeMuxDemuxCount << "\n";
   outFile << this->currentPeriod << ",inactive_mux_demux,N/A," << inactiveMuxDemuxCount << "\n";
@@ -40025,6 +39690,7 @@ void Simulator::writeDevicesCSV_NLS() {
   // equipment is counted from the bands actually supported by each fiber.
   std::vector<std::map<mt::Band, int>> outgoingFibersPerBand(numberOfNodes);
   std::vector<int> activeMultibandOutgoingFibers(numberOfNodes, 0);
+  std::map<mt::Band, int> currentEqualizationCounts;
 
   for (const auto &link : links) {
     const int src = link->getSrc();
@@ -40053,6 +39719,14 @@ void Simulator::writeDevicesCSV_NLS() {
           }
         } else {
           inactiveInlineAmpsPerBand[band] += inlineAmpCount;
+        }
+      }
+
+      if (active && !fiber->isDedicatedToP2P()) {
+        const int siteCount = static_cast<int>(
+            fiber->getFiberChain().getPowerEqualizationStageCount());
+        for (mt::Band band : fiberBands) {
+          currentEqualizationCounts[band] += siteCount;
         }
       }
 
@@ -40094,8 +39768,6 @@ void Simulator::writeDevicesCSV_NLS() {
   // pair contributes two directional bypasses: forward and reverse.
   std::vector<std::map<mt::Band, int>>
       unidirectionalBypassesPerBand(numberOfNodes);
-  std::map<mt::Band, int> currentP2pEqualizationCounts;
-  std::map<mt::Band, int> currentP2pEqualizationBoosterCounts;
   std::map<int, P2P *> p2psById;
   for (const auto &p2p : this->controller->getP2Ps()) {
     if (p2p) {
@@ -40205,8 +39877,7 @@ void Simulator::writeDevicesCSV_NLS() {
       const int siteCount = static_cast<int>(
           directionalP2P.getPowerEqualizationSiteCount());
       for (mt::Band band : routeBands) {
-        currentP2pEqualizationCounts[band] += siteCount;
-        currentP2pEqualizationBoosterCounts[band] += siteCount;
+        currentEqualizationCounts[band] += siteCount;
       }
     };
 
@@ -40250,13 +39921,9 @@ void Simulator::writeDevicesCSV_NLS() {
     }
   }
 
-  for (const auto &[band, count] : currentP2pEqualizationCounts) {
-    nlsP2pEqualizationInventory[band] =
-        std::max(nlsP2pEqualizationInventory[band], count);
-  }
-  for (const auto &[band, count] : currentP2pEqualizationBoosterCounts) {
-    nlsP2pEqualizationBoosterInventory[band] =
-        std::max(nlsP2pEqualizationBoosterInventory[band], count);
+  for (const auto &[band, count] : currentEqualizationCounts) {
+    nlsEqualizationInventory[band] =
+        std::max(nlsEqualizationInventory[band], count);
   }
 
   // Build add and drop intervals independently. Mirrored connections are
@@ -40829,19 +40496,13 @@ void Simulator::writeDevicesCSV_NLS() {
     }
   }
 
-  for (const auto &[band, count] : nlsP2pEqualizationBoosterInventory) {
+  for (const auto &[band, count] : nlsEqualizationInventory) {
     if (count <= 0) {
       continue;
     }
-    deviceRows[{"active_booster_amp", std::string(1, mt::bandToChar(band))}] +=
-        count;
-  }
-  for (const auto &[band, count] : nlsP2pEqualizationInventory) {
-    if (count <= 0) {
-      continue;
-    }
-    deviceRows[{"active_p2p_equalization",
-                std::string(1, mt::bandToChar(band))}] += count;
+    const std::string bandName(1, mt::bandToChar(band));
+    deviceRows[{"active_booster_amp", bandName}] += count;
+    deviceRows[{"active_power_equalization", bandName}] += count;
   }
 
   for (const auto &[nodeId, count] : this->nlsFilterInventory) {
@@ -41466,6 +41127,10 @@ const FiberChain& Fiber::getFiberChain() const {
 }
 
 void Fiber::setOperationalState(mt::DeviceState state) {
+	if (state == mt::DeviceState::Affected) {
+		throw std::invalid_argument(
+			"Affected is a derived state and cannot be assigned to a fiber.");
+	}
 	operationalState = state;
 }
 
@@ -41840,7 +41505,6 @@ Network::Network(void)
     : name("")
     , nodeCounter(0)
     , linkCounter(0)
-    , simulationMode(mt::SimulationMode::ReachTable)
     , symmetricNetwork(false)
 {
   nodesIn.push_back(0);
@@ -41848,12 +41512,10 @@ Network::Network(void)
 }
 
 Network::Network(const std::string& networkFilename,
-                 const std::string& fiberSpectrumFilename,
-                 mt::SimulationMode simulationMode)
+                 const std::string& fiberSpectrumFilename)
     : name("")
     , nodeCounter(0)
     , linkCounter(0)
-    , simulationMode(simulationMode)
     , symmetricNetwork(false)
 {
   nodesIn.push_back(0);
@@ -41867,7 +41529,6 @@ Network::Network(const Network& net)
     : name(net.name)
     , nodeCounter(net.nodeCounter)
     , linkCounter(net.linkCounter)
-    , simulationMode(net.simulationMode)
     , symmetricNetwork(net.symmetricNetwork)
 {
   // Deep copy fiberSpecs
@@ -41909,7 +41570,7 @@ Network::Network(const Network& net)
 Network::~Network(void) = default;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Name and Physical Layer Mode
+// Name
 ///////////////////////////////////////////////////////////////////////////////
 
 void Network::setName(const std::string& networkName) {
@@ -41927,17 +41588,6 @@ std::string Network::getName() const {
     throw std::logic_error("Network name has not been set.");
   }
   return this->name;
-}
-
-void Network::setSimulationMode(mt::SimulationMode simulationMode) {
-  if (!this->nodes.empty() || !this->links.empty()) {
-    throw std::logic_error("Cannot change simulation mode after nodes or links are defined.");
-  }
-  this->simulationMode = simulationMode;
-}
-
-mt::SimulationMode Network::getSimulationMode() const {
-  return this->simulationMode;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -42358,109 +42008,87 @@ void Network::readFiberSpectrumsFile(const std::string& fiberSpectrumsFile) {
           "Fiber type '" + fiberTypeName + "' must be a JSON object.");
     }
 
-    // Common optional parameters (default to 1)
+    // GN currently supports single-mode, single-core fibers.
     int modes = data.value("modes", 1);
     int cores = data.value("cores", 1);
 
-    // SI object is required in both modes
+    // SI contains the GN spectrum configuration for each band.
     if (!data.contains("SI") || !data["SI"].is_object()) {
       throw std::invalid_argument(
           "Fiber type '" + fiberTypeName + "' is missing 'SI' object for band configurations.");
     }
 
-    std::shared_ptr<FiberSpec> fiberSpec;
+    if (modes != 1 || cores != 1) {
+      std::cerr << mt::colors::YELLOW << "[WARN] " << mt::colors::RESET
+                << " Fiber type '" << fiberTypeName << "' has modes=" << modes
+                << " and cores=" << cores << ", but GN evaluation currently only supports "
+                << "single-mode, single-core fibers. These values will be ignored." << std::endl;
+    }
 
-    if (this->getSimulationMode() == mt::SimulationMode::GN) {
-      // TODO: Currently physical-layer mode only supports single-mode, single-core fibers
-      if (modes != 1 || cores != 1) {
-        std::cerr << mt::colors::YELLOW << "[WARN] " << mt::colors::RESET
-                  << " Fiber type '" << fiberTypeName << "' has modes=" << modes 
-                  << " and cores=" << cores << ", but physical-layer mode currently only supports "
-                  << "single-mode, single-core fibers. This values will be ignored." << std::endl;
-      }
+    if (data.contains("ramanGain")) {
+      throw std::invalid_argument(
+          "Fiber type '" + fiberTypeName +
+          "' uses deprecated field 'ramanGain'. Use 'ramanGainSlope' in 1/(W·km·THz).");
+    }
 
-      if (data.contains("ramanGain")) {
+    if (!data.contains("dispersion") ||
+        !data.contains("dispersionSlope") || !data.contains("gamma") ||
+        !data.contains("ramanGainSlope") ||
+        !data.contains("lossCoefDbPerKm")) {
+      throw std::invalid_argument(
+          "Fiber type '" + fiberTypeName +
+          "' is missing required GN physical parameters. Expected keys/units: "
+          "dispersion [ps/(nm·km)], dispersionSlope [ps/(nm^2·km)], gamma [1/(W·km)], "
+          "ramanGainSlope [1/(W·km·THz)], lossCoefDbPerKm [dB/km].");
+    }
+
+    double dispersion = data["dispersion"].get<double>();
+    double dispersionSlope = data["dispersionSlope"].get<double>();
+    double gamma = data["gamma"].get<double>();
+    double ramanGainSlope = data["ramanGainSlope"].get<double>();
+    double lossCoef = data["lossCoefDbPerKm"].get<double>();
+
+    auto fiberSpec = std::make_shared<FiberSpec>(
+        fiberTypeName, dispersion, dispersionSlope, gamma, ramanGainSlope,
+        lossCoef);
+
+    for (auto& [bandStr, bandData] : data["SI"].items()) {
+      if (bandStr.length() != 1) {
         throw std::invalid_argument(
-            "Fiber type '" + fiberTypeName +
-            "' uses deprecated field 'ramanGain'. Use 'ramanGainSlope' in 1/(W·km·THz).");
+            "Invalid band string '" + bandStr + "' in fiber type '" +
+            fiberTypeName + "'.");
       }
 
-      // Physical-layer mode: require physical parameters at fiber level
-      if (!data.contains("dispersion") || !data.contains("dispersionSlope") || !data.contains("gamma") ||
-          !data.contains("ramanGainSlope") || !data.contains("lossCoefDbPerKm")) {
+      mt::Band band = mt::charToBand(bandStr[0]);
+
+      if (!bandData.is_object()) {
         throw std::invalid_argument(
-            "Fiber type '" + fiberTypeName +
-            "' is missing required GN physical parameters. Expected keys/units: "
-            "dispersion [ps/(nm·km)], dispersionSlope [ps/(nm^2·km)], gamma [1/(W·km)], "
-            "ramanGainSlope [1/(W·km·THz)], lossCoefDbPerKm [dB/km].");
+            "Band '" + bandStr + "' in fiber type '" + fiberTypeName +
+            "' must be an object with GN spectrum parameters.");
       }
 
-      double dispersion = data["dispersion"].get<double>();
-      double dispersionSlope = data["dispersionSlope"].get<double>();
-      double gamma = data["gamma"].get<double>();
-      double ramanGainSlope = data["ramanGainSlope"].get<double>();
-      double lossCoef = data["lossCoefDbPerKm"].get<double>();
-
-      fiberSpec = std::make_shared<FiberSpec>(fiberTypeName, dispersion, dispersionSlope, gamma, ramanGainSlope, lossCoef);
-
-      // Parse SI bands - each must be an object with frequency parameters
-      for (auto& [bandStr, bandData] : data["SI"].items()) {
-        if (bandStr.length() != 1) {
-          throw std::invalid_argument(
-              "Invalid band string '" + bandStr + "' in fiber type '" + fiberTypeName + "'.");
-        }
-
-        mt::Band band = mt::charToBand(bandStr[0]);
-
-        if (!bandData.is_object()) {
-          throw std::invalid_argument(
-              "Band '" + bandStr + "' in fiber type '" + fiberTypeName +
-              "' must be an object with physical parameters in physical-layer mode.");
-        }
-
-        if (!bandData.contains("freqMinHz") || !bandData.contains("freqMaxHz") || !bandData.contains("slotWidthHz")) {
-          throw std::invalid_argument(
-              "Band '" + bandStr + "' in fiber type '" + fiberTypeName +
-              "' is missing required fields (freqMinHz, freqMaxHz, slotWidthHz).");
-        }
-
-        double freqMinHz = bandData["freqMinHz"].get<double>();
-        double freqMaxHz = bandData["freqMaxHz"].get<double>();
-        double slotWidthHz = bandData["slotWidthHz"].get<double>();
-        double sysMarginsDb = bandData.value("sysMarginsDb", 2.0);
-
-        fiberSpec->addBandConfig(band, freqMinHz, freqMaxHz, slotWidthHz, sysMarginsDb);
+      if (!bandData.contains("freqMinHz") ||
+          !bandData.contains("freqMaxHz") ||
+          !bandData.contains("slotWidthHz")) {
+        throw std::invalid_argument(
+            "Band '" + bandStr + "' in fiber type '" + fiberTypeName +
+            "' is missing required fields (freqMinHz, freqMaxHz, slotWidthHz).");
       }
-    } else { // This assumes Reach-table mode: no physical parameters needed
-      fiberSpec = std::make_shared<FiberSpec>(fiberTypeName, modes, cores);
 
-      // Parse SI bands - each must be an integer (slot count)
-      for (auto& [bandStr, bandData] : data["SI"].items()) {
-        if (bandStr.length() != 1) {
-          throw std::invalid_argument(
-              "Invalid band string '" + bandStr + "' in fiber type '" + fiberTypeName + "'.");
-        }
+      double freqMinHz = bandData["freqMinHz"].get<double>();
+      double freqMaxHz = bandData["freqMaxHz"].get<double>();
+      double slotWidthHz = bandData["slotWidthHz"].get<double>();
 
-        mt::Band band = mt::charToBand(bandStr[0]);
-
-        if (!bandData.is_number_integer()) {
-          throw std::invalid_argument(
-              "Band '" + bandStr + "' in fiber type '" + fiberTypeName +
-              "' must be an integer (slot count) in reach-table mode.");
-        }
-
-        int slots = bandData.get<int>();
-        fiberSpec->addBandConfig(band, slots);
-      }
+      fiberSpec->addBandConfig(band, freqMinHz, freqMaxHz, slotWidthHz);
     }
 
     this->fiberSpecs[fiberTypeName] = fiberSpec;
   }
 
-  // In physical-layer-aware mode, validate that shared bands have consistent configurations
+  // Validate that shared bands have consistent configurations.
   // Different fiber types CAN have different bands (e.g., one C-band only, another C+L)
   // BUT if a band is defined in multiple fiber types, it must have identical frequency parameters
-  if (this->getSimulationMode() != mt::SimulationMode::ReachTable && this->fiberSpecs.size() > 1) {
+  if (this->fiberSpecs.size() > 1) {
     // Track the "reference" configuration for each band (first fiber spec that defines it)
     std::map<mt::Band, std::pair<std::string, const FiberSpec::BandConfig*>> bandReferences;
     
@@ -42481,7 +42109,7 @@ void Network::readFiberSpectrumsFile(const std::string& fiberSpectrumsFile) {
               config.freqMaxHz != refConfig.freqMaxHz ||
               config.slotWidthHz != refConfig.slotWidthHz) {
             throw std::invalid_argument(
-                "Physical-layer mode requires consistent frequency parameters for shared bands. "
+                "GN evaluation requires consistent frequency parameters for shared bands. "
                 "Band " + std::string(1, mt::bandToChar(band)) + " is defined differently in '" + 
                 refFiberName + "' and '" + fiberName + "'. "
                 "When multiple fiber types define the same band, they must share identical "
@@ -43125,21 +42753,13 @@ void BitRate::addModulationFormat(std::shared_ptr<ModulationFormat> modulationFo
 }
 
 void BitRate::addModulationFormat(const std::string &modulation,
-                                            int requiredSlots,
-                                            const std::map<mt::Band, double> &reachPerBand) {
-  auto modulationFormat = std::make_shared<ModulationFormat>(modulation, requiredSlots, reachPerBand);
-  this->addModulationFormat(std::move(modulationFormat));
-}
-
-void BitRate::addModulationFormat(const std::string &modulation,
                                                double requiredOsnr,
                                                double symbolRate,
                                                double channelBw,
                                                double modOrder,
-                                               std::optional<double> launchPower,
-                                               std::optional<double> maxReach) {
+                                               std::optional<double> launchPower) {
   auto modulationFormat = std::make_shared<ModulationFormat>(
-      modulation, requiredOsnr, symbolRate, channelBw, modOrder, launchPower, maxReach);
+      modulation, requiredOsnr, symbolRate, channelBw, modOrder, launchPower);
   this->addModulationFormat(std::move(modulationFormat));
 }
 
@@ -43188,7 +42808,7 @@ int BitRate::getNumberOfModulations() const {
 }
 
 
-std::vector<std::shared_ptr<BitRate>> BitRate::readBitRatesFile(std::string fileName, mt::SimulationMode simulationMode) {
+std::vector<std::shared_ptr<BitRate>> BitRate::readBitRatesFile(std::string fileName) {
   std::ifstream file(fileName);
 
   // Open and parse JSON file
@@ -43223,37 +42843,22 @@ std::vector<std::shared_ptr<BitRate>> BitRate::readBitRatesFile(std::string file
       std::string modulationName = modulationData.key();
       const auto& modulationInfo = modulationData.value();
 
-      auto modulationFormat = (simulationMode != mt::SimulationMode::ReachTable)
-          ? parsePhysicalLayerMode(modulationInfo, modulationName)
-          : parseReachTableMode(modulationInfo, modulationName);
-
-      bitRate->addModulationFormat(modulationFormat);
+      bitRate->addModulationFormat(
+          parseModulation(modulationInfo, modulationName));
     }
 
     // Sort modulations formats
     auto& modFormats = bitRate->modulationFormats;
-    if (simulationMode != mt::SimulationMode::ReachTable) {
-      // Physical layer: higher mod_order first, then lower channel_bw, then lower OSNR
-      std::sort(modFormats.begin(), modFormats.end(),
-        [](const auto& a, const auto& b) {
-          if (a->getModOrder() != b->getModOrder()) {
-            return a->getModOrder() > b->getModOrder();
-          }
-          if (a->getChannelBw() != b->getChannelBw()) {
-            return a->getChannelBw() < b->getChannelBw();
-          }
-          return a->getRequiredOSNR() < b->getRequiredOSNR();
-        });
-    } else {
-      // Reach table: fewer slots first, then higher reach
-      std::sort(modFormats.begin(), modFormats.end(),
-        [](const auto& a, const auto& b) {
-          if (a->getRequiredSlots() != b->getRequiredSlots()) {
-            return a->getRequiredSlots() < b->getRequiredSlots();
-          }
-          return a->getReach() > b->getReach();
-        });
-    }
+    std::sort(modFormats.begin(), modFormats.end(),
+      [](const auto& a, const auto& b) {
+        if (a->getModOrder() != b->getModOrder()) {
+          return a->getModOrder() > b->getModOrder();
+        }
+        if (a->getChannelBw() != b->getChannelBw()) {
+          return a->getChannelBw() < b->getChannelBw();
+        }
+        return a->getRequiredOSNR() < b->getRequiredOSNR();
+      });
 
     result.push_back(bitRate);
   }
@@ -43261,68 +42866,21 @@ std::vector<std::shared_ptr<BitRate>> BitRate::readBitRatesFile(std::string file
 }
 
 // ============================================================================
-// Helper: Parse Reach Table Mode (slots + reach per band)
+// Parse GN physical-layer parameters (OSNR, symbol rate, channel BW, etc.).
 // ============================================================================
-std::shared_ptr<ModulationFormat> BitRate::parseReachTableMode(
+std::shared_ptr<ModulationFormat> BitRate::parseModulation(
     const nlohmann::json& modulationInfo,
     const std::string& modulationName) {
   
   if (!modulationInfo.is_object()) {
-    throw std::runtime_error("Reach Table Mode expects an object for '" + modulationName + "'");
-  }
-
-  // Extract mandatory slots field
-  if (!modulationInfo.contains("slots")) {
-    throw std::runtime_error("Missing required field 'slots' for '" + modulationName + "'");
-  }
-  int requiredSlots = modulationInfo["slots"].get<int>();
-  if (requiredSlots <= 0) {
-    throw std::runtime_error("Slots must be positive for '" + modulationName + "'");
-  }
-
-  // Extract band reach values (C, L, S, etc.)
-  std::map<mt::Band, double> reachMap;
-  for (const auto& [key, value] : modulationInfo.items()) {
-    if (key == "slots") continue;  // Skip the slots field
-
-    // Check if this is a band identifier (single character: C, L, S)
-    if (key.length() == 1 && (key[0] == 'C' || key[0] == 'L' || key[0] == 'S')) {
-      mt::Band band = mt::charToBand(key[0]);
-      double reach = value.get<double>();
-      
-      if (reach <= 0) {
-        throw std::runtime_error("Reach must be positive for band '" + key + "' in '" + modulationName + "'");
-      }
-      
-      reachMap[band] = reach;
-    }
-  }
-
-  // Ensure at least one band is defined
-  if (reachMap.empty()) {
-    throw std::runtime_error("At least one band (C, L, or S) must be defined for '" + modulationName + "'");
-  }
-
-  // Construct and return the ModulationFormat
-  return std::make_shared<ModulationFormat>(modulationName, requiredSlots, reachMap);
-}
-
-// ============================================================================
-// Helper: Parse Physical Layer Mode (OSNR, symbol rate, channel BW, etc.)
-// ============================================================================
-std::shared_ptr<ModulationFormat> BitRate::parsePhysicalLayerMode(
-    const nlohmann::json& modulationInfo,
-    const std::string& modulationName) {
-  
-  if (!modulationInfo.is_object()) {
-    throw std::runtime_error("Physical Layer Mode requires an object for '" + modulationName + "'");
+    throw std::runtime_error("GN bitrate configuration requires an object for '" + modulationName + "'");
   }
 
   // Extract mandatory parameters (camelCase only)
   if (!modulationInfo.contains("osnr") || !modulationInfo.contains("symbolRate") ||
       !modulationInfo.contains("channelBw") || !modulationInfo.contains("modOrder")) {
     throw std::invalid_argument(
-        "Physical Layer Mode requires 'osnr', 'symbolRate', 'channelBw', and 'modOrder' for '" +
+        "GN bitrate configuration requires 'osnr', 'symbolRate', 'channelBw', and 'modOrder' for '" +
         modulationName + "'");
   }
 
@@ -43343,18 +42901,9 @@ std::shared_ptr<ModulationFormat> BitRate::parsePhysicalLayerMode(
       ? std::optional<double>(modulationInfo["launchPower"].get<double>())
       : std::nullopt;
   
-  std::optional<double> maxReach = modulationInfo.contains("reach")
-      ? std::optional<double>(modulationInfo["reach"].get<double>())
-      : std::nullopt;
-
-  // Validate optional reach if present
-  if (maxReach && *maxReach <= 0) {
-    throw std::invalid_argument("Reach must be positive if specified for '" + modulationName + "'");
-  }
-
   // Construct and return the ModulationFormat
   return std::make_shared<ModulationFormat>(
-      modulationName, osnr, symbolRate, channelBw, modOrder, launchPower, maxReach);
+      modulationName, osnr, symbolRate, channelBw, modOrder, launchPower);
 }
 
 // #include "fiber_spec.hpp"
@@ -43364,9 +42913,7 @@ FiberSpec::BandConfig::BandConfig()
     , freqMinHz(-1)
     , freqMaxHz(-1)
     , slotWidthHz(-1)
-    , sysMarginsDb(-1)
     , deltaPowerDb(-1)
-    , txOnsnr(-1)
 {
   // Default constructor leaves all parameters unset
 }
@@ -43377,9 +42924,7 @@ FiberSpec::BandConfig::BandConfig(int slots)
 		, freqMinHz(-1)
 		, freqMaxHz(-1)
 		, slotWidthHz(-1)
-		, sysMarginsDb(-1)
 		, deltaPowerDb(-1)
-		, txOnsnr(-1)
 {
 	if (this->slots <= 0) {
 		throw std::invalid_argument("BandConfig(slots): slots must be greater than zero.");
@@ -43387,17 +42932,15 @@ FiberSpec::BandConfig::BandConfig(int slots)
 }
 
 FiberSpec::BandConfig::BandConfig(double freqMinHz, double freqMaxHz, double slotWidthHz,
-																	double sysMarginsDb, double deltaPowerDb, double txOnsnr)
+																	double deltaPowerDb)
 		: slots(-1)
 		, freqMinHz(freqMinHz)
 		, freqMaxHz(freqMaxHz)
 		, slotWidthHz(slotWidthHz)
-		, sysMarginsDb(sysMarginsDb)
 		, deltaPowerDb(deltaPowerDb)
-		, txOnsnr(txOnsnr)
 {
 	if (!(std::isfinite(freqMinHz) && std::isfinite(freqMaxHz) && std::isfinite(slotWidthHz) &&
-	      std::isfinite(sysMarginsDb) && std::isfinite(deltaPowerDb) && std::isfinite(txOnsnr))) {
+	      std::isfinite(deltaPowerDb))) {
 		throw std::invalid_argument("BandConfig: parameters must be finite.");
 	}
 	if (freqMinHz < 0.0 || freqMaxHz <= freqMinHz) {
@@ -43406,10 +42949,6 @@ FiberSpec::BandConfig::BandConfig(double freqMinHz, double freqMaxHz, double slo
 	if (slotWidthHz <= 0.0) {
 		throw std::invalid_argument("BandConfig: slotWidthHz must be greater than zero.");
 	}
-	if (sysMarginsDb < 0.0) {
-		throw std::invalid_argument("BandConfig: sysMarginsDb should be non-negative.");
-	}
-
 	const double bandwidth = freqMaxHz - freqMinHz;
 	const double rawSlots = bandwidth / slotWidthHz;
 	const int computedSlots = static_cast<int>(std::floor(rawSlots + 1e-9));
@@ -43487,7 +43026,7 @@ void FiberSpec::addBandConfig(mt::Band band, int slots) {
 }
 
 void FiberSpec::addBandConfig(mt::Band band, double freqMinHz, double freqMaxHz, double slotWidthHz,
-	                            double sysMarginsDb, double deltaPowerDb, double txOnsnr) {
+	                            double deltaPowerDb) {
   // Check that the frequency range dont overlap with existing bands
   for (const auto& [existingBand, config] : this->bandsConfig) {
     if (config.hasPhysicalParams()) {
@@ -43496,7 +43035,8 @@ void FiberSpec::addBandConfig(mt::Band band, double freqMinHz, double freqMaxHz,
       }
     }
   }
-	this->bandsConfig[band] = BandConfig(freqMinHz, freqMaxHz, slotWidthHz, sysMarginsDb, deltaPowerDb, txOnsnr);
+	this->bandsConfig[band] = BandConfig(
+	    freqMinHz, freqMaxHz, slotWidthHz, deltaPowerDb);
 }
 
 const FiberSpec::BandConfig &FiberSpec::getBandConfig(mt::Band band) const {
@@ -43690,11 +43230,40 @@ mt::LightpathType Lightpath::getType(void) const { return this->type; }
 void Lightpath::setModulationFormat(
     std::shared_ptr<const ModulationFormat> newModulationFormat) {
   this->modulationFormat = std::move(newModulationFormat);
+  this->launchPowerDbm.reset();
+  if (this->modulationFormat) {
+    try {
+      this->launchPowerDbm = this->modulationFormat->getLaunchPower();
+    } catch (const std::logic_error &) {
+      // Non-physical-layer workflows may use partially configured modulation
+      // formats. GN access remains strict through getLaunchPower().
+    }
+  }
 }
 
 std::shared_ptr<const ModulationFormat>
 Lightpath::getModulationFormat(void) const {
   return this->modulationFormat;
+}
+
+void Lightpath::setLaunchPower(double newLaunchPowerDbm) {
+  if (!std::isfinite(newLaunchPowerDbm)) {
+    throw std::invalid_argument("Lightpath launch power must be finite.");
+  }
+  if (!this->modulationFormat) {
+    throw std::logic_error(
+        "Lightpath::setLaunchPower: Modulation format is not set.");
+  }
+  this->launchPowerDbm = newLaunchPowerDbm;
+}
+
+double Lightpath::getLaunchPower() const {
+  if (!this->launchPowerDbm.has_value()) {
+    throw std::logic_error(
+        "Lightpath::getLaunchPower: launch power is not set; assign a fully "
+        "configured modulation format or set a lightpath override.");
+  }
+  return *this->launchPowerDbm;
 }
 
 void Lightpath::addLink(int idLink, int fiber, int core, mt::Band band,
@@ -43768,6 +43337,7 @@ void Lightpath::clear() {
   this->allocatedInP2P = false;
   this->p2pId = -1;
   this->modulationFormat = nullptr;
+  this->launchPowerDbm.reset();
 }
 
 bool Lightpath::isAllocatedInP2P() const { return this->allocatedInP2P; }
@@ -43818,7 +43388,7 @@ double Lightpath::getMttrInPeriods() const {
 
 // GN-specific getters
 
-// TODO: Implement this to be compatible with both Reach Table and Physical Layer modes
+// TODO: Revisit this helper when its allocation semantics are defined.
 bool Lightpath::isFeasible(double marginDb) const {
   return this->getGsnrMarginDb(marginDb) >= 0.00;
 }
@@ -43848,7 +43418,7 @@ double Lightpath::getAsePowerW() const {
 }
 
 double Lightpath::getSignalPowerW() const {
-  return mt::dbmToWatt(this->modulationFormat->getLaunchPower());
+  return mt::dbmToWatt(this->getLaunchPower());
 }
 
 double Lightpath::getGsnrDbRaw() const {
@@ -43896,7 +43466,9 @@ double Lightpath::getGsnrDb() const {
   const double Ps = this->getSignalPowerW();
   const double Pase = this->getAsePowerW();
   const double Pnli = this->getNliPowerW();
-  const double signalBwHz = this->modulationFormat->getChannelBw();
+  // ASE and the 0.1 nm TRX reference use the receiver noise-equivalent
+  // bandwidth (baud rate), not transmitted roll-off or allocated guard band.
+  const double receiverNoiseBwHz = this->modulationFormat->getSymbolRate();
 
   if (Ps <= 0.0) {
     throw std::runtime_error("Cannot compute GSNR: signal power <= 0.");
@@ -43904,8 +43476,8 @@ double Lightpath::getGsnrDb() const {
   if (Pase < 0.0 || Pnli < 0.0) {
     throw std::runtime_error("Cannot compute GSNR: ASE or NLI power < 0.");
   }
-  if (signalBwHz <= 0.0) {
-    throw std::runtime_error("Cannot compute GSNR: channel bandwidth <= 0.");
+  if (receiverNoiseBwHz <= 0.0) {
+    throw std::runtime_error("Cannot compute GSNR: receiver noise bandwidth <= 0.");
   }
 
   // -----------------------------------------------------------------------
@@ -43916,41 +43488,29 @@ double Lightpath::getGsnrDb() const {
   const double invGsnrRaw = (Pase + Pnli > 0.0) ? ((Pase + Pnli) / Ps) : 0.0;
 
   // -----------------------------------------------------------------------
-  // 2) Transceiver (TX) & ROADM Add/Drop noise contributions
-  //    Modeled as independent additive noise sources: 1/GSNR += 1/OSNR_i
-  //
-  //    Note: Equipment OSNR values are typically referenced to a 0.1 nm 
-  //    bandwidth (12.5 GHz). We must scale them to the actual signal bandwidth.
+  // 2) Combined transmitter-and-receiver implementation noise
+  //    Modeled as one independent additive contribution:
+  //    1/GSNR += 1/SNR_trx.
   // -----------------------------------------------------------------------
-  constexpr double kRefOsnrBandwidthHz = 12.5e9; // 0.1 nm reference
-  constexpr double txOsnr01nm_dB = 36.0;
-  
-  // Scaling factor to convert 0.1nm OSNR to signal bandwidth OSNR
-  const double bwScalingFactor = signalBwHz / kRefOsnrBandwidthHz;
+  const double bwScalingFactor =
+      receiverNoiseBwHz / mt::constants::REFERENCE_BANDWIDTH_0_1NM_HZ;
 
-  // TX contribution
-  const double invTxOsnr = bwScalingFactor / mt::dbToLinear(txOsnr01nm_dB);
-
-  // ROADM Add/Drop OSNR contribution. P2P endpoints connect directly to their
-  // dedicated line system and therefore do not traverse add/drop ROADMs.
-  // Intermediate express ROADMs do not add a broadband OSNR term here.
-  const int nRoadmAddDropStages =
-      (!this->allocatedInP2P && !this->links.empty()) ? 2 : 0;
-  const double invRoadmAddDropOsnr = nRoadmAddDropStages * 
-      (bwScalingFactor / mt::dbToLinear(mt::constants::OSNR_ROADM_ADD_DROP_0_1NM_DB));
+  const double invTrxSnr =
+      bwScalingFactor / mt::dbToLinear(mt::constants::TRX_SNR_0_1NM_DB);
 
   // Compute the combined GSNR in dB before subtractive penalties
   const double baseGsnr_dB = 
-      mt::linearToDb(1.0 / (invGsnrRaw + invTxOsnr + invRoadmAddDropOsnr));
+      mt::linearToDb(1.0 / (invGsnrRaw + invTrxSnr));
 
   // -----------------------------------------------------------------------
   // 3) ROADM penalty-stage counting
   //    Normal path: two add/drop ROADMs plus one express ROADM per transit node.
-  //    P2P equalization sites do not contribute ROADM PDL or the normal
-  //    lightpath WSS filtering penalty. Their DGE filtering penalty is handled
-  //    below.
+  //    Equalization sites do not contribute ROADM PDL or the normal lightpath
+  //    WSS filtering penalty. The equalization-site DGE filtering penalty is
+  //    handled below.
   // -----------------------------------------------------------------------
-  const int nAddDropRoadms = nRoadmAddDropStages;
+  const int nAddDropRoadms =
+      (!this->allocatedInP2P && !this->links.empty()) ? 2 : 0;
   const int nExpressRoadms = this->allocatedInP2P
       ? 0
       : (this->links.empty()
@@ -43962,7 +43522,7 @@ double Lightpath::getGsnrDb() const {
   // 4) Subtractive Penalties (Applied directly in the dB domain)
   // -----------------------------------------------------------------------
   
-  // a) ROADM PDL penalty. P2P equalization stations are not ROADM stages.
+  // a) ROADM PDL penalty. Equalization stations are not ROADM stages.
   const double accumulatedPdlDb =
       computeAccumulatedRoadmPdlDb(nAddDropRoadms, nExpressRoadms);
   const double pdlPenalty_dB = interpolatePdlPenaltyDb(accumulatedPdlDb);
@@ -43978,34 +43538,32 @@ double Lightpath::getGsnrDb() const {
   const double roadmWssFilteringPenaltyDb =
       roadmWssFilteringPenaltyPerWssDb * 2 * nPenaltyRoadms;
 
-  // c) DGE filtering penalty for P2P equalization sites.
+  // c) DGE filtering penalty for every equalization site.
   constexpr double dgeFilteringPenaltyPerSiteDb =
       0.15; // TODO(mirko): Is this value ok?
-  const double p2pDgeFilteringPenaltyDb =
-      this->allocatedInP2P
-          ? dgeFilteringPenaltyPerSiteDb *
-                static_cast<double>(this->getPowerEqualizationSiteCount())
-          : 0.0;
+  const double dgeFilteringPenaltyDb =
+      dgeFilteringPenaltyPerSiteDb *
+      static_cast<double>(this->getPowerEqualizationSiteCount());
 
   // d) Aging Margin (Π_Pen_age)
   //    End-of-life margin to account for fiber degradation over time.
   constexpr double agingPenalty_dB = 0.0; // 1.5; TODO
 
   // -----------------------------------------------------------------------
-  // 5) Final GSNR
+  // 5) Full GSNR
   // Matches JSAC 2025 structural equation format:
   // Γ_LP|dB = 10*log10(...) - Π_Pen_pdl|dB - Π_Pen_ROADM,WSS|dB
   //             - Π_Pen_DGE,filter|dB - Π_Pen_age|dB
   // -----------------------------------------------------------------------
-  const double finalGsnr_dB =
+  const double fullGsnrDb =
       baseGsnr_dB
       - pdlPenalty_dB
       - roadmWssFilteringPenaltyDb
-      - p2pDgeFilteringPenaltyDb
+      - dgeFilteringPenaltyDb
       - agingPenalty_dB;
 
   // Erase non-deterministic floating-point noise (1e-15) derived from summation order
-  return std::round(finalGsnr_dB * 1e6) / 1e6;
+  return std::round(fullGsnrDb * 1e6) / 1e6;
 }
 
 double Lightpath::getGsnrMarginDb(double extraThresholdMarginDb) const {
@@ -44032,37 +43590,13 @@ double Lightpath::getGsnrMarginDb(double extraThresholdMarginDb) const {
 ModulationFormat::ModulationFormat(const std::string &modulationStr)
   : modulationStr(modulationStr) {}
 
-// Reach Table Mode Constructor
-ModulationFormat::ModulationFormat(
-  const std::string &modulationStr,
-  int requiredSlots,
-  const std::map<mt::Band, double> &reachPerBand)
-  : modulationStr(modulationStr),
-    requiredSlots(requiredSlots),
-    reachPerBand(reachPerBand)
-{
-  if (requiredSlots <= 0) {
-    throw std::invalid_argument("Required slots must be positive for '" + modulationStr + "'");
-  }
-  if (reachPerBand.empty()) {
-    throw std::invalid_argument("Reach Table Mode requires a non-empty reach map for '" + modulationStr + "'");
-  }
-  for (const auto& [band, reach] : reachPerBand) {
-    if (reach <= 0.0) {
-      throw std::invalid_argument("Reach must be positive for band '" + std::string(1, mt::bandToChar(band)) + "' in '" + modulationStr + "'");
-    }
-  }
-}
-
-// Physical Layer Mode Constructor
 ModulationFormat::ModulationFormat(
   const std::string &modulationStr,
   double requiredOsnr,
   double symbolRate,
   double channelBw,
   double modOrder,
-  std::optional<double> launchPower,
-  std::optional<double> maxReach)
+  std::optional<double> launchPower)
   : modulationStr(modulationStr),
     requiredOSNR(requiredOsnr),
     symbolRate(symbolRate),
@@ -44083,59 +43617,11 @@ ModulationFormat::ModulationFormat(
   if (modOrder <= 0.0) {
     throw std::invalid_argument("Modulation order must be positive for '" + modulationStr + "'");
   }
-  
-  // Validate optional maxReach if provided
-  if (maxReach.has_value() && maxReach.value() <= 0.0) {
-    throw std::invalid_argument("Maximum reach must be positive if specified for '" + modulationStr + "'");
-  }
-  
-  // Store maxReach in reachPerBand for hybrid approach (C band assumed)
-  if (maxReach.has_value()) {
-    this->reachPerBand = std::map<mt::Band, double>{{mt::Band::C, maxReach.value()}};
-  }
 }
 
 std::string ModulationFormat::getModulationStr() const {
 	return this->modulationStr;
 }
-
-int ModulationFormat::getRequiredSlots(void) const {
-	if (!this->requiredSlots.has_value()) {
-    throw std::logic_error("Required slots not set in modulation format; in physical-layer mode call getRequiredSlots(slotWidth) instead.");
-	}
-	return this->requiredSlots.value();
-}
-
-// TODO: Implement a getReach for physical layer mode?
-double ModulationFormat::getReach(mt::Band band) const {
-	if (!this->reachPerBand.has_value()) {
-		throw std::logic_error("Reach per band not set in modulation format, if using physical layer aware mode this method should not be called.");
-	}
-	auto it = this->reachPerBand->find(band);
-	if (it != this->reachPerBand->end()) {
-		return it->second;
-	}
-	throw std::invalid_argument("Band not found in modulation format");
-}
-
-void ModulationFormat::setRequiredSlots(int slots) {
-  if (slots <= 0) {
-    throw std::invalid_argument("Slots must be positive");
-  }
-  this->requiredSlots = slots;
-}
-
-void ModulationFormat::setReach(mt::Band band, double reach) {
-  if (reach <= 0.0) {
-    throw std::invalid_argument("Reach must be positive");
-  }
-  if (!this->reachPerBand.has_value()) {
-    this->reachPerBand = std::map<mt::Band, double>();
-  }
-  (*this->reachPerBand)[band] = reach;
-}
-
-// PHYSICAL LAYER METHODS
 
 int ModulationFormat::getRequiredSlots(double slotWidth) const {
     if (!this->channelBw.has_value()) {
@@ -44211,7 +43697,7 @@ double ModulationFormat::getModOrder() const {
 	return this->modOrder.value();
 }
 
-double ModulationFormat::getExcessKurtosis() const noexcept {
+double ModulationFormat::getExcessKurtosis() const {
   std::string normalized;
   normalized.reserve(this->modulationStr.size());
   for (unsigned char ch : this->modulationStr) {
@@ -44224,23 +43710,29 @@ double ModulationFormat::getExcessKurtosis() const noexcept {
 
   if (normalized.find("GAUSSIAN") != std::string::npos)
     return 0.0;
-  if (normalized == "BPSK" || normalized == "QPSK")
+  if (normalized == "BPSK" || normalized == "QPSK" ||
+      normalized == "4QAM" || normalized == "QAM4")
     return -1.0;
   if (normalized == "8QAM" || normalized == "QAM8")
     return -2.0 / 3.0;
   if (normalized == "32QAM" || normalized == "QAM32")
     return -0.69;
+  if (normalized == "16QAM" || normalized == "QAM16")
+    return -0.6800;
+  if (normalized == "64QAM" || normalized == "QAM64")
+    return -0.6190;
+  if (normalized == "256QAM" || normalized == "QAM256")
+    return -0.6050;
+  if (normalized == "INFINITEQAM")
+    return -0.6000;
+  if (normalized == "SHAPED64QAMGMI12DB")
+    return -0.3403;
+  if (normalized == "SHAPED64QAMMI12DB")
+    return -0.1871;
 
-  if (normalized.find("QAM") == std::string::npos ||
-      !this->modOrder.has_value())
-    return 0.0;
-
-  const double order = this->modOrder.value();
-  const double root = std::round(std::sqrt(order));
-  if (order <= 1.0 || std::abs(root * root - order) > 1e-9)
-    return 0.0;
-
-  return -3.0 * (order + 1.0) / (5.0 * (order - 1.0));
+  throw std::invalid_argument(
+      "Unsupported modulation for Semrau correction: '" +
+      this->modulationStr + "'.");
 }
 
 void ModulationFormat::setModOrder(double modOrder) {

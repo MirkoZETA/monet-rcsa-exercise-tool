@@ -12,27 +12,27 @@ Pull the published Docker image and run a simulation:
 ### Unix (Linux, macOS, and WSL)
 
 ```bash
-docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1
+docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.3.0
 
 mkdir -p results
 
 docker run --rm \
   --user "$(id -u):$(id -g)" \
   -v "$(pwd)/results:/results" \
-  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1 \
+  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.3.0 \
   Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
 ### Windows (PowerShell)
 
 ```powershell
-docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1
+docker pull ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.3.0
 
 New-Item -ItemType Directory -Force results
 
 docker run --rm `
   --mount "type=bind,source=$($PWD.Path)\results,target=/results" `
-  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.2.1 `
+  ghcr.io/mirkozeta/monet-rcsa-exercise-tool:0.3.0 `
   Germany-14nodes 1 3 1 1 1 /results/run-001
 ```
 
@@ -108,7 +108,14 @@ The executable expects seven positional arguments in this order:
 monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET SPECTRUM_ALLOCATION OUTPUT_FOLDER
 ```
 
-- `NETWORK`: topology name, currently `Germany-14nodes`
+- `NETWORK`: topology name. Available resources:
+  - `Germany-14nodes`
+  - `Germany-50nodes`
+  - `Spain-21nodes`
+  - `USA-14nodes`
+  - `Japan-12nodes`
+  - `UK-21nodes`
+  - `Europe-20nodes`
 - `ROUTE_SET`: `1` for shortest paths or `2` for disjoint paths
 - `K`: positive number of candidate paths
 - `ROUTE_ORDERING`: candidate evaluation order:
@@ -120,7 +127,12 @@ monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET SPECTRUM_ALLOCATIO
   - `1`: all bitrates, from 100 to 600 Gbps
   - `2`: low bitrates, from 100 to 300 Gbps
   - `3`: high bitrates, from 350 to 600 Gbps
-- `SPECTRUM_ALLOCATION`: `1` for First Fit
+- `SPECTRUM_ALLOCATION`:
+  - `1`: First Fit
+  - `2`: Best Fit
+  - `3`: Random Fit
+  - `4`: Least Used
+  - `5`: Most Used
 - `OUTPUT_FOLDER`: directory in which the CSV reports are created
 
 Example:
