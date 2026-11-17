@@ -1,6 +1,21 @@
-# RCSA exercise
+<p align="center">
+  <img
+    src="static/rcsa-banner.png"
+    alt="Optical network routing and spectrum allocation"
+    width="100%"
+  >
+</p>
+
+[![Latest release](https://img.shields.io/github/v/release/MirkoZETA/monet-rcsa-exercise-tool?label=version&color=blue&style=flat-square)](https://github.com/MirkoZETA/monet-rcsa-exercise-tool/releases/latest)
+![Language](https://img.shields.io/badge/language-C%2B%2B-blue?style=flat-square)
+[![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE.md)
+[![COMNET website](https://img.shields.io/badge/Website-COMNET-orange?style=flat-square)](https://www.unibw.de/comnet)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/chair-of-communication-networks-universit%C3%A4t-der-bundeswehr-m%C3%BCnchen/posts/?feedView=all)
 
 A MONet-based tool for configuring and running simple RCSA simulations.
+
+Developed by the [Chair of Communication Networks](https://www.unibw.de/comnet)
+at Universität der Bundeswehr München.
 
 > [!IMPORTANT]
 > Docker is required to run this project.
