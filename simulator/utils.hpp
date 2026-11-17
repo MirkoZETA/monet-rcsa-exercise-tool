@@ -7,6 +7,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <filesystem>
+#include <map>
 #include <numeric>
 #include <stdexcept>
 #include <string>
@@ -117,10 +118,14 @@ inline SpectrumAllocation parseSpectrumAllocation(const std::string &value) {
     return SpectrumAllocation::BestFit;
   case static_cast<int>(SpectrumAllocation::RandomFit):
     return SpectrumAllocation::RandomFit;
+  case static_cast<int>(SpectrumAllocation::LeastUsed):
+    return SpectrumAllocation::LeastUsed;
+  case static_cast<int>(SpectrumAllocation::MostUsed):
+    return SpectrumAllocation::MostUsed;
   default:
     throw std::invalid_argument(
-        "spectrum-allocation must be 1 (FirstFit), 2 (BestFit), or "
-        "3 (RandomFit)");
+        "spectrum-allocation must be 1 (FirstFit), 2 (BestFit), "
+        "3 (RandomFit), 4 (LeastUsed), or 5 (MostUsed)");
   }
 }
 
@@ -150,6 +155,9 @@ inline CommandLineOptions parseCommandLine(int argc, char *argv[]) {
 
 // Set once from the command line before the simulation starts.
 inline RouteOrder routeOrdering = RouteOrder::ShortestFirst;
+
+// Number of fiber-0 allocations made at every slot index, per band.
+inline std::map<mt::Band, std::vector<int>> globalSpectrumSlotUsage;
 
 // Calculate the representative slot utilization of a given route
 inline double routeUtilization(const mt::Route &route) {

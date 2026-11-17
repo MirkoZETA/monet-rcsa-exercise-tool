@@ -131,6 +131,8 @@ monet-exercise NETWORK ROUTE_SET K ROUTE_ORDERING BITRATE_SET SPECTRUM_ALLOCATIO
   - `1`: First Fit
   - `2`: Best Fit
   - `3`: Random Fit
+  - `4`: Least Used
+  - `5`: Most Used
 - `OUTPUT_FOLDER`: directory in which the CSV reports are created
 
 Example:

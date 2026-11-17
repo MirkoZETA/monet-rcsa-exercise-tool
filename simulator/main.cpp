@@ -17,7 +17,8 @@ void printUsage(std::ostream &stream, const char *programName) {
       << "                        3 = least loaded first, 4 = most loaded first\n"
       << "  bitrate-set:          1 = all, 2 = low, 3 = high\n"
       << "  spectrum-allocation:  1 = FirstFit, 2 = BestFit,\n"
-      << "                        3 = RandomFit\n"
+      << "                        3 = RandomFit, 4 = LeastUsed,\n"
+      << "                        5 = MostUsed\n"
       << "  output-folder:        directory for generated reports\n";
 }
 
@@ -106,6 +107,12 @@ int runSimulation(const CommandLineOptions &options, const char *programName) {
     break;
   case SpectrumAllocation::RandomFit:
     USE_ALLOC_FUNCTION(RandomFit, simulator);
+    break;
+  case SpectrumAllocation::LeastUsed:
+    USE_ALLOC_FUNCTION(LeastUsed, simulator);
+    break;
+  case SpectrumAllocation::MostUsed:
+    USE_ALLOC_FUNCTION(MostUsed, simulator);
     break;
   }
 
